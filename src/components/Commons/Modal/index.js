@@ -16,7 +16,7 @@ export default function _Modal({children, className, show, options}) {
             <div className="modal-body">
                 {children}
             </div>
-            {options && options.onOk || options && options.onCancel ? <div className="modal-footer">
+            {options && (options.onOk || options.onCancel) ? <div className="modal-footer">
                 {options && options.onOk ?
                     <button type="button" className="btn btn-primary" onClick={() => options.onOk('OK')}>
                         {options && options.textOk ? options.textOk : 'Ok'}

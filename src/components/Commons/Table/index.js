@@ -1,23 +1,23 @@
 import React, {useState, useEffect} from 'react'
 import {FontAwesomeIcon} from '@fortawesome/react-fontawesome'
-import {faCog, faSort, faTable} from '@fortawesome/free-solid-svg-icons'
+import {faCog, faSort, faTable, faColumns} from '@fortawesome/free-solid-svg-icons'
 import Pagination from "../Pagination";
-import './styles.css'
+import Modal from "../Modal"
 
 
-export default function Table({className, header, body, pagination, options}) {
+export default function Table({className, header, visible, body, pagination, options}) {
 
 
     const [dataHeader, setDataHeader] = useState([])
     const [dataOptions, setDataOptions] = useState({})
+    const [showModalColumns, setShowModalColumns] = useState(false)
+    const [checkColumnVisible, setCheckColumnVisible] = useState([])
 
 
     useEffect(() => {
-
         if (header) {
             setDataHeader(header.map(item => ({key: item.key, value: item.value, order: 'asc'})))
         }
-
     }, [header])
 
 
@@ -27,6 +27,15 @@ export default function Table({className, header, body, pagination, options}) {
 
     }, [options])
 
+
+    useEffect(() => {
+        if (visible) {
+            setCheckColumnVisible(visible.cols)
+        }
+
+    }, [visible])
+
+    /* config options */
     const getInitialOptions = () => {
 
         let _options = {
@@ -63,7 +72,7 @@ export default function Table({className, header, body, pagination, options}) {
 
     }
 
-
+    /* actions */
     const optionsItem = (item, index) => {
         return (
             <div className="dropdown actions">
@@ -72,29 +81,39 @@ export default function Table({className, header, body, pagination, options}) {
                     <FontAwesomeIcon icon={faCog}/>
                 </button>
                 <div className="dropdown-menu dropdown-menu-right">
-                    {dataOptions.actions.indexOf('get') > -1 ? <button className={`dropdown-item ${dataOptions.callbacks.onGet ? '':'disabled'}`} onClick={()=> dataOptions.callbacks.onGet(item, index)}>Seleccionar</button> : null}
-                    {dataOptions.actions.indexOf('update') > -1 ? <button className={`dropdown-item ${dataOptions.callbacks.onUpdate ? '':'disabled'}`} onClick={()=> dataOptions.callbacks.onUpdate(item, index)}>Editar</button> : null}
-                    {dataOptions.actions.indexOf('delete') > -1 ? <button className={`dropdown-item ${dataOptions.callbacks.onDelete ? '':'disabled'}`} onClick={()=> dataOptions.callbacks.onDelete(item, index)}>Borrar</button> : null}
-                    {dataOptions.actions.indexOf('historial') > -1 ? <button className={`dropdown-item ${dataOptions.callbacks.onHistorial ? '':'disabled'}`} onClick={()=> dataOptions.callbacks.onHistorial(item, index)}>Historial cambios</button> : null}
+                    {dataOptions.actions.indexOf('get') > -1 ?
+                        <button className={`dropdown-item ${dataOptions.callbacks.onGet ? '' : 'disabled'}`}
+                                onClick={() => dataOptions.callbacks.onGet(item, index)}>Seleccionar</button> : null}
+                    {dataOptions.actions.indexOf('update') > -1 ?
+                        <button className={`dropdown-item ${dataOptions.callbacks.onUpdate ? '' : 'disabled'}`}
+                                onClick={() => dataOptions.callbacks.onUpdate(item, index)}>Editar</button> : null}
+                    {dataOptions.actions.indexOf('delete') > -1 ?
+                        <button className={`dropdown-item ${dataOptions.callbacks.onDelete ? '' : 'disabled'}`}
+                                onClick={() => dataOptions.callbacks.onDelete(item, index)}>Borrar</button> : null}
+                    {dataOptions.actions.indexOf('historial') > -1 ?
+                        <button className={`dropdown-item ${dataOptions.callbacks.onHistorial ? '' : 'disabled'}`}
+                                onClick={() => dataOptions.callbacks.onHistorial(item, index)}>Historial
+                            cambios</button> : null}
                 </div>
             </div>
         )
     }
 
-
+    /* order column */
     const setOrder = (item) => {
         item.order = item.order === 'asc' ? 'desc' : 'asc'
         dataOptions.callbacks.onOrder(item)
     }
 
+    /* custom class table */
     const getClassTable = () => {
 
         let classname = 'table'
         if (dataOptions && dataOptions.table) {
 
-            if (dataOptions.table.align) classname += ' text-'+dataOptions.table.align
-            if (dataOptions.table.size) classname += ' table-'+dataOptions.table.size
-            if (dataOptions.table.color) classname += ' table-'+dataOptions.table.color
+            if (dataOptions.table.align) classname += ' text-' + dataOptions.table.align
+            if (dataOptions.table.size) classname += ' table-' + dataOptions.table.size
+            if (dataOptions.table.color) classname += ' table-' + dataOptions.table.color
             if (dataOptions.table.striped) classname += ' table-striped'
             if (dataOptions.table.bordered) classname += ' table-bordered'
             if (dataOptions.table.borderless) classname += ' table-borderless'
@@ -107,18 +126,19 @@ export default function Table({className, header, body, pagination, options}) {
         return classname
     }
 
+    /* custom class thead */
     const getClassThead = () => {
 
         let classname = ''
         if (dataOptions && dataOptions.thead) {
 
-            if (dataOptions.thead.color) classname += ' thead-'+dataOptions.thead.color
+            if (dataOptions.thead.color) classname += ' thead-' + dataOptions.thead.color
 
         }
         return classname
     }
 
-
+    /* set color row */
     const getColorRow = (item) => {
 
         if (dataOptions.onColorRow) return dataOptions.onColorRow(item)
@@ -126,81 +146,164 @@ export default function Table({className, header, body, pagination, options}) {
 
     }
 
+    /* set format cell value */
     const getFormatCell = (item, key) => {
         if (dataOptions.onFormatCell) return dataOptions.onFormatCell(item, key)
         return item[key]
     }
 
+    /* select checkbox columns visible */
+    const onChangeCheckVisibleCol = (e) => {
+
+        let key = e.target.name
+        let isChecked = e.target.checked
+        let found = checkColumnVisible.find(col => col === key)
+
+        if (isChecked && !found) {
+            /* agregar */
+            let array = Object.assign([], checkColumnVisible)
+            array.push(key);
+            setCheckColumnVisible(array)
+        } else {
+            /* sacar de la lista */
+            let array = Object.assign([], checkColumnVisible)
+            array = array.filter(col => col !== key)
+            setCheckColumnVisible(array)
+        }
+
+
+    }
+
+    /* set columns visible */
+    const onOkModalColumn = () => {
+        setShowModalColumns(false)
+        visible.onVisible(checkColumnVisible)
+    }
 
     if (dataHeader.length > 0) {
         return (
-            <div className="table-responsive">
-                <table className={getClassTable()}>
-                    <thead>
-                    <tr>
-                        <th className="p-2" colSpan={dataHeader.length + (dataOptions.actions.length > 0 ? 1 : 0)}>
-                            {body.length === 0 ? <span className="float-left">{dataOptions.thead.textNone}</span> : null}
-                            {body.length === 1 ? <span className="float-left">{dataOptions.thead.textOnly.replace('{X}', body.length)}</span> : null}
-                            {body.length > 1 ? <span className="float-left">{dataOptions.thead.textMore.replace('{X}', body.length)}</span> : null}
-                            {dataOptions.actions.indexOf('export') > -1 && body.length > 0 ? <button disabled={!dataOptions.callbacks.onExport} onClick={()=> dataOptions.callbacks.onExport() } className="btn btn-sm btn-primary float-right"><FontAwesomeIcon icon={faTable} className={"mr-1"} /> Exportar</button> : null}
-                        </th>
-                    </tr>
-                    </thead>
-                    <thead className={getClassThead()}>
-                    <tr>
-                        {dataHeader.map((e, i) => {
-                            if (dataOptions.callbacks.onOrder) return <th key={i} onClick={()=> setOrder(e)}><FontAwesomeIcon icon={faSort} className={"mr-1"}/>{e.value}</th>
-                            else return <th key={i}>{e.value}</th>
-                        })}
-                        {dataOptions.actions.length > 0 ? <th width="1"/> : null}
-                    </tr>
-                    </thead>
-                    <tbody>
-                    {body.map((b,i)=>{
-                        return (
-                            <tr key={i} style={{backgroundColor: getColorRow(b)}}>
-                                {dataHeader.map((h, j) => {
-                                    if (j === 0 && dataOptions.callbacks.onGet) return <td key={j}><span style={{cursor: 'pointer'}} className="text-primary" onClick={()=> dataOptions.callbacks.onGet(b, i)}>{getFormatCell(b, h.key)}</span></td>
-                                    else return <td key={j}>{getFormatCell(b, h.key)}</td>
-                                })}
-                                {dataOptions.actions.length > 0 ? <td width="1">{optionsItem(b, i)}</td> : null}
-                            </tr>
-                        )
-                    })}
-                    </tbody>
-                    {dataOptions.leyendas > 0 || pagination ?
-                    <tfoot>
-                    <tr>
-                        <td className="px-2 py-2" colSpan={dataHeader.length + (dataOptions.actions.length > 0 ? 1 : 0)}>
-                            <div className="row m-0">
-                                <div className="col-6 p-0 leyendas d-flex align-items-center">
-                                    {dataOptions.leyendas.map( (leyenda,l) => {
-                                        return (
-                                            <table className={"mr-2"} key={l} style={{border: 0}}>
-                                                <tbody>
-                                                <tr>
-                                                    <td><span style={{display:'inline-block', width:'20px', height:'20px', backgroundColor:leyenda.color }}></span></td><td>{leyenda.text}</td>
-                                                </tr>
-                                                </tbody>
-                                            </table>)
-                                    })}
-                                </div>
-                                <div className="col-6 p-0 d-flex align-items-center justify-content-end">
-                                    {pagination ?
-                                        <Pagination
-                                            classPag="miPagination float-right"
-                                            total={pagination.total}
-                                            itemsPag={pagination.itemsPag}
-                                            pag={pagination.pag}
-                                            onPagination={pagination.onPagination}/> : null}
-                                </div>
-                            </div>
+            <>
+                <div className="table-responsive">
+                    <table className={getClassTable()}>
+                        <thead>
+                        <tr>
+                            <th className="p-2" colSpan={dataHeader.length + (dataOptions.actions.length > 0 ? 1 : 0)}>
+                                {body.length === 0 ?
+                                    <span className="float-left">{dataOptions.thead.textNone}</span> : null}
+                                {body.length === 1 ? <span
+                                    className="float-left">{dataOptions.thead.textOnly.replace('{X}', body.length)}</span> : null}
+                                {body.length > 1 ? <span
+                                    className="float-left">{dataOptions.thead.textMore.replace('{X}', body.length)}</span> : null}
+                                {visible && visible.show ?
+                                    <button className="btn btn-sm btn-primary float-right ml-1" onClick={()=>setShowModalColumns(true)}><FontAwesomeIcon
+                                        icon={faColumns}/></button> : null}
+                                {dataOptions.actions.indexOf('export') > -1 && body.length > 0 ?
+                                    <button disabled={!dataOptions.callbacks.onExport}
+                                            onClick={() => dataOptions.callbacks.onExport()}
+                                            className="btn btn-sm btn-primary float-right ml-1"><FontAwesomeIcon
+                                        icon={faTable} className={"mr-1"}/> Exportar</button> : null}
+                            </th>
+                        </tr>
+                        </thead>
+                        <thead className={getClassThead()}>
+                        <tr>
+                            {dataHeader.map((e, i) => {
+                                return checkColumnVisible.map( col => {
+                                    if (col === e.key) {
+                                        if (dataOptions.callbacks.onOrder) {
+                                            return (<th key={i} onClick={() => setOrder(e)}><FontAwesomeIcon icon={faSort} className={"mr-1"}/>{e.value}</th>)
+                                        }
+                                        else { return <th key={i}>{e.value}</th> }
+                                    }
+                                })
+                            })}
+                            {dataOptions.actions.length > 0 ? <th width="1"/> : null}
+                        </tr>
+                        </thead>
+                        <tbody>
+                        {body.map((b, i) => {
+                            return (
+                                <tr key={i} style={{backgroundColor: getColorRow(b)}}>
+                                    {dataHeader.map((h, j) => {
+                                        return checkColumnVisible.map( col => {
+                                            if (col === h.key) {
+                                                if (j === 0 && dataOptions.callbacks.onGet) return <td key={j}><span
+                                                    style={{cursor: 'pointer'}} className="text-primary"
+                                                    onClick={() => dataOptions.callbacks.onGet(b, i)}>{getFormatCell(b, h.key)}</span>
+                                                </td>
+                                                else return <td key={j}>{getFormatCell(b, h.key)}</td>
+                                            }
+                                        })
 
-                        </td>
-                    </tr>
-                    </tfoot> : null}
-                </table>
-            </div>
+                                    })}
+                                    {dataOptions.actions.length > 0 ? <td width="1" className="px-2">{optionsItem(b, i)}</td> : null}
+                                </tr>
+                            )
+                        })}
+                        </tbody>
+                        {dataOptions.leyendas > 0 || pagination ?
+                            <tfoot>
+                            <tr>
+                                <td className="px-2 py-2"
+                                    colSpan={dataHeader.length + (dataOptions.actions.length > 0 ? 1 : 0)}>
+                                    <div className="row m-0">
+                                        <div className="col-6 p-0 text-left leyendas">
+                                            {dataOptions.leyendas.map((leyenda, l) => {
+                                                return (
+                                                    <span key={l} className="mr-3">
+                                                        <span style={{
+                                                            display: 'inline-block',
+                                                            width: '20px',
+                                                            height: '20px',
+                                                            backgroundColor: leyenda.color
+                                                        }}></span>
+                                                        <span className="ml-1" style={{verticalAlign:'text-bottom'}}>{leyenda.text}</span>
+                                                    </span>
+                                                )
+                                            })}
+                                        </div>
+                                        <div className="col-6 p-0 d-flex align-items-center justify-content-end">
+                                            {pagination ?
+                                                <Pagination
+                                                    classPag="miPagination float-right"
+                                                    total={pagination.total}
+                                                    itemsPag={pagination.itemsPag}
+                                                    pag={pagination.pag}
+                                                    onPagination={pagination.onPagination}/> : null}
+                                        </div>
+                                    </div>
+
+                                </td>
+                            </tr>
+                            </tfoot> : null}
+                    </table>
+                </div>
+
+                <Modal show={showModalColumns} options={{title:'Visibilidad', onOk:onOkModalColumn}}>
+
+                    {dataHeader.map( (item,i)=>{
+
+                        let found = checkColumnVisible.find(col => col === item.key)
+
+                        return (
+                            <div key={i} className="form-check form-check-inline">
+                                <input
+                                    className="form-check-input"
+                                    type="checkbox"
+                                    id={`inlineCheckbox${i}`}
+                                    value={item.key}
+                                    name={item.key}
+                                    checked={found || false}
+                                    onChange={(e)=>onChangeCheckVisibleCol(e)}/>
+                                <label className="form-check-label" htmlFor={`inlineCheckbox${i}`}>{item.value}</label>
+                            </div>
+                        )
+
+                    })}
+
+                </Modal>
+
+            </>
         )
     } else {
         return null

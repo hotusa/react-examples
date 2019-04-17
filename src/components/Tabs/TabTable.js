@@ -9,7 +9,6 @@ export default function TabTable() {
 
     useEffect(() => {
 
-        console.log('useEffect')
         random()
         randomHeader()
 
@@ -53,7 +52,8 @@ export default function TabTable() {
         setDataHeader([
             {key: 'col1', value: 'Traslados ' + Math.floor(Math.random() * 10)},
             {key: 'col2', value: 'COL ' + Math.floor(Math.random() * 10)},
-            {key: 'col3', value: 'COL ' + Math.floor(Math.random() * 10)}
+            {key: 'col3', value: 'COL ' + Math.floor(Math.random() * 10)},
+            {key: 'col4', value: 'COL ' + Math.floor(Math.random() * 10)}
         ])
 
     }
@@ -64,43 +64,51 @@ export default function TabTable() {
                 {
                     col1: Math.floor(Math.random() * 10),
                     col2: Math.floor(Math.random() * 10),
-                    col3: Math.floor(Math.random() * 10)
+                    col3: Math.floor(Math.random() * 10),
+                    col4: Math.floor(Math.random() * 10)
                 },
                 {
                     col1: Math.floor(Math.random() * 10),
                     col2: Math.floor(Math.random() * 10),
-                    col3: Math.floor(Math.random() * 10)
+                    col3: Math.floor(Math.random() * 10),
+                    col4: Math.floor(Math.random() * 10)
                 },
                 {
                     col1: Math.floor(Math.random() * 10),
                     col2: Math.floor(Math.random() * 10),
-                    col3: Math.floor(Math.random() * 10)
+                    col3: Math.floor(Math.random() * 10),
+                    col4: Math.floor(Math.random() * 10)
                 },
                 {
                     col1: Math.floor(Math.random() * 10),
                     col2: Math.floor(Math.random() * 10),
-                    col3: Math.floor(Math.random() * 10)
+                    col3: Math.floor(Math.random() * 10),
+                    col4: Math.floor(Math.random() * 10)
                 },
                 {
                     col1: Math.floor(Math.random() * 10),
                     col2: Math.floor(Math.random() * 10),
-                    col3: Math.floor(Math.random() * 10)
+                    col3: Math.floor(Math.random() * 10),
+                    col4: Math.floor(Math.random() * 10)
                 },
                 {
                     col1: Math.floor(Math.random() * 10),
                     col2: Math.floor(Math.random() * 10),
-                    col3: Math.floor(Math.random() * 10)
+                    col3: Math.floor(Math.random() * 10),
+                    col4: Math.floor(Math.random() * 10)
                 },
                 {
                     col1: Math.floor(Math.random() * 10),
                     col2: Math.floor(Math.random() * 10),
-                    col3: Math.floor(Math.random() * 10)
+                    col3: Math.floor(Math.random() * 10),
+                    col4: Math.floor(Math.random() * 10)
                 },
                 {
                     col1: Math.floor(Math.random() * 10),
                     col2: Math.floor(Math.random() * 10),
-                    col3: Math.floor(Math.random() * 10)
-                }
+                    col3: Math.floor(Math.random() * 10),
+                    col4: Math.floor(Math.random() * 10)
+                },
             ]
         )
     }
@@ -115,6 +123,14 @@ export default function TabTable() {
                     <Table
                         className={"mytable"}
                         header={dataHeader}
+                        visible={{
+                            show: true,
+                            cols: ['col1', 'col2', 'col3', 'col4'],
+                            onVisible: (data)=> {
+                                /* array visible keys columns */
+                                console.log('onVisible', data)
+                            }
+                        }}
                         body={dataBody}
                         pagination={
                             {
@@ -132,11 +148,13 @@ export default function TabTable() {
                                     onUpdate: onUpdate,
                                     onDelete: onDelete,
                                     onHistorial: onHistorial,
-                                    onExport: onExport
+                                    onExport: onExport,
+                                    onOrder: onOrder
                                 },
                                 leyendas: [
                                     {text: 'No operativo', color: '#F45B67' },
-                                    {text: 'Reestricciones', color: '#FFC15C'}
+                                    {text: 'No operativo', color: '#F45B67' }
+
                                 ],
                                 onColorRow: (item) => {
                                     /* Por si necesitamos colorear una row */
@@ -145,7 +163,7 @@ export default function TabTable() {
                                 },
                                 onFormatCell: (item, key) => {
                                     /* Por si queremos formatear el valor de una celda (ej: 'S' -> 'Si' */
-                                    if (key === 'col1') return '*****' + item[key]
+                                    if (key === 'col1') return '**' + item[key]
                                     return item[key]
                                 }
                             }

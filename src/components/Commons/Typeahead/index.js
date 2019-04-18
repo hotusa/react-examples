@@ -1,6 +1,6 @@
 import React, {useState, useEffect} from 'react'
 import {AsyncTypeahead, Highlighter} from 'react-bootstrap-typeahead';
-//import 'react-bootstrap-typeahead/css/Typeahead.css';
+import 'react-bootstrap-typeahead/css/Typeahead.css';
 
 
 export default function Typeahead({isLoading, config, options, onSearch, onChange}) {

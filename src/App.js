@@ -7,6 +7,7 @@ import TabAlertConfirm from "./components/Tabs/TabAlertConfirm";
 import TabNotification from "./components/Tabs/TabNotification";
 import TabLogin from "./components/Tabs/TabLogin";
 import TabModal from "./components/Tabs/TabModal";
+import TabTypeahead from "./components/Tabs/TabTypeahead";
 
 class App extends Component {
 
@@ -35,6 +36,9 @@ class App extends Component {
                     <li className="nav-item">
                         <a className="nav-link" data-toggle="tab" href="#modal" role="tab">Modal</a>
                     </li>
+                    <li className="nav-item">
+                        <a className="nav-link" data-toggle="tab" href="#typeahead" role="tab">Typeahead</a>
+                    </li>
                 </ul>
                 <div className="tab-content" id="myTabContent">
                     <div className="tab-pane fade show active" id="login" role="tabpanel">
@@ -60,6 +64,10 @@ class App extends Component {
                     <div className="tab-pane fade" id="modal" role="tabpanel">
                         <br/>
                         <TabModal/>
+                    </div>
+                    <div className="tab-pane fade" id="typeahead" role="tabpanel">
+                        <br/>
+                        <TabTypeahead/>
                     </div>
                 </div>
 

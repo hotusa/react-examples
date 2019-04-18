@@ -1,6 +1,6 @@
 import React, {useState, useEffect} from 'react'
 import {FontAwesomeIcon} from '@fortawesome/react-fontawesome'
-import {faCog, faSort, faTable, faColumns} from '@fortawesome/free-solid-svg-icons'
+import {faCog, faSort, faTable, faColumns, faPlus} from '@fortawesome/free-solid-svg-icons'
 import Pagination from "../Pagination";
 import Modal from "../Modal"
 
@@ -61,7 +61,8 @@ export default function Table({className, header, visible, body, pagination, opt
                 onDelete: options && options.callbacks && options.callbacks.onDelete ? options.callbacks.onDelete : undefined,
                 onHistorial: options && options.callbacks && options.callbacks.onHistorial ? options.callbacks.onHistorial : undefined,
                 onOrder: options && options.callbacks && options.callbacks.onOrder ? options.callbacks.onOrder : undefined,
-                onExport: options && options.callbacks && options.callbacks.onExport ? options.callbacks.onExport : undefined
+                onExport: options && options.callbacks && options.callbacks.onExport ? options.callbacks.onExport : undefined,
+                onCreate: options && options.callbacks && options.callbacks.onCreate ? options.callbacks.onCreate : undefined,
             },
             leyendas: options && options.leyendas ? options.leyendas : [],
             onColorRow: options && options.onColorRow ? options.onColorRow : undefined,
@@ -188,23 +189,49 @@ export default function Table({className, header, visible, body, pagination, opt
             <div>
                 <div className="table-responsive">
                     <table className={getClassTable()}>
-                        <thead style={{backgroundColor:'#ffffff'}}>
+                        <thead style={{backgroundColor: '#ffffff'}}>
                         <tr>
                             <th className="p-2" colSpan={dataHeader.length + (dataOptions.actions.length > 0 ? 1 : 0)}>
                                 {totalResultados === 0 ?
-                                    <span className="float-left">{dataOptions.thead.textNone}</span> : null}
-                                {totalResultados === 1 ? <span
-                                    className="float-left">{dataOptions.thead.textOnly.replace('{X}', totalResultados)}</span> : null}
-                                {totalResultados > 1 ? <span
-                                    className="float-left">{dataOptions.thead.textMore.replace('{X}', totalResultados)}</span> : null}
-                                {visible && visible.show ?
-                                    <button className="btn btn-sm btn-primary float-right ml-1" onClick={()=>setShowModalColumns(true)}><FontAwesomeIcon
-                                        icon={faColumns}/></button> : null}
-                                {dataOptions.actions.indexOf('export') > -1 && totalResultados > 0 ?
-                                    <button disabled={!dataOptions.callbacks.onExport}
+                                    <span className="float-left">{dataOptions.thead.textNone}</span> : null
+                                }
+                                {totalResultados === 1 ?
+                                    <span
+                                        className="float-left">{dataOptions.thead.textOnly.replace('{X}', totalResultados)}</span> : null
+                                }
+                                {totalResultados > 1 ?
+                                    <span
+                                        className="float-left">{dataOptions.thead.textMore.replace('{X}', totalResultados)}</span> : null
+                                }
+                                {
+                                    /* visibilidad columnas */
+                                    visible && visible.show ?
+                                        <button
+                                            className="btn btn-sm btn-primary float-right ml-1"
+                                            onClick={() => setShowModalColumns(true)}>
+                                            <FontAwesomeIcon icon={faColumns}/>
+                                        </button> : null
+                                }
+                                {
+                                    /* crear */
+                                    dataOptions.actions.indexOf('create') > -1 ?
+                                        <button
+                                            disabled={!dataOptions.callbacks.onCreate}
+                                            onClick={() => dataOptions.callbacks.onCreate()}
+                                            className="btn btn-sm btn-primary float-right ml-1">
+                                            <FontAwesomeIcon icon={faPlus} className={"mr-1"}/>Crear
+                                        </button> : null
+                                }
+                                {
+                                    /* exportar */
+                                    dataOptions.actions.indexOf('export') > -1 && totalResultados > 0 ?
+                                        <button
+                                            disabled={!dataOptions.callbacks.onExport}
                                             onClick={() => dataOptions.callbacks.onExport()}
-                                            className="btn btn-sm btn-primary float-right ml-1"><FontAwesomeIcon
-                                        icon={faTable} className={"mr-1"}/> Exportar</button> : null}
+                                            className="btn btn-sm btn-primary float-right ml-1">
+                                            <FontAwesomeIcon icon={faTable} className={"mr-1"}/> Exportar
+                                        </button> : null
+                                }
                             </th>
                         </tr>
                         </thead>
@@ -240,7 +267,7 @@ export default function Table({className, header, visible, body, pagination, opt
                             {dataOptions.actions.length > 0 ? <th width="1"/> : null}
                         </tr>
                         </thead>
-                        <tbody style={{backgroundColor:'#ffffff'}}>
+                        <tbody style={{backgroundColor: '#ffffff'}}>
                         {body.map((b, i) => {
                             return (
                                 <tr key={i} style={{backgroundColor: getColorRow(b)}}>
@@ -266,13 +293,14 @@ export default function Table({className, header, visible, body, pagination, opt
 
 
                                     })}
-                                    {dataOptions.actions.length > 0 ? <td width="1" className="px-2">{optionsItem(b, i)}</td> : null}
+                                    {dataOptions.actions.length > 0 ?
+                                        <td width="1" className="px-2">{optionsItem(b, i)}</td> : null}
                                 </tr>
                             )
                         })}
                         </tbody>
                         {dataOptions.leyendas > 0 || pagination ?
-                            <tfoot style={{backgroundColor:'#ffffff'}}>
+                            <tfoot style={{backgroundColor: '#ffffff'}}>
                             <tr>
                                 <td className="px-2 py-2"
                                     colSpan={dataHeader.length + (dataOptions.actions.length > 0 ? 1 : 0)}>
@@ -281,13 +309,17 @@ export default function Table({className, header, visible, body, pagination, opt
                                             {dataOptions.leyendas.map((leyenda, l) => {
                                                 return (
                                                     <span key={l} className="mr-3">
-                                                        <span style={{
-                                                            display: 'inline-block',
-                                                            width: '20px',
-                                                            height: '20px',
-                                                            backgroundColor: leyenda.color
-                                                        }}></span>
-                                                        <span className="ml-1" style={{verticalAlign:'text-bottom'}}>{leyenda.text}</span>
+                                                        {
+                                                            leyenda.color ?
+                                                                <span style={{
+                                                                    display: 'inline-block',
+                                                                    width: '20px',
+                                                                    height: '20px',
+                                                                    backgroundColor: leyenda.color
+                                                                }}></span> : null
+                                                        }
+                                                        <span className="ml-1"
+                                                              style={{verticalAlign: 'text-bottom'}}>{leyenda.text}</span>
                                                     </span>
                                                 )
                                             })}
@@ -309,9 +341,9 @@ export default function Table({className, header, visible, body, pagination, opt
                     </table>
                 </div>
 
-                <Modal show={showModalColumns} options={{title:'Visibilidad', onOk:onOkModalColumn}}>
+                <Modal show={showModalColumns} options={{title: 'Visibilidad columnas', onOk: onOkModalColumn}}>
 
-                    {dataHeader.map( (item,i)=>{
+                    {dataHeader.map((item, i) => {
 
                         let found = checkColumnVisible.find(col => col === item.key)
 
@@ -324,7 +356,7 @@ export default function Table({className, header, visible, body, pagination, opt
                                     value={item.key}
                                     name={item.key}
                                     checked={found || false}
-                                    onChange={(e)=>onChangeCheckVisibleCol(e)}/>
+                                    onChange={(e) => onChangeCheckVisibleCol(e)}/>
                                 <label className="form-check-label" htmlFor={`inlineCheckbox${i}`}>{item.value}</label>
                             </div>
                         )

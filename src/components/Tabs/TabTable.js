@@ -50,10 +50,10 @@ export default function TabTable() {
 
     const randomHeader = () => {
         setDataHeader([
-            {key: 'col1', value: 'Traslados ' + Math.floor(Math.random() * 10)},
-            {key: 'col2', value: 'COL ' + Math.floor(Math.random() * 10)},
-            {key: 'col3', value: 'COL ' + Math.floor(Math.random() * 10)},
-            {key: 'col4', value: 'COL ' + Math.floor(Math.random() * 10)}
+            {key: 'col1', value: 'COL 1' + Math.floor(Math.random() * 10)},
+            {key: 'col2', value: 'COL 2' + Math.floor(Math.random() * 10)},
+            {key: 'col3', value: 'COL 3' + Math.floor(Math.random() * 10)},
+            {key: 'col4', value: 'COL 4' + Math.floor(Math.random() * 10)}
         ])
 
     }
@@ -142,14 +142,17 @@ export default function TabTable() {
                         }
                         options={
                             {
-                                actions: ['get', 'update', 'delete', 'historial', 'export'],
+                                actions: ['get', 'update', 'delete', 'historial', 'export', 'create'],
                                 callbacks: {
                                     onGet: onGet,
                                     onUpdate: onUpdate,
                                     onDelete: onDelete,
                                     onHistorial: onHistorial,
                                     onExport: onExport,
-                                    onOrder: onOrder
+                                    onOrder: onOrder,
+                                    onCreate: ()=> {
+                                        console.log('create')
+                                    }
                                 },
                                 leyendas: [
                                     {text: 'No operativo', color: '#F45B67' }

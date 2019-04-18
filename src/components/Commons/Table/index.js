@@ -185,7 +185,7 @@ export default function Table({className, header, visible, body, pagination, opt
 
     if (dataHeader.length > 0) {
         return (
-            <>
+            <div>
                 <div className="table-responsive">
                     <table className={getClassTable()}>
                         <thead style={{backgroundColor:'#ffffff'}}>
@@ -333,7 +333,7 @@ export default function Table({className, header, visible, body, pagination, opt
 
                 </Modal>
 
-            </>
+            </div>
         )
     } else {
         return null

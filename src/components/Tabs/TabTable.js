@@ -152,9 +152,7 @@ export default function TabTable() {
                                     onOrder: onOrder
                                 },
                                 leyendas: [
-                                    {text: 'No operativo', color: '#F45B67' },
                                     {text: 'No operativo', color: '#F45B67' }
-
                                 ],
                                 onColorRow: (item) => {
                                     /* Por si necesitamos colorear una row */
@@ -163,7 +161,7 @@ export default function TabTable() {
                                 },
                                 onFormatCell: (item, key) => {
                                     /* Por si queremos formatear el valor de una celda (ej: 'S' -> 'Si' */
-                                    if (key === 'col1') return '**' + item[key]
+                                    if (key === 'col1') return '*' + item[key]
                                     return item[key]
                                 }
                             }

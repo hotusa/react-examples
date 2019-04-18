@@ -180,24 +180,27 @@ export default function Table({className, header, visible, body, pagination, opt
         visible.onVisible(checkColumnVisible)
     }
 
+
+    let totalResultados = pagination ? pagination.total : body.length
+
     if (dataHeader.length > 0) {
         return (
             <>
                 <div className="table-responsive">
                     <table className={getClassTable()}>
-                        <thead>
+                        <thead style={{backgroundColor:'#ffffff'}}>
                         <tr>
                             <th className="p-2" colSpan={dataHeader.length + (dataOptions.actions.length > 0 ? 1 : 0)}>
-                                {body.length === 0 ?
+                                {totalResultados === 0 ?
                                     <span className="float-left">{dataOptions.thead.textNone}</span> : null}
-                                {body.length === 1 ? <span
-                                    className="float-left">{dataOptions.thead.textOnly.replace('{X}', body.length)}</span> : null}
-                                {body.length > 1 ? <span
-                                    className="float-left">{dataOptions.thead.textMore.replace('{X}', body.length)}</span> : null}
+                                {totalResultados === 1 ? <span
+                                    className="float-left">{dataOptions.thead.textOnly.replace('{X}', totalResultados)}</span> : null}
+                                {totalResultados > 1 ? <span
+                                    className="float-left">{dataOptions.thead.textMore.replace('{X}', totalResultados)}</span> : null}
                                 {visible && visible.show ?
                                     <button className="btn btn-sm btn-primary float-right ml-1" onClick={()=>setShowModalColumns(true)}><FontAwesomeIcon
                                         icon={faColumns}/></button> : null}
-                                {dataOptions.actions.indexOf('export') > -1 && body.length > 0 ?
+                                {dataOptions.actions.indexOf('export') > -1 && totalResultados > 0 ?
                                     <button disabled={!dataOptions.callbacks.onExport}
                                             onClick={() => dataOptions.callbacks.onExport()}
                                             className="btn btn-sm btn-primary float-right ml-1"><FontAwesomeIcon
@@ -208,32 +211,59 @@ export default function Table({className, header, visible, body, pagination, opt
                         <thead className={getClassThead()}>
                         <tr>
                             {dataHeader.map((e, i) => {
-                                return checkColumnVisible.map( col => {
-                                    if (col === e.key) {
-                                        if (dataOptions.callbacks.onOrder) {
-                                            return (<th key={i} onClick={() => setOrder(e)}><FontAwesomeIcon icon={faSort} className={"mr-1"}/>{e.value}</th>)
+
+                                if (checkColumnVisible.length > 0) {
+
+                                    return checkColumnVisible.map(col => {
+                                        if (col === e.key) {
+                                            if (dataOptions.callbacks.onOrder) {
+                                                return (<th key={i} onClick={() => setOrder(e)}><FontAwesomeIcon
+                                                    icon={faSort} className={"mr-1"}/>{e.value}</th>)
+                                            }
+                                            else {
+                                                return <th key={i}>{e.value}</th>
+                                            }
                                         }
-                                        else { return <th key={i}>{e.value}</th> }
+                                    })
+                                } else {
+                                    if (dataOptions.callbacks.onOrder) {
+                                        return (<th key={i} onClick={() => setOrder(e)}><FontAwesomeIcon
+                                            icon={faSort} className={"mr-1"}/>{e.value}</th>)
                                     }
-                                })
+                                    else {
+                                        return <th key={i}>{e.value}</th>
+                                    }
+                                }
+
+
                             })}
                             {dataOptions.actions.length > 0 ? <th width="1"/> : null}
                         </tr>
                         </thead>
-                        <tbody>
+                        <tbody style={{backgroundColor:'#ffffff'}}>
                         {body.map((b, i) => {
                             return (
                                 <tr key={i} style={{backgroundColor: getColorRow(b)}}>
                                     {dataHeader.map((h, j) => {
-                                        return checkColumnVisible.map( col => {
-                                            if (col === h.key) {
-                                                if (j === 0 && dataOptions.callbacks.onGet) return <td key={j}><span
-                                                    style={{cursor: 'pointer'}} className="text-primary"
-                                                    onClick={() => dataOptions.callbacks.onGet(b, i)}>{getFormatCell(b, h.key)}</span>
-                                                </td>
-                                                else return <td key={j}>{getFormatCell(b, h.key)}</td>
-                                            }
-                                        })
+
+                                        if (checkColumnVisible.length > 0) {
+                                            return checkColumnVisible.map(col => {
+                                                if (col === h.key) {
+                                                    if (j === 0 && dataOptions.callbacks.onGet) return <td key={j}><span
+                                                        style={{cursor: 'pointer'}} className="text-primary"
+                                                        onClick={() => dataOptions.callbacks.onGet(b, i)}>{getFormatCell(b, h.key)}</span>
+                                                    </td>
+                                                    else return <td key={j}>{getFormatCell(b, h.key)}</td>
+                                                }
+                                            })
+                                        } else {
+                                            if (j === 0 && dataOptions.callbacks.onGet) return <td key={j}><span
+                                                style={{cursor: 'pointer'}} className="text-primary"
+                                                onClick={() => dataOptions.callbacks.onGet(b, i)}>{getFormatCell(b, h.key)}</span>
+                                            </td>
+                                            else return <td key={j}>{getFormatCell(b, h.key)}</td>
+                                        }
+
 
                                     })}
                                     {dataOptions.actions.length > 0 ? <td width="1" className="px-2">{optionsItem(b, i)}</td> : null}
@@ -242,7 +272,7 @@ export default function Table({className, header, visible, body, pagination, opt
                         })}
                         </tbody>
                         {dataOptions.leyendas > 0 || pagination ?
-                            <tfoot>
+                            <tfoot style={{backgroundColor:'#ffffff'}}>
                             <tr>
                                 <td className="px-2 py-2"
                                     colSpan={dataHeader.length + (dataOptions.actions.length > 0 ? 1 : 0)}>

@@ -16,7 +16,12 @@ export default function Table({className, header, visible, body, pagination, opt
 
     useEffect(() => {
         if (header) {
-            setDataHeader(header.map(item => ({key: item.key, value: item.value, order: 'asc'})))
+            setDataHeader(header.map(item => ({
+                key: item.key,
+                value: item.value,
+                className: item.className,
+                order: 'asc'
+            })))
         }
     }, [header])
 
@@ -238,27 +243,28 @@ export default function Table({className, header, visible, body, pagination, opt
                         <thead className={getClassThead()}>
                         <tr>
                             {dataHeader.map((e, i) => {
-
                                 if (checkColumnVisible.length > 0) {
 
                                     return checkColumnVisible.map(col => {
                                         if (col === e.key) {
                                             if (dataOptions.callbacks.onOrder) {
-                                                return (<th key={i} onClick={() => setOrder(e)}><FontAwesomeIcon
+                                                return (<th className={e.className || ''} key={i}
+                                                            onClick={() => setOrder(e)}><FontAwesomeIcon
                                                     icon={faSort} className={"mr-1"}/>{e.value}</th>)
                                             }
                                             else {
-                                                return <th key={i}>{e.value}</th>
+                                                return <th className={e.className || ''} key={i}>{e.value}</th>
                                             }
                                         }
                                     })
                                 } else {
                                     if (dataOptions.callbacks.onOrder) {
-                                        return (<th key={i} onClick={() => setOrder(e)}><FontAwesomeIcon
-                                            icon={faSort} className={"mr-1"}/>{e.value}</th>)
+                                        return (<th className={e.className || ''} key={i} onClick={() => setOrder(e)}>
+                                            <FontAwesomeIcon
+                                                icon={faSort} className={"mr-1"}/>{e.value}</th>)
                                     }
                                     else {
-                                        return <th key={i}>{e.value}</th>
+                                        return <th className={e.className || ''} key={i}>{e.value}</th>
                                     }
                                 }
 

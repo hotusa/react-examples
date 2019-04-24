@@ -19,13 +19,7 @@ export default function TabTypeahead () {
     }
 
     let config = {
-        id: 'idsearch',
-        promptText: 'No hay registro',
-        searchText: 'Buscando...',
-        labelKey: 'text',
-        filterBy: ['text'],
-        placeholder: 'Buscar...',
-        minLength: 3
+        size: 'sm',
     }
 
     let loading = false

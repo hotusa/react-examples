@@ -196,47 +196,49 @@ export default function Table({className, header, visible, body, pagination, opt
                     <table className={getClassTable()}>
                         <thead style={{backgroundColor: '#ffffff'}}>
                         <tr>
-                            <th className="p-2" colSpan={dataHeader.length + (dataOptions.actions.length > 0 ? 1 : 0)}>
+                            <th className="py-2 px-3" colSpan={dataHeader.length + (dataOptions.actions.length > 0 ? 1 : 0)}>
+                                <div className="d-flex align-items-center justify-content-between">
                                 {totalResultados === 0 ?
-                                    <span className="float-left">{dataOptions.thead.textNone}</span> : null
+                                    <span>{dataOptions.thead.textNone}</span> : null
                                 }
                                 {totalResultados === 1 ?
-                                    <span
-                                        className="float-left">{dataOptions.thead.textOnly.replace('{X}', totalResultados)}</span> : null
+                                    <span>{dataOptions.thead.textOnly.replace('{X}', totalResultados)}</span> : null
                                 }
                                 {totalResultados > 1 ?
-                                    <span
-                                        className="float-left">{dataOptions.thead.textMore.replace('{X}', totalResultados)}</span> : null
+                                    <span>{dataOptions.thead.textMore.replace('{X}', totalResultados)}</span> : null
                                 }
-                                {
-                                    /* visibilidad columnas */
-                                    visible && visible.show ?
-                                        <button
-                                            className="btn btn-sm btn-primary float-right ml-1"
-                                            onClick={() => setShowModalColumns(true)}>
-                                            <FontAwesomeIcon icon={faColumns}/>
-                                        </button> : null
-                                }
-                                {
-                                    /* crear */
-                                    dataOptions.actions.indexOf('create') > -1 ?
-                                        <button
-                                            disabled={!dataOptions.callbacks.onCreate}
-                                            onClick={() => dataOptions.callbacks.onCreate()}
-                                            className="btn btn-sm btn-primary float-right ml-1">
-                                            <FontAwesomeIcon icon={faPlus} className={"mr-1"}/>Crear
-                                        </button> : null
-                                }
-                                {
-                                    /* exportar */
-                                    dataOptions.actions.indexOf('export') > -1 && totalResultados > 0 ?
-                                        <button
-                                            disabled={!dataOptions.callbacks.onExport}
-                                            onClick={() => dataOptions.callbacks.onExport()}
-                                            className="btn btn-sm btn-primary float-right ml-1">
-                                            <FontAwesomeIcon icon={faTable} className={"mr-1"}/> Exportar
-                                        </button> : null
-                                }
+                                    <div>
+                                    {
+                                        /* visibilidad columnas */
+                                        visible && visible.show ?
+                                            <button
+                                                className="btn btn-sm btn-primary ml-1"
+                                                onClick={() => setShowModalColumns(true)}>
+                                                <FontAwesomeIcon icon={faColumns}/>
+                                            </button> : null
+                                    }
+                                    {
+                                        /* crear */
+                                        dataOptions.actions.indexOf('create') > -1 ?
+                                            <button
+                                                disabled={!dataOptions.callbacks.onCreate}
+                                                onClick={() => dataOptions.callbacks.onCreate()}
+                                                className="btn btn-sm btn-primary ml-1">
+                                                <FontAwesomeIcon icon={faPlus} className={"mr-1"}/>Crear
+                                            </button> : null
+                                    }
+                                    {
+                                        /* exportar */
+                                        dataOptions.actions.indexOf('export') > -1 && totalResultados > 0 ?
+                                            <button
+                                                disabled={!dataOptions.callbacks.onExport}
+                                                onClick={() => dataOptions.callbacks.onExport()}
+                                                className="btn btn-sm btn-primary ml-1">
+                                                <FontAwesomeIcon icon={faTable} className={"mr-1"}/> Exportar
+                                            </button> : null
+                                    }
+                                    </div>
+                                </div>
                             </th>
                         </tr>
                         </thead>

@@ -1,9 +1,21 @@
-import React, {useState} from 'react'
+import React, {useState, useEffect} from 'react'
 import Typeahead from "../Commons/Typeahead";
 
 export default function TabTypeahead () {
 
     const [options, setOptions] = useState([])
+    const [clear, setClear] = useState(false)
+    const [flag, setFlag] = useState(true)
+    const [count, setCount] = useState(0)
+
+    useEffect(()=>{
+
+        return ()=> {
+            if (clear) setClear(false)
+        }
+
+    })
+
 
     const onSearch = (text) => {
         console.log('onSearch', text)
@@ -25,11 +37,29 @@ export default function TabTypeahead () {
     let loading = false
 
     return (
+        <>
         <Typeahead
+            mounted={flag}
+            defaultInputValue={count.toString()}
             isLoading={loading}
             config={config}
             options={options}
             onSearch={onSearch}
-            onChange={onChange} />
+            onChange={onChange}
+            onKeyDown={(e)=>{
+                console.log(e.key)
+            }}
+            clear={clear}
+        />
+
+            <button onClick={()=>{
+                setClear(true)
+            }}>Clear</button>
+            <button onClick={()=>setCount(count+1)}>Count</button>
+            <button onClick={()=> {
+                setFlag(!flag)
+            }}>Show/Hide</button>
+        </>
+
     )
 }

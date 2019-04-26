@@ -3,7 +3,7 @@ import {AsyncTypeahead, Highlighter} from 'react-bootstrap-typeahead';
 import 'react-bootstrap-typeahead/css/Typeahead.css';
 
 
-export default function Typeahead({isLoading, config, options, onSearch, onChange}) {
+export default function Typeahead({mounted, defaultInputValue, isLoading, config, options, onSearch, onChange, onKeyDown, clear}) {
 
     const [dataConfig, setDataConfig] = useState({
         id: config && config.id ? config.id : 'id',
@@ -14,30 +14,51 @@ export default function Typeahead({isLoading, config, options, onSearch, onChang
         placeholder: config && config.placeholder ? config.placeholder : "Buscar...",
         minLength: config && config.minLength ? config.minLength : 3,
         size: config && config.size ? config.size : undefined, // "large", "lg", "small", "sm"
-        defaultInputValue: config && config.defaultInputValue ? config.defaultInputValue : ''
     })
 
-    return (
-        <AsyncTypeahead
-            bsSize={dataConfig.size}
-            defaultInputValue={`${dataConfig.defaultInputValue}`}
-            id={dataConfig.id}
-            promptText={dataConfig.promptText}
-            searchText={dataConfig.searchText}
-            labelKey={dataConfig.labelKey}
-            filterBy={dataConfig.filterBy}
-            placeholder={dataConfig.placeholder}
-            minLength={dataConfig.minLength}
-            options={options}
-            onSearch={onSearch}
-            onChange={onChange}
-            isLoading={isLoading || false}
-            renderMenuItemChildren={(option, props, idx) => (
-                <Highlighter search={props.text}>
-                    {option.text}
-                </Highlighter>
-            )}
-        />
-    )
+    const [myref, setMyref] = useState(React.createRef())
+
+    useEffect(()=>{
+        if (clear) {
+            myref.current.getInstance().clear()
+        }
+
+        return()=> {
+            console.log('return')
+        }
+    },[clear])
+
+
+    console.log('render')
+
+    if (mounted === undefined || mounted) {
+        return (
+            <AsyncTypeahead
+                ref={myref}
+                clearButton={true}
+                bsSize={dataConfig.size}
+                defaultInputValue={defaultInputValue}
+                id={dataConfig.id}
+                promptText={dataConfig.promptText}
+                searchText={dataConfig.searchText}
+                labelKey={dataConfig.labelKey}
+                filterBy={dataConfig.filterBy}
+                placeholder={dataConfig.placeholder}
+                minLength={dataConfig.minLength}
+                options={options}
+                onSearch={onSearch}
+                onChange={onChange}
+                onKeyDown={onKeyDown}
+                isLoading={isLoading || false}
+                renderMenuItemChildren={(option, props, idx) => (
+                    <Highlighter search={props.text}>
+                        {option.text}
+                    </Highlighter>
+                )}
+            />
+        )
+    } else {
+        return null
+    }
 
 }

@@ -10,6 +10,8 @@ export default function TabAlertConfirm () {
             title: '¿Estás seguro?',
             text: 'El registro seleccionado no se podrá volver a recuperar',
             type: 'warning',
+            confirmButtonText:'Si, eliminar',
+            cancelButtonText: 'No',
             onConfirm: () => {
                 console.log('confirm')
             },

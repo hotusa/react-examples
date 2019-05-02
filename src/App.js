@@ -9,6 +9,7 @@ import TabLogin from "./components/Tabs/TabLogin";
 import TabModal from "./components/Tabs/TabModal";
 import TabTypeahead from "./components/Tabs/TabTypeahead";
 import TabForms from "./components/Tabs/TabForms";
+import TabSelect from "./components/Tabs/TabSelect";
 
 class App extends Component {
 
@@ -39,6 +40,9 @@ class App extends Component {
                     </li>
                     <li className="nav-item">
                         <a className="nav-link" data-toggle="tab" href="#typeahead" role="tab">Typeahead</a>
+                    </li>
+                    <li className="nav-item">
+                        <a className="nav-link" data-toggle="tab" href="#select" role="tab">Select</a>
                     </li>
                     <li className="nav-item">
                         <a className="nav-link" data-toggle="tab" href="#forms" role="tab">Forms</a>
@@ -72,6 +76,10 @@ class App extends Component {
                     <div className="tab-pane fade" id="typeahead" role="tabpanel">
                         <br/>
                         <TabTypeahead/>
+                    </div>
+                    <div className="tab-pane fade" id="select" role="tabpanel">
+                        <br/>
+                        <TabSelect/>
                     </div>
                     <div className="tab-pane fade" id="forms" role="tabpanel">
                         <br/>

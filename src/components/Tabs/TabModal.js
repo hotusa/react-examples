@@ -19,6 +19,7 @@ export default function TabModal() {
         textOk: 'Ok',
         textCancel: 'Cancel',
         size: '', // sm, lg
+        btSize: 'sm'
     }
 
 

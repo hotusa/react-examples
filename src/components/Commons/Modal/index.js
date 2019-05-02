@@ -18,11 +18,11 @@ export default function _Modal({children, className, show, options}) {
             </div>
             {options && (options.onOk || options.onCancel) ? <div className="modal-footer">
                 {options && options.onOk ?
-                    <button type="button" className="btn btn-primary" onClick={() => options.onOk('OK')}>
+                    <button type="button" className={`btn btn-primary ${options && options.btSize ? 'btn-' + options.btSize : ''}`} onClick={() => options.onOk('OK')}>
                         {options && options.textOk ? options.textOk : 'Ok'}
                     </button> : null}
                 {options && options.onCancel ?
-                    <button type="button" className="btn btn-secondary" onClick={() => options.onCancel('CANCEL')}>
+                    <button type="button" className={`btn btn-secondary ${options && options.btSize ? 'btn-' + options.btSize : ''}`} onClick={() => options.onCancel('CANCEL')}>
                         {options && options.textOk ? options.textCancel : 'Cancel'}
                     </button> : null}
             </div> : null}

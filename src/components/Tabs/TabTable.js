@@ -143,6 +143,14 @@ export default function TabTable() {
                         options={
                             {
                                 actions: ['get', 'update', 'delete', 'historial', 'export', 'create'],
+                                textActions: {
+                                    get: 'Ver',
+                                    update: 'Modificar',
+                                    delete: 'Suprimir',
+                                    historial: 'Cambios históricos',
+                                    create: 'Nuevo',
+                                    export: 'Descargar CSV',
+                                },
                                 callbacks: {
                                     onGet: onGet,
                                     onUpdate: onUpdate,
@@ -166,6 +174,9 @@ export default function TabTable() {
                                     /* Por si queremos formatear el valor de una celda (ej: 'S' -> 'Si' */
                                     if (key === 'col1') return '*' + item[key]
                                     return item[key]
+                                },
+                                onFormatCellAction: (item, index, action) => {
+                                    return true
                                 }
                             }
                         }

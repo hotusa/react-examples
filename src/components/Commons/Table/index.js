@@ -60,7 +60,8 @@ export default function Table({className, header, visible, body, pagination, opt
                 color: options && options.thead && options.thead.color ? options.thead.color : 'light'
             },
             actions: options && options.actions ? options.actions : [], //'get', 'update', 'delete', 'historial', 'export'
-            callbacks: {
+            textActions: options && options.textActions ? options.textActions : {},
+                callbacks: {
                 onGet: options && options.callbacks && options.callbacks.onGet ? options.callbacks.onGet : undefined,
                 onUpdate: options && options.callbacks && options.callbacks.onUpdate ? options.callbacks.onUpdate : undefined,
                 onDelete: options && options.callbacks && options.callbacks.onDelete ? options.callbacks.onDelete : undefined,
@@ -71,7 +72,8 @@ export default function Table({className, header, visible, body, pagination, opt
             },
             leyendas: options && options.leyendas ? options.leyendas : [],
             onColorRow: options && options.onColorRow ? options.onColorRow : undefined,
-            onFormatCell: options && options.onFormatCell ? options.onFormatCell : undefined
+            onFormatCell: options && options.onFormatCell ? options.onFormatCell : undefined,
+            onFormatCellAction: options && options.onFormatCellAction ? options.onFormatCellAction : undefined
         }
 
         setDataOptions(_options)
@@ -87,19 +89,18 @@ export default function Table({className, header, visible, body, pagination, opt
                     <FontAwesomeIcon icon={faCog}/>
                 </button>
                 <div className="dropdown-menu dropdown-menu-right">
-                    {dataOptions.actions.indexOf('get') > -1 ?
+                    {dataOptions.actions.indexOf('get') > -1 && (dataOptions.onFormatCellAction === undefined || dataOptions.onFormatCellAction(item, index, 'get') ) ?
                         <button className={`dropdown-item ${dataOptions.callbacks.onGet ? '' : 'disabled'}`}
-                                onClick={() => dataOptions.callbacks.onGet(item, index)}>Seleccionar</button> : null}
-                    {dataOptions.actions.indexOf('update') > -1 ?
+                                onClick={() => dataOptions.callbacks.onGet(item, index)}>{dataOptions.textActions.get || 'Seleccionar'}</button> : null}
+                    {dataOptions.actions.indexOf('update') > -1 && (dataOptions.onFormatCellAction === undefined || dataOptions.onFormatCellAction(item, index, 'update') ) ?
                         <button className={`dropdown-item ${dataOptions.callbacks.onUpdate ? '' : 'disabled'}`}
-                                onClick={() => dataOptions.callbacks.onUpdate(item, index)}>Editar</button> : null}
-                    {dataOptions.actions.indexOf('delete') > -1 ?
+                                onClick={() => dataOptions.callbacks.onUpdate(item, index)}>{dataOptions.textActions.update || 'Editar'}</button> : null}
+                    {dataOptions.actions.indexOf('delete') > -1 && (dataOptions.onFormatCellAction === undefined || dataOptions.onFormatCellAction(item, index, 'delete') ) ?
                         <button className={`dropdown-item ${dataOptions.callbacks.onDelete ? '' : 'disabled'}`}
-                                onClick={() => dataOptions.callbacks.onDelete(item, index)}>Borrar</button> : null}
-                    {dataOptions.actions.indexOf('historial') > -1 ?
+                                onClick={() => dataOptions.callbacks.onDelete(item, index)}>{dataOptions.textActions.delete || 'Borrar'}</button> : null}
+                    {dataOptions.actions.indexOf('historial') > -1 && (dataOptions.onFormatCellAction === undefined || dataOptions.onFormatCellAction(item, index, 'historial') ) ?
                         <button className={`dropdown-item ${dataOptions.callbacks.onHistorial ? '' : 'disabled'}`}
-                                onClick={() => dataOptions.callbacks.onHistorial(item, index)}>Historial
-                            cambios</button> : null}
+                                onClick={() => dataOptions.callbacks.onHistorial(item, index)}>{dataOptions.textActions.historial || 'Historial cambios'}</button> : null}
                 </div>
             </div>
         )
@@ -224,7 +225,7 @@ export default function Table({className, header, visible, body, pagination, opt
                                                 disabled={!dataOptions.callbacks.onCreate}
                                                 onClick={() => dataOptions.callbacks.onCreate()}
                                                 className="btn btn-sm btn-primary ml-1">
-                                                <FontAwesomeIcon icon={faPlus} className={"mr-1"}/>Crear
+                                                <FontAwesomeIcon icon={faPlus} className={"mr-1"}/>{dataOptions.textActions.create || 'Crear'}
                                             </button> : null
                                     }
                                     {
@@ -234,7 +235,7 @@ export default function Table({className, header, visible, body, pagination, opt
                                                 disabled={!dataOptions.callbacks.onExport}
                                                 onClick={() => dataOptions.callbacks.onExport()}
                                                 className="btn btn-sm btn-primary ml-1">
-                                                <FontAwesomeIcon icon={faTable} className={"mr-1"}/> Exportar
+                                                <FontAwesomeIcon icon={faTable} className={"mr-1"}/> {dataOptions.textActions.export || 'Exportar'}
                                             </button> : null
                                     }
                                     </div>

@@ -48,6 +48,7 @@ export default function TabTypeahead () {
             onChange={onChange}
             onKeyDown={(e)=>{
                 console.log(e.key)
+                console.log(e.target.value)
             }}
             clear={clear}
         />

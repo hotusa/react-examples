@@ -17,9 +17,11 @@ export default function TabModal() {
         onCancel: onCallback,
         onBackdrop: onCallback,
         textOk: 'Ok',
-        textCancel: 'Cancel',
+        textCancel: 'Cancelar',
         size: '', // sm, lg
-        btSize: 'sm'
+        btSize: 'sm',
+        iconButton: true,
+        iconOK: '' // add, update, ok
     }
 
 

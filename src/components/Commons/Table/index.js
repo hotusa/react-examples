@@ -302,7 +302,7 @@ export default function Table({className, header, visible, body, pagination, opt
 
 
                                     })}
-                                    {dataOptions.actions.length > 0 ?
+                                    {dataOptions.actions.length > 1 || (dataOptions.actions.length === 1 && dataOptions.actions.indexOf('export') === -1) ?
                                         <td width="1" className="px-2">{optionsItem(b, i)}</td> : null}
                                 </tr>
                             )

@@ -45,7 +45,7 @@ export default function Table({className, header, visible, body, pagination, opt
 
         let _options = {
             table: {
-                align: options && options.table && options.table.align ? options.table.align : 'center',
+                align: options && options.table && options.table.align ? options.table.align : 'left',
                 size: options && options.table && options.table.size ? options.table.size : 'sm',
                 color: options && options.table && options.table.color ? options.table.color : '',
                 striped: options && options.table && options.table.striped ? options.table.striped : false,
@@ -118,7 +118,7 @@ export default function Table({className, header, visible, body, pagination, opt
         let classname = 'table'
         if (dataOptions && dataOptions.table) {
 
-            if (dataOptions.table.align) classname += ' text-' + dataOptions.table.align
+            //if (dataOptions.table.align) classname += ' text-' + dataOptions.table.align
             if (dataOptions.table.size) classname += ' table-' + dataOptions.table.size
             if (dataOptions.table.color) classname += ' table-' + dataOptions.table.color
             if (dataOptions.table.striped) classname += ' table-striped'
@@ -131,6 +131,20 @@ export default function Table({className, header, visible, body, pagination, opt
         if (className) classname += ' ' + className
 
         return classname
+    }
+
+    /* custom class td */
+    const getClassTd = (key) => {
+
+        let col = dataHeader.find((item) => {
+            return item.key === key
+        })
+
+        if (col && col.className) {
+            return col.className
+        }
+
+        return ''
     }
 
     /* custom class thead */
@@ -188,6 +202,21 @@ export default function Table({className, header, visible, body, pagination, opt
     }
 
 
+    /* show button actions row */
+    const IsIconActions = (actions) => {
+        if (actions.length === 0) {
+            return false
+        } else if (actions.length === 1 && actions.indexOf('export') !== -1) {
+            return false
+        } else if (actions.length === 1 && actions.indexOf('create') !== -1) {
+            return false
+        } else if (actions.length === 2 && actions.indexOf('export') !== -1 && actions.indexOf('create') !== -1) {
+            return false
+        } else {
+            return true
+        }
+    }
+
     let totalResultados = pagination ? pagination.total : body.length
 
     if (dataHeader.length > 0) {
@@ -197,7 +226,7 @@ export default function Table({className, header, visible, body, pagination, opt
                     <table className={getClassTable()}>
                         <thead style={{backgroundColor: '#ffffff'}}>
                         <tr>
-                            <th className="py-2 px-3" colSpan={dataHeader.length + (dataOptions.actions.length > 0 ? 1 : 0)}>
+                            <th className="py-2 px-3" colSpan={dataHeader.length + ( IsIconActions(dataOptions.actions) ? 1 : 0)}>
                                 <div className="d-flex align-items-center justify-content-between">
                                 {totalResultados === 0 ?
                                     <span>{dataOptions.thead.textNone}</span> : null
@@ -273,7 +302,7 @@ export default function Table({className, header, visible, body, pagination, opt
 
 
                             })}
-                            {dataOptions.actions.length > 0 ? <th width="1"/> : null}
+                            {IsIconActions(dataOptions.actions) ? <th width="1"/> : null}
                         </tr>
                         </thead>
                         <tbody style={{backgroundColor: '#ffffff'}}>
@@ -285,25 +314,24 @@ export default function Table({className, header, visible, body, pagination, opt
                                         if (checkColumnVisible.length > 0) {
                                             return checkColumnVisible.map(col => {
                                                 if (col === h.key) {
-                                                    if (j === 0 && dataOptions.callbacks.onGet) return <td key={j}><span
-                                                        style={{cursor: 'pointer'}} className="text-primary"
+                                                    if (j === 0 && dataOptions.callbacks.onGet) return <td key={j} className={getClassTd(h.key)} style={{verticalAlign: 'middle'}}><span
+                                                        style={{cursor: 'pointer'}} className={`text-primary`}
                                                         onClick={() => dataOptions.callbacks.onGet(b, i)}>{getFormatCell(b, h.key)}</span>
                                                     </td>
-                                                    else return <td key={j}>{getFormatCell(b, h.key)}</td>
+                                                    else return <td key={j} className={getClassTd(h.key)} style={{verticalAlign: 'middle'}}>{getFormatCell(b, h.key)}</td>
                                                 }
                                             })
                                         } else {
-                                            if (j === 0 && dataOptions.callbacks.onGet) return <td key={j}><span
-                                                style={{cursor: 'pointer'}} className="text-primary"
+                                            if (j === 0 && dataOptions.callbacks.onGet) return <td key={j} className={getClassTd(h.key)} style={{verticalAlign: 'middle'}}><span
+                                                style={{cursor: 'pointer'}} className={`text-primary`}
                                                 onClick={() => dataOptions.callbacks.onGet(b, i)}>{getFormatCell(b, h.key)}</span>
                                             </td>
-                                            else return <td key={j}>{getFormatCell(b, h.key)}</td>
+                                            else return <td key={j} className={getClassTd(h.key)} style={{verticalAlign: 'middle'}}>{getFormatCell(b, h.key)}</td>
                                         }
 
 
                                     })}
-                                    {dataOptions.actions.length > 1 || (dataOptions.actions.length === 1 && dataOptions.actions.indexOf('export') === -1) ?
-                                        <td width="1" className="px-2">{optionsItem(b, i)}</td> : null}
+                                    {IsIconActions(dataOptions.actions) ? <td width="1" className="px-2">{optionsItem(b, i)}</td> : null}
                                 </tr>
                             )
                         })}
@@ -312,7 +340,7 @@ export default function Table({className, header, visible, body, pagination, opt
                             <tfoot style={{backgroundColor: '#ffffff'}}>
                             <tr>
                                 <td className="px-2 py-2"
-                                    colSpan={dataHeader.length + (dataOptions.actions.length > 0 ? 1 : 0)}>
+                                    colSpan={dataHeader.length + (IsIconActions(dataOptions.actions) ? 1 : 0)}>
                                     <div className="row m-0">
                                         <div className="col-6 p-0 text-left leyendas">
                                             {dataOptions.leyendas.map((leyenda, l) => {

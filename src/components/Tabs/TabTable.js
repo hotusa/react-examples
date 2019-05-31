@@ -6,6 +6,7 @@ export default function TabTable() {
 
     const [dataBody, setDataBody] = useState([])
     const [dataHeader, setDataHeader] = useState([])
+    const [pag, setPag] = useState(1)
 
     useEffect(() => {
 
@@ -13,11 +14,6 @@ export default function TabTable() {
         randomHeader()
 
     }, [])
-
-
-
-
-
 
 
     const onGet = (item, index) => {
@@ -46,6 +42,14 @@ export default function TabTable() {
 
     const onPagination = (pag) => {
         console.log(pag)
+        setPag(pag)
+
+        setTimeout(()=>{
+
+            random()
+
+        }, 1000)
+
     }
 
     const randomHeader = () => {
@@ -121,6 +125,7 @@ export default function TabTable() {
             <div className="row justify-content-md-center">
                 <div className="col-12">
                     <Table
+                        loading={false}
                         className={"mytable"}
                         header={dataHeader}
                         visible={{
@@ -136,7 +141,7 @@ export default function TabTable() {
                             {
                                 total: 100,
                                 itemsPag: 5,
-                                pag: 1,
+                                pag: pag,
                                 onPagination: onPagination
                             }
                         }

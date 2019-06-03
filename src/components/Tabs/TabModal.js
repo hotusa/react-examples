@@ -14,7 +14,6 @@ export default function TabModal() {
     const options = {
         title:'Enter username',
         onOk: onCallback,
-        onCancel: onCallback,
         onBackdrop: onCallback,
         textOk: 'Ok',
         textCancel: 'Cancelar',
@@ -31,6 +30,7 @@ export default function TabModal() {
         <>
             <button className="btn btn-sm btn-primary" onClick={(e) => setShow(true)}>Show modal</button>
             <Modal
+                disableConfirm={true}
                 className="mi-modal"
                 show={show}
                 options={options}

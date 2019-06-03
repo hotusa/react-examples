@@ -3,11 +3,9 @@ import {FontAwesomeIcon} from '@fortawesome/react-fontawesome'
 import {faCog, faSort, faTable, faColumns, faPlus, faSpinner} from '@fortawesome/free-solid-svg-icons'
 import Pagination from "../Pagination";
 import Modal from "../Modal"
-import BlockUi from 'react-block-ui';
-import 'react-block-ui/style.css';
 
 
-export default function Table({loading, className, header, visible, body, pagination, options}) {
+export default function Table({className, header, visible, body, pagination, options}) {
 
 
     const [dataHeader, setDataHeader] = useState([])
@@ -225,7 +223,6 @@ export default function Table({loading, className, header, visible, body, pagina
         return (
             <div>
                 <div className="table-responsive">
-                    <BlockUi tag="div" blocking={loading || false}>
                     <table className={getClassTable()}>
                         <thead style={{backgroundColor: '#ffffff'}}>
                         <tr>
@@ -390,7 +387,6 @@ export default function Table({loading, className, header, visible, body, pagina
                             </tr>
                             </tfoot> : null}
                     </table>
-                    </BlockUi>
                 </div>
 
                 <Modal show={showModalColumns} options={{title: 'Visibilidad columnas', onOk: onOkModalColumn}}>

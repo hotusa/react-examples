@@ -125,7 +125,6 @@ export default function TabTable() {
             <div className="row justify-content-md-center">
                 <div className="col-12">
                     <Table
-                        loading={false}
                         className={"mytable"}
                         header={dataHeader}
                         visible={{

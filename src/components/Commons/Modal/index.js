@@ -26,7 +26,7 @@ export default function _Modal({children, className, show, options, disableConfi
                 {options && options.onCancel ?
                     <button type="button" className={`float-right btn btn-secondary ${options && options.btSize ? 'btn-' + options.btSize : ''}`} onClick={() => options.onCancel('CANCEL')}>
                         {options && options.iconButton ?
-                            <FontAwesomeIcon className={"mr-1"} icon={faTimes}/> : null} {options && options.textOk ? options.textCancel : 'Cancel'}
+                            <FontAwesomeIcon className={"mr-1"} icon={faTimes}/> : null} {options && options.textCancel ? options.textCancel : 'Cancel'}
                     </button> : null}
                 {options && options.onOk ?
                     <button type="button" disabled={disableConfirm || false} className={`float-right btn btn-primary ${options && options.btSize ? 'btn-' + options.btSize : ''}`} onClick={() => options.onOk('OK')}>

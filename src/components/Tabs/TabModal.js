@@ -12,15 +12,19 @@ export default function TabModal() {
     }
 
     const options = {
-        title:'Enter username',
+        title:'Modal title',
         onOk: onCallback,
+        onCancel: onCallback,
         onBackdrop: onCallback,
         textOk: 'Ok',
-        textCancel: 'Cancelar',
+        textCancel: 'Cancel',
         size: '', // sm, lg
         btSize: 'sm',
         iconButton: true,
-        iconOK: '' // add, update, ok
+        iconOK: '', // add, update, ok
+        footer: {
+            textHtml: '* Required fields'
+        }
     }
 
 
@@ -36,7 +40,7 @@ export default function TabModal() {
                 options={options}
                 >
                     <form>
-                        <label>Username</label>
+                        <label>Name*</label>
                         <input type="text" className="form-control"/>
                     </form>
             </Modal>

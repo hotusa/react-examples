@@ -1,6 +1,6 @@
 import React, {useState, useEffect} from 'react'
 import {FontAwesomeIcon} from '@fortawesome/react-fontawesome'
-import {faCog, faSort, faTable, faColumns, faPlus, faSpinner} from '@fortawesome/free-solid-svg-icons'
+import {faCog, faSort, faTable, faColumns, faPlus} from '@fortawesome/free-solid-svg-icons'
 import Pagination from "../Pagination";
 import Modal from "../Modal"
 
@@ -89,16 +89,16 @@ export default function Table({className, header, visible, body, pagination, opt
                     <FontAwesomeIcon icon={faCog}/>
                 </button>
                 <div className="dropdown-menu dropdown-menu-right">
-                    {dataOptions.actions.indexOf('get') > -1 && (dataOptions.onFormatCellAction === undefined || dataOptions.onFormatCellAction(item, index, 'get')) ?
+                    {dataOptions.actions.indexOf('get') > -1 && (dataOptions.onFormatCellAction === undefined || dataOptions.onFormatCellAction(item, index, 'get') ) ?
                         <button className={`dropdown-item ${dataOptions.callbacks.onGet ? '' : 'disabled'}`}
                                 onClick={() => dataOptions.callbacks.onGet(item, index)}>{dataOptions.textActions.get || 'Seleccionar'}</button> : null}
-                    {dataOptions.actions.indexOf('update') > -1 && (dataOptions.onFormatCellAction === undefined || dataOptions.onFormatCellAction(item, index, 'update')) ?
+                    {dataOptions.actions.indexOf('update') > -1 && (dataOptions.onFormatCellAction === undefined || dataOptions.onFormatCellAction(item, index, 'update') ) ?
                         <button className={`dropdown-item ${dataOptions.callbacks.onUpdate ? '' : 'disabled'}`}
                                 onClick={() => dataOptions.callbacks.onUpdate(item, index)}>{dataOptions.textActions.update || 'Editar'}</button> : null}
-                    {dataOptions.actions.indexOf('delete') > -1 && (dataOptions.onFormatCellAction === undefined || dataOptions.onFormatCellAction(item, index, 'delete')) ?
+                    {dataOptions.actions.indexOf('delete') > -1 && (dataOptions.onFormatCellAction === undefined || dataOptions.onFormatCellAction(item, index, 'delete') ) ?
                         <button className={`dropdown-item ${dataOptions.callbacks.onDelete ? '' : 'disabled'}`}
                                 onClick={() => dataOptions.callbacks.onDelete(item, index)}>{dataOptions.textActions.delete || 'Borrar'}</button> : null}
-                    {dataOptions.actions.indexOf('historial') > -1 && (dataOptions.onFormatCellAction === undefined || dataOptions.onFormatCellAction(item, index, 'historial')) ?
+                    {dataOptions.actions.indexOf('historial') > -1 && (dataOptions.onFormatCellAction === undefined || dataOptions.onFormatCellAction(item, index, 'historial') ) ?
                         <button className={`dropdown-item ${dataOptions.callbacks.onHistorial ? '' : 'disabled'}`}
                                 onClick={() => dataOptions.callbacks.onHistorial(item, index)}>{dataOptions.textActions.historial || 'Historial cambios'}</button> : null}
                 </div>
@@ -226,8 +226,7 @@ export default function Table({className, header, visible, body, pagination, opt
                     <table className={getClassTable()}>
                         <thead style={{backgroundColor: '#ffffff'}}>
                         <tr>
-                            <th className="py-2 px-3"
-                                colSpan={dataHeader.length + (IsIconActions(dataOptions.actions) ? 1 : 0)}>
+                            <th className="py-2 px-3" colSpan={dataHeader.length + ( IsIconActions(dataOptions.actions) ? 1 : 0)}>
                                 <div className="d-flex align-items-center justify-content-between">
                                     {totalResultados === 0 ?
                                         <span>{dataOptions.thead.textNone}</span> : null
@@ -255,8 +254,7 @@ export default function Table({className, header, visible, body, pagination, opt
                                                     disabled={!dataOptions.callbacks.onCreate}
                                                     onClick={() => dataOptions.callbacks.onCreate()}
                                                     className="btn btn-sm btn-primary ml-1">
-                                                    <FontAwesomeIcon icon={faPlus}
-                                                                     className={"mr-1"}/>{dataOptions.textActions.create || 'Crear'}
+                                                    <FontAwesomeIcon icon={faPlus} className={"mr-1"}/>{dataOptions.textActions.create || 'Crear'}
                                                 </button> : null
                                         }
                                         {
@@ -266,8 +264,7 @@ export default function Table({className, header, visible, body, pagination, opt
                                                     disabled={!dataOptions.callbacks.onExport}
                                                     onClick={() => dataOptions.callbacks.onExport()}
                                                     className="btn btn-sm btn-primary ml-1">
-                                                    <FontAwesomeIcon icon={faTable}
-                                                                     className={"mr-1"}/> {dataOptions.textActions.export || 'Exportar'}
+                                                    <FontAwesomeIcon icon={faTable} className={"mr-1"}/> {dataOptions.textActions.export || 'Exportar'}
                                                 </button> : null
                                         }
                                     </div>
@@ -286,17 +283,19 @@ export default function Table({className, header, visible, body, pagination, opt
                                                 return (<th className={e.className || ''} key={i}
                                                             onClick={() => setOrder(e)}><FontAwesomeIcon
                                                     icon={faSort} className={"mr-1"}/>{e.value}</th>)
-                                            } else {
+                                            }
+                                            else {
                                                 return <th className={e.className || ''} key={i}>{e.value}</th>
                                             }
-                                        }
+                                        } else return null
                                     })
                                 } else {
                                     if (dataOptions.callbacks.onOrder) {
                                         return (<th className={e.className || ''} key={i} onClick={() => setOrder(e)}>
                                             <FontAwesomeIcon
                                                 icon={faSort} className={"mr-1"}/>{e.value}</th>)
-                                    } else {
+                                    }
+                                    else {
                                         return <th className={e.className || ''} key={i}>{e.value}</th>
                                     }
                                 }
@@ -306,7 +305,6 @@ export default function Table({className, header, visible, body, pagination, opt
                             {IsIconActions(dataOptions.actions) ? <th width="1"/> : null}
                         </tr>
                         </thead>
-
                         <tbody style={{backgroundColor: '#ffffff'}}>
                         {body.map((b, i) => {
                             return (
@@ -316,37 +314,28 @@ export default function Table({className, header, visible, body, pagination, opt
                                         if (checkColumnVisible.length > 0) {
                                             return checkColumnVisible.map(col => {
                                                 if (col === h.key) {
-                                                    if (j === 0 && dataOptions.callbacks.onGet) return <td key={j}
-                                                                                                           className={getClassTd(h.key)}
-                                                                                                           style={{verticalAlign: 'middle'}}><span
+                                                    if (j === 0 && dataOptions.callbacks.onGet) return <td key={j} className={getClassTd(h.key)} style={{verticalAlign: 'middle'}}><span
                                                         style={{cursor: 'pointer'}} className={`text-primary`}
                                                         onClick={() => dataOptions.callbacks.onGet(b, i)}>{getFormatCell(b, h.key)}</span>
                                                     </td>
-                                                    else return <td key={j} className={getClassTd(h.key)}
-                                                                    style={{verticalAlign: 'middle'}}>{getFormatCell(b, h.key)}</td>
-                                                }
+                                                    else return <td key={j} className={getClassTd(h.key)} style={{verticalAlign: 'middle'}}>{getFormatCell(b, h.key)}</td>
+                                                } else return null
                                             })
                                         } else {
-                                            if (j === 0 && dataOptions.callbacks.onGet) return <td key={j}
-                                                                                                   className={getClassTd(h.key)}
-                                                                                                   style={{verticalAlign: 'middle'}}><span
+                                            if (j === 0 && dataOptions.callbacks.onGet) return <td key={j} className={getClassTd(h.key)} style={{verticalAlign: 'middle'}}><span
                                                 style={{cursor: 'pointer'}} className={`text-primary`}
                                                 onClick={() => dataOptions.callbacks.onGet(b, i)}>{getFormatCell(b, h.key)}</span>
                                             </td>
-                                            else return <td key={j} className={getClassTd(h.key)}
-                                                            style={{verticalAlign: 'middle'}}>{getFormatCell(b, h.key)}</td>
+                                            else return <td key={j} className={getClassTd(h.key)} style={{verticalAlign: 'middle'}}>{getFormatCell(b, h.key)}</td>
                                         }
 
 
                                     })}
-                                    {IsIconActions(dataOptions.actions) ?
-                                        <td width="1" className="px-2">{optionsItem(b, i)}</td> : null}
+                                    {IsIconActions(dataOptions.actions) ? <td width="1" className="px-2">{optionsItem(b, i)}</td> : null}
                                 </tr>
                             )
                         })}
                         </tbody>
-
-
                         {dataOptions.leyendas > 0 || pagination ?
                             <tfoot style={{backgroundColor: '#ffffff'}}>
                             <tr>

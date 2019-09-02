@@ -5,7 +5,7 @@ import 'react-bootstrap-typeahead/css/Typeahead.css';
 
 export default function Typeahead({mounted, defaultInputValue, isLoading, config, options, onSearch, onChange, onKeyDown, clear}) {
 
-    const [dataConfig, setDataConfig] = useState({
+    const [dataConfig] = useState({
         id: config && config.id ? config.id : 'id',
         promptText: config && config.promptText ? config.promptText : "No hay registro",
         searchText: config && config.searchText ? config.searchText : "Buscando...",
@@ -16,7 +16,7 @@ export default function Typeahead({mounted, defaultInputValue, isLoading, config
         size: config && config.size ? config.size : undefined, // "large", "lg", "small", "sm"
     })
 
-    const [myref, setMyref] = useState(React.createRef())
+    const [myref] = useState(React.createRef())
 
     useEffect(()=>{
         if (clear) {

@@ -117,6 +117,7 @@ export default function TabTable() {
         )
     }
 
+    console.log('dataHeader', dataHeader)
 
     return (
         <>
@@ -127,14 +128,6 @@ export default function TabTable() {
                     <Table
                         className={"mytable"}
                         header={dataHeader}
-                        visible={{
-                            show: true,
-                            cols: ['col1', 'col2', 'col3', 'col4'],
-                            onVisible: (data)=> {
-                                /* array visible keys columns */
-                                console.log('onVisible', data)
-                            }
-                        }}
                         body={dataBody}
                         pagination={
                             {
@@ -146,7 +139,7 @@ export default function TabTable() {
                         }
                         options={
                             {
-                                actions: ['get', 'update', 'delete', 'historial', 'export', 'create'],
+                                actions: ['delete'],
                                 textActions: {
                                     get: 'Ver',
                                     update: 'Modificar',

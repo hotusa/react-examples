@@ -1,4 +1,5 @@
 import Swal from 'sweetalert2'
+import './notification.css'
 
 function Notification({classContainer, type, text, timer}) {
 
@@ -24,7 +25,7 @@ function Notification({classContainer, type, text, timer}) {
             break
 
         case 'question':
-            _background = '#333333'
+            _background = '#666666'
             break
 
         default:
@@ -32,8 +33,7 @@ function Notification({classContainer, type, text, timer}) {
     }
 
     let _customClass = {
-        container: classContainer,
-        content: 'text-white ml-2'
+        container: classContainer
     }
 
     Swal.fire({

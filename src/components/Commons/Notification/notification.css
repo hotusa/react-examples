@@ -1,0 +1,34 @@
+.swal2-icon.swal2-warning {
+    border-color: #ffffff;
+    color: #ffffff;
+}
+
+.swal2-icon.swal2-question {
+    border-color: #ffffff;
+    color: #ffffff;
+}
+
+.swal2-icon.swal2-info {
+    border-color: #ffffff;
+    color: #ffffff;
+}
+
+.swal2-success-ring {
+    border-color: #ffffff !important;
+}
+
+.swal2-icon.swal2-error {
+    border-color: #ffffff;
+    color: #ffffff;
+}
+
+.swal2-icon.swal2-error [class^=swal2-x-mark-line],
+.swal2-icon.swal2-success [class^=swal2-success-line]
+{
+    background-color: #ffffff;
+}
+.swal2-content {
+    color: #ffffff;
+    margin-left: 0.5rem;
+    font-weight: normal;
+}

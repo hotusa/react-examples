@@ -257,16 +257,6 @@ export default function Table({className, header, visible, body, pagination, opt
                                                 </button> : null
                                         }
                                         {
-                                            /* crear */
-                                            dataOptions.actions.indexOf('create') > -1 ?
-                                                <button
-                                                    disabled={!dataOptions.callbacks.onCreate}
-                                                    onClick={() => dataOptions.callbacks.onCreate()}
-                                                    className="btn btn-sm btn-primary ml-1">
-                                                    <FontAwesomeIcon icon={faPlus} className={"mr-1"}/>{dataOptions.textActions.create || 'Crear'}
-                                                </button> : null
-                                        }
-                                        {
                                             /* exportar */
                                             dataOptions.actions.indexOf('export') > -1 && totalResultados > 0 ?
                                                 <button
@@ -274,6 +264,16 @@ export default function Table({className, header, visible, body, pagination, opt
                                                     onClick={() => dataOptions.callbacks.onExport()}
                                                     className="btn btn-sm btn-primary ml-1">
                                                     <FontAwesomeIcon icon={faTable} className={"mr-1"}/> {dataOptions.textActions.export || 'Exportar'}
+                                                </button> : null
+                                        }
+                                        {
+                                            /* crear */
+                                            dataOptions.actions.indexOf('create') > -1 ?
+                                                <button
+                                                    disabled={!dataOptions.callbacks.onCreate}
+                                                    onClick={() => dataOptions.callbacks.onCreate()}
+                                                    className="btn btn-sm btn-primary ml-1">
+                                                    <FontAwesomeIcon icon={faPlus} className={"mr-1"}/>{dataOptions.textActions.create || 'Crear'}
                                                 </button> : null
                                         }
                                     </div>

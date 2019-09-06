@@ -2,6 +2,7 @@ import React from 'react'
 import Modal from "react-bootstrap4-modal";
 import {faTimes, faCheck, faPlus, faSave} from "@fortawesome/free-solid-svg-icons";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
+import './modal.css'
 
 
 export default function _Modal({children, className, show, options, disableConfirm}) {

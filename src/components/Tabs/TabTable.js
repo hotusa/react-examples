@@ -139,7 +139,7 @@ export default function TabTable() {
                         }
                         options={
                             {
-                                actions: ['delete'],
+                                actions: ['delete','get','create','export'],
                                 textActions: {
                                     get: 'Ver',
                                     update: 'Modificar',

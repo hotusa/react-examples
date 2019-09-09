@@ -7,6 +7,7 @@ export default function TabTable() {
     const [dataBody, setDataBody] = useState([])
     const [dataHeader, setDataHeader] = useState([])
     const [pag, setPag] = useState(1)
+    const [showLoading, setShowLoading] = useState(false)
 
     useEffect(() => {
 
@@ -117,18 +118,39 @@ export default function TabTable() {
         )
     }
 
-    console.log('dataHeader', dataHeader)
+
+    const onLoading = () => {
+        setShowLoading(!showLoading)
+    }
 
     return (
         <>
             <button className="btn btn-sm btn-primary mb-3 mr-1" onClick={random}>Random Body</button>
-            <button className="btn btn-sm btn-primary mb-3" onClick={randomHeader}>Random Header</button>
+            <button className="btn btn-sm btn-primary mb-3 mr-1" onClick={randomHeader}>Random Header</button>
+            <button className="btn btn-sm btn-primary mb-3 mr-1" onClick={onLoading}>Show loading</button>
             <div className="row justify-content-md-center">
                 <div className="col-12">
                     <Table
+                        loading={{
+                            show: showLoading,
+                            message: 'Loading, please wait',
+                            renderChildren: true,
+                            type: 'ball-beat',
+                            color: 'red'
+                        }}
                         className={"mytable"}
                         header={dataHeader}
                         body={dataBody}
+                        visible={
+                            {
+                                show: true,
+                                cols: ['col1', 'col2', 'col3', 'col4'],
+                                onVisible: (data)=> {
+                                    /* array visible keys columns */
+                                    console.log('onVisible', data)
+                                }
+                            }
+                        }
                         pagination={
                             {
                                 total: 100,

@@ -7,7 +7,8 @@ export default function TabNotification () {
         Notification({
             classContainer: 'container-toast',
             text: 'Introduzca su e-mail',
-            type: 'info'
+            type: 'info',
+            timer: 350000
         })
     }
 

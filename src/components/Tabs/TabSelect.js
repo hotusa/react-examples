@@ -17,9 +17,9 @@ export default function TabSelect() {
         className: '',
         classNamePrefix: '',
         isSearchable: true,
-        isMulti: false,
+        isMulti: true,
         noOptionsMessage: 'No hay datos',
-        size: 'sm'
+        size: ''
     }
 
     const onChange = (e) => {

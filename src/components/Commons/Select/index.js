@@ -1,5 +1,6 @@
 import React from 'react'
 import Select from 'react-select'
+import './select.css'
 
 export default function _Select({options, config, value, onChange, isDisabled, isLoading}) {
 
@@ -46,10 +47,12 @@ export default function _Select({options, config, value, onChange, isDisabled, i
     return (
         <div className="row">
             <div className="col-sm-3">
-                <input type="text" className="form-control form-control-sm"/>
+                <input type="text" className="form-control"/>
             </div>
-            <div className="col-sm-3">
+            <div className="col-sm-4">
                 <Select
+                    className={dataConfig.className || 'react-igmweb-select'}
+                    classNamePrefix={dataConfig.classNamePrefix || 'xxx'}
                     noOptionsMessage={() => dataConfig.noOptionsMessage}
                     isSearchable={dataConfig.isSearchable}
                     isMulti={config.isMulti}

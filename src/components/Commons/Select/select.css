@@ -1,0 +1,4 @@
+.react-igmweb-select .xxx__control--is-focused {
+    border-color: #007bff !important;
+    box-shadow: none !important;
+}

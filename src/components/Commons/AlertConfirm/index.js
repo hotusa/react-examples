@@ -9,11 +9,13 @@ function AlertConfirm({
                           onCancel,
                           confirmButtonText,
                           cancelButtonText,
-                          preConfirm
+                          preConfirm,
+                          position
                       }) {
 
 
     Swal.fire({
+        position: position || 'center',
         customClass: customClass,
         title: title,
         text: text,

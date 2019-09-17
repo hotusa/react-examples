@@ -17,7 +17,8 @@ export default function TabAlertConfirm () {
             },
             onCancel: () => {
                 console.log('cancel')
-            }
+            },
+            position: 'top'
         })
     }
 

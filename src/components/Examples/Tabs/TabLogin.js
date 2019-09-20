@@ -30,7 +30,7 @@ return (
     return (
         <>
             <div className="row justify-content-md-center">
-                <div className="col-4">
+                <div className="col-sm-4">
                     <Login
                         className="milogin"
                         logo={logo}

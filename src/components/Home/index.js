@@ -1,5 +1,7 @@
 import React from 'react'
 import {Link} from "react-router-dom";
+import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
+import {faExternalLinkAlt} from "@fortawesome/free-solid-svg-icons";
 
 export default function Home() {
 
@@ -12,6 +14,7 @@ export default function Home() {
                 <a className="btn btn-secondary btn-lg" href="https://www.npmjs.com/package/react-igmweb"
                    target="_blank" rel="noopener noreferrer" role="button">Learn more</a>
                 <Link to={"/examples"} className="btn btn-primary btn-lg ml-2" href="#" role="button">View demos</Link>
+                <span className="ml-2">(Download github demo project <a href="https://github.com/hotusa/react-examples" className="alert-link" target="_blank">react-examples <FontAwesomeIcon icon={faExternalLinkAlt}/></a>)</span>
             </div>
 
             <h2>Installation</h2>

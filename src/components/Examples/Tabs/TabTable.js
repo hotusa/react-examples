@@ -1,5 +1,5 @@
 import React, {useEffect, useState} from 'react'
-import Table from "../Commons/Table";
+import Table from "../../Commons/Table";
 
 
 export default function TabTable() {
@@ -8,6 +8,87 @@ export default function TabTable() {
     const [dataHeader, setDataHeader] = useState([])
     const [pag, setPag] = useState(1)
     const [showLoading, setShowLoading] = useState(false)
+
+    const code =
+`
+const [dataBody, setDataBody] = useState([])
+const [dataHeader, setDataHeader] = useState([])
+const [pag, setPag] = useState(1)
+const [showLoading, setShowLoading] = useState(false)
+    
+return (
+    <IGMTable
+        loading={{
+            show: showLoading,
+            message: 'Loading, please wait',
+            renderChildren: true,
+            type: 'ball-beat',
+            color: 'red'
+        }}
+        className={"mytable"}
+        header={dataHeader}
+        body={dataBody}
+        visible={
+            {
+                show: true,
+                cols: ['col1', 'col2', 'col3', 'col4'],
+                onVisible: (data)=> {
+                    /* array visible keys columns */
+                    console.log('onVisible', data)
+                }
+            }
+        }
+        pagination={
+            {
+                total: 100,
+                itemsPag: 5,
+                pag: pag,
+                onPagination: onPagination
+            }
+        }
+        options={
+            {
+                actions: ['delete','get','create','export'],
+                textActions: {
+                    get: 'Ver',
+                    update: 'Modificar',
+                    delete: 'Suprimir',
+                    historial: 'Cambios históricos',
+                    create: 'Nuevo',
+                    export: 'Descargar CSV',
+                },
+                callbacks: {
+                    onGet: onGet,
+                    onUpdate: onUpdate,
+                    onDelete: onDelete,
+                    onHistorial: onHistorial,
+                    onExport: onExport,
+                    onOrder: onOrder,
+                    onCreate: ()=> {
+                        console.log('create')
+                    }
+                },
+                leyendas: [
+                    {text: 'No operativo', color: '#F45B67' }
+                ],
+                onColorRow: (item) => {
+                    /* Por si necesitamos colorear una row */
+                    if (item.col1 === 5) return '#F45B67'
+                    return ''
+                },
+                onFormatCell: (item, key) => {
+                    /* Por si queremos formatear el valor de una celda (ej: 'S' -> 'Si' */
+                    if (key === 'col1') return '*' + item[key]
+                    return item[key]
+                },
+                onFormatCellAction: (item, index, action) => {
+                    return true
+                }
+            }
+        }
+    />
+)
+`
 
     useEffect(() => {
 
@@ -44,10 +125,11 @@ export default function TabTable() {
     const onPagination = (pag) => {
         console.log(pag)
         setPag(pag)
-
+        setShowLoading(true)
         setTimeout(()=>{
 
             random()
+            setShowLoading(false)
 
         }, 1000)
 
@@ -202,6 +284,12 @@ export default function TabTable() {
                     />
                 </div>
             </div>
+            <br/>
+            <figure>
+                <pre>
+                    <code>{code}</code>
+                </pre>
+            </figure>
         </>
     )
 }

@@ -1,5 +1,5 @@
 import React, {useState} from 'react'
-import Select from "../Commons/Select";
+import Select from "../../Commons/Select";
 
 export default function TabSelect() {
 

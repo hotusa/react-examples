@@ -1,95 +1,21 @@
-import React, {Component} from 'react';
-import './App.css';
+import React, {lazy, Suspense} from 'react';
+import {Switch, Route, BrowserRouter} from 'react-router-dom'
 
-import TabTable from "./components/Tabs/TabTable";
-import TabPagination from "./components/Tabs/TabPagination";
-import TabAlertConfirm from "./components/Tabs/TabAlertConfirm";
-import TabNotification from "./components/Tabs/TabNotification";
-import TabLogin from "./components/Tabs/TabLogin";
-import TabModal from "./components/Tabs/TabModal";
-import TabTypeahead from "./components/Tabs/TabTypeahead";
-import TabForms from "./components/Tabs/TabForms";
-import TabSelect from "./components/Tabs/TabSelect";
 
-class App extends Component {
+const Home = lazy(() => import('./components/Home'))
+const Examples = lazy(() => import('./components/Examples'))
 
-    render() {
+export default function App() {
 
-        return (
-            <div className="container App">
 
-                <br/>
-                <ul className="nav nav-tabs" id="myTab" role="tablist">
-                    <li className="nav-item">
-                        <a className="nav-link active" data-toggle="tab" href="#login" role="tab">Login</a>
-                    </li>
-                    <li className="nav-item">
-                        <a className="nav-link" data-toggle="tab" href="#notification" role="tab">Notification</a>
-                    </li>
-                    <li className="nav-item">
-                        <a className="nav-link" data-toggle="tab" href="#alertconfirm" role="tab">Alert confirm</a>
-                    </li>
-                    <li className="nav-item">
-                        <a className="nav-link" data-toggle="tab" href="#paginator" role="tab">Paginator</a>
-                    </li>
-                    <li className="nav-item">
-                        <a className="nav-link" data-toggle="tab" href="#table" role="tab">Table</a>
-                    </li>
-                    <li className="nav-item">
-                        <a className="nav-link" data-toggle="tab" href="#modal" role="tab">Modal</a>
-                    </li>
-                    <li className="nav-item">
-                        <a className="nav-link" data-toggle="tab" href="#typeahead" role="tab">Typeahead</a>
-                    </li>
-                    <li className="nav-item">
-                        <a className="nav-link" data-toggle="tab" href="#select" role="tab">Select</a>
-                    </li>
-                    <li className="nav-item">
-                        <a className="nav-link" data-toggle="tab" href="#forms" role="tab">Forms</a>
-                    </li>
-                </ul>
-                <div className="tab-content" id="myTabContent">
-                    <div className="tab-pane fade show active" id="login" role="tabpanel">
-                        <br/>
-                        <TabLogin/>
-                    </div>
-                    <div className="tab-pane fade" id="notification" role="tabpanel">
-                        <br/>
-                        <TabNotification/>
-                    </div>
-                    <div className="tab-pane fade" id="alertconfirm" role="tabpanel">
-                        <br/>
-                        <TabAlertConfirm/>
-                    </div>
-                    <div className="tab-pane fade" id="paginator" role="tabpanel">
-                        <br/>
-                        <TabPagination/>
-                    </div>
-                    <div className="tab-pane fade" id="table" role="tabpanel">
-                        <br/>
-                        <TabTable/>
-                    </div>
-                    <div className="tab-pane fade" id="modal" role="tabpanel">
-                        <br/>
-                        <TabModal/>
-                    </div>
-                    <div className="tab-pane fade" id="typeahead" role="tabpanel">
-                        <br/>
-                        <TabTypeahead/>
-                    </div>
-                    <div className="tab-pane fade" id="select" role="tabpanel">
-                        <br/>
-                        <TabSelect/>
-                    </div>
-                    <div className="tab-pane fade" id="forms" role="tabpanel">
-                        <br/>
-                        <TabForms/>
-                    </div>
-                </div>
-
-            </div>
-        );
-    }
+    return (
+        <BrowserRouter>
+            <Suspense fallback={""}>
+                <Switch>
+                    <Route exact path={"/"} component={Home}/>
+                    <Route exact path={"/examples"} component={Examples}/>
+                </Switch>
+            </Suspense>
+        </BrowserRouter>
+    )
 }
-
-export default App;

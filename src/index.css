@@ -12,3 +12,11 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
     monospace;
 }
+.container-toast {
+  max-width: 400px;
+}
+figure {
+  background-color: #f8f9fa;
+  padding: 10px 20px;
+  margin: 0;
+}

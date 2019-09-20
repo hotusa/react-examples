@@ -23,12 +23,6 @@ export default function Examples () {
                 </ol>
             </nav>
 
-            <p></p>
-
-            <div className="alert alert-primary" role="alert">
-                Download github project <a href="https://github.com/hotusa/react-examples" className="alert-link" target="_blank">react-examples <FontAwesomeIcon icon={faExternalLinkAlt}/></a>
-            </div>
-
             <ul className="nav nav-tabs" id="myTab" role="tablist">
                 <li className="nav-item">
                     <a className="nav-link active" data-toggle="tab" href="#login" role="tab">Login</a>

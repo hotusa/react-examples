@@ -89,7 +89,7 @@ export default function Table({className, header, visible, body, pagination, opt
 
         if (dataOptions.actions.length === 1 && dataOptions.actions.indexOf('delete') > -1) {
             return (
-                <button className={`btn btn-secondary btn-sm ${dataOptions.callbacks.onDelete ? '' : 'disabled'}`}
+                <button type="button" className={`btn btn-secondary btn-sm ${dataOptions.callbacks.onDelete ? '' : 'disabled'}`}
                         onClick={() => dataOptions.callbacks.onDelete(item, index)}><FontAwesomeIcon icon={faTrashAlt}/>
                 </button>
             )

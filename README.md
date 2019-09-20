@@ -84,6 +84,7 @@ onLogin = (datos) => {
 ```javascript
 onClickConfirm = () => {
     IGMAlertConfirm({
+        position: 'center',
         title: 'title',
         text: 'text',
         type: 'success',
@@ -115,6 +116,7 @@ onClickConfirm = () => {
 
 | Props        | Options           | Default | Description |
 | ------------- |:-------------:| :-------------:| :-------------:| 
+| position | String | center | Modal window position, can be 'top', 'top-start', 'top-end', 'center', 'center-start', 'center-end', 'bottom', 'bottom-start', or 'bottom-end' |
 | title | String | none | Title for the Alert |
 | text | String | none | Text for the Alert |
 | type | String | none | The type of the Alert: warning, error, success, info, and question |
@@ -287,7 +289,7 @@ Más info:
 | show |  Boolean | false | Show/Hide modal|
 | options | Object | none |  Options for the modal |
 
-
+Example:
 ```javascript
 const options = {
     title:'Enter username',

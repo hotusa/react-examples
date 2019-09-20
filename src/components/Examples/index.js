@@ -9,6 +9,8 @@ import TabTypeahead from "./Tabs/TabTypeahead";
 import TabSelect from "./Tabs/TabSelect";
 import TabForms from "./Tabs/TabForms";
 import {Link} from "react-router-dom";
+import {faExternalLinkAlt} from "@fortawesome/free-solid-svg-icons";
+import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 
 export default function Examples () {
 
@@ -20,6 +22,12 @@ export default function Examples () {
                     <li className="breadcrumb-item active" aria-current="page">Examples</li>
                 </ol>
             </nav>
+
+            <p></p>
+
+            <div className="alert alert-primary" role="alert">
+                Download github project <a href="https://github.com/hotusa/react-examples" className="alert-link" target="_blank">react-examples <FontAwesomeIcon icon={faExternalLinkAlt}/></a>
+            </div>
 
             <ul className="nav nav-tabs" id="myTab" role="tablist">
                 <li className="nav-item">

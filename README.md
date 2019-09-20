@@ -36,6 +36,7 @@ import {
     IGMPagination,
     IGMTable,
     IGMModal,
+    IGMTypeahead,
     IGMUtilidades
 } from 'react-igmweb';
 ```

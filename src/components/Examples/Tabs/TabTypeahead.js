@@ -3,10 +3,7 @@ import Typeahead from "../../Commons/Typeahead";
 
 export default function TabTypeahead() {
 
-    const [options, setOptions] = useState([])
     const [clear, setClear] = useState(false)
-    const [flag, setFlag] = useState(true)
-    const [count, setCount] = useState(0)
 
     const code =
 `

@@ -10,13 +10,13 @@ export default function Home() {
                 <p className="lead">Global component packages for React & Bootstrap4</p>
                 <hr className="my-4"/>
                 <a className="btn btn-secondary btn-lg" href="https://www.npmjs.com/package/react-igmweb"
-                   target="_blank" role="button">Learn more</a>
+                   target="_blank" rel="noopener noreferrer" role="button">Learn more</a>
                 <Link to={"/examples"} className="btn btn-primary btn-lg ml-2" href="#" role="button">View demos</Link>
             </div>
 
             <h2>Installation</h2>
             <hr/>
-            <p>To install, you can use npm or yarn:</p>
+            <p>To install, you can use <strong>npm</strong> or <strong>yarn</strong>:</p>
             <figure>
             <pre>
                 <code>

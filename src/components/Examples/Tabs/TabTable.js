@@ -235,7 +235,7 @@ return (
                         }
                         pagination={
                             {
-                                total: 100,
+                                total: 4,
                                 itemsPag: 5,
                                 pag: pag,
                                 onPagination: onPagination

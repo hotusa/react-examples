@@ -408,7 +408,7 @@ export default function Table({className, header, visible, body, pagination, opt
                                                 })}
                                             </div>
                                             <div className="col-6 p-0 d-flex align-items-center justify-content-end">
-                                                {pagination ?
+                                                {pagination && pagination.total > pagination.itemsPag ?
                                                     <Pagination
                                                         classPag="miPagination float-right"
                                                         total={pagination.total}

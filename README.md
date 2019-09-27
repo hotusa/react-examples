@@ -155,6 +155,7 @@ onClickConfirm = () => {
     body={body}
     pagination={pagination}
     options={options}
+    loading={loading}
 />
 ```
 

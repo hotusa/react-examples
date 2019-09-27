@@ -382,7 +382,7 @@ export default function Table({className, header, visible, body, pagination, opt
                                 )
                             })}
                             </tbody>
-                            {dataOptions.leyendas > 0 || pagination ?
+                            {(dataOptions.leyendas && dataOptions.leyendas.length > 0) || (pagination && pagination.total > pagination.itemsPag) ?
                                 <tfoot style={{backgroundColor: '#ffffff'}}>
                                 <tr>
                                     <td className="px-2 py-2"

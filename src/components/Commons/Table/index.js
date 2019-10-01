@@ -9,7 +9,7 @@ import 'react-block-ui/style.css';
 import 'loaders.css/loaders.min.css';
 
 
-export default function Table({className, header, visible, body, pagination, options, loading}) {
+export default function Table({className, header, visible, body, pagination, order, options, loading}) {
 
 
     const [dataHeader, setDataHeader] = useState([])
@@ -245,6 +245,32 @@ export default function Table({className, header, visible, body, pagination, opt
         }
     }
 
+    const getHeadColumn = (e, i) => {
+
+        let showOrder = false
+
+        if (dataOptions.callbacks.onOrder) {
+            if (order && order.cols) {
+
+                showOrder = order.cols.find(col => col === e.key)
+
+            } else {
+                showOrder = true
+            }
+        }
+
+        if (showOrder) {
+            return (<th className={e.className || ''} key={i}
+                        onClick={() => setOrder(e)} style={{cursor: 'pointer'}}>
+                <FontAwesomeIcon
+                    icon={e.order === 'asc' ? faSortUp : faSortDown}
+                    className={"mr-1"}/>{e.value}</th>)
+        } else {
+            return <th className={e.className || ''} key={i}>{e.value}</th>
+        }
+
+    }
+
     let totalResultados = pagination ? pagination.total : body.length
 
     if (dataHeader.length > 0) {
@@ -315,28 +341,11 @@ export default function Table({className, header, visible, body, pagination, opt
 
                                         return checkColumnVisible.map(col => {
                                             if (col === e.key) {
-                                                if (dataOptions.callbacks.onOrder) {
-                                                    return (<th className={e.className || ''} key={i}
-                                                                onClick={() => setOrder(e)} style={{cursor: 'pointer'}}>
-                                                        <FontAwesomeIcon
-                                                            icon={e.order === 'asc' ? faSortUp : faSortDown}
-                                                            className={"mr-1"}/>{e.value}</th>)
-                                                } else {
-                                                    return <th className={e.className || ''} key={i}>{e.value}</th>
-                                                }
+                                                return getHeadColumn(e, i)
                                             } else return null
                                         })
                                     } else {
-                                        if (dataOptions.callbacks.onOrder) {
-                                            return (
-                                                <th className={e.className || ''} key={i} onClick={() => setOrder(e)}
-                                                    style={{cursor: 'pointer'}}>
-                                                    <FontAwesomeIcon
-                                                        icon={e.order === 'asc' ? faSortUp : faSortDown}
-                                                        className={"mr-1"}/>{e.value}</th>)
-                                        } else {
-                                            return <th className={e.className || ''} key={i}>{e.value}</th>
-                                        }
+                                        return getHeadColumn(e, i)
                                     }
 
 

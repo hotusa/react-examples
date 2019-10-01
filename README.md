@@ -156,6 +156,7 @@ onClickConfirm = () => {
     pagination={pagination}
     options={options}
     loading={loading}
+    order={order}
 />
 ```
 
@@ -168,6 +169,7 @@ onClickConfirm = () => {
 | visible | Object | none | Columns visible |
 | pagination | Object | none | Config pagination |
 | loading | Object | none | Config loading |
+| order | Object | none | Config order |
 
 Example:
 ```javascript
@@ -262,6 +264,10 @@ let loading = {
     renderChildren: true,
     type: 'ball-beat',
     color: '#02a17c'
+}
+
+let order = {
+    cols: ['col2', 'col3', 'col4'], // show columns with order
 }
 
 ```

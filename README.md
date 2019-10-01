@@ -174,7 +174,7 @@ onClickConfirm = () => {
 Example:
 ```javascript
 let header = [
-    {key: 'col1', value: 'COLUMNA 1', className: 'text-left'},
+    {key: 'col1', value: 'COLUMNA 1', className: 'text-left', order: 'asc'},
     {key: 'col2', value: 'COLUMNA 2', className: 'text-left'},
     {key: 'col3', value: 'COLUMNA 3', className: 'text-left'}
 ]

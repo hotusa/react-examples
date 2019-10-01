@@ -144,7 +144,7 @@ return (
         setDataHeader([
             {key: 'col1', value: 'COL 1' + Math.floor(Math.random() * 10), className: 'text-center'},
             {key: 'col2', value: 'COL 2' + Math.floor(Math.random() * 10), className: 'text-center'},
-            {key: 'col3', value: 'COL 3' + Math.floor(Math.random() * 10)},
+            {key: 'col3', value: 'COL 3' + Math.floor(Math.random() * 10), order: 'asc'},
             {key: 'col4', value: 'COL 4' + Math.floor(Math.random() * 10), className: 'text-center'}
         ])
 

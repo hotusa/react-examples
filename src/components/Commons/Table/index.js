@@ -1,6 +1,6 @@
 import React, {useState, useEffect} from 'react'
 import {FontAwesomeIcon} from '@fortawesome/react-fontawesome'
-import {faCog, faSortDown, faSortUp, faTable, faColumns, faPlus, faTrashAlt} from '@fortawesome/free-solid-svg-icons'
+import {faCog, faSortDown, faSortUp, faSort, faTable, faColumns, faPlus, faTrashAlt} from '@fortawesome/free-solid-svg-icons'
 import Pagination from "../Pagination";
 import Modal from "../Modal"
 import BlockUi from 'react-block-ui';
@@ -24,7 +24,7 @@ export default function Table({className, header, visible, body, pagination, ord
                 key: item.key,
                 value: item.value,
                 className: item.className,
-                order: 'asc'
+                order: item.order || ''
             })))
         }
     }, [header])
@@ -132,7 +132,7 @@ export default function Table({className, header, visible, body, pagination, ord
                     key: o.key,
                     value: o.value,
                     className: o.className,
-                    order: 'asc'
+                    order: ''
                 }
             }
         })
@@ -245,6 +245,7 @@ export default function Table({className, header, visible, body, pagination, ord
         }
     }
 
+    /* custom order column */
     const getHeadColumn = (e, i) => {
 
         let showOrder = false
@@ -263,7 +264,7 @@ export default function Table({className, header, visible, body, pagination, ord
             return (<th className={e.className || ''} key={i}
                         onClick={() => setOrder(e)} style={{cursor: 'pointer'}}>
                 <FontAwesomeIcon
-                    icon={e.order === 'asc' ? faSortUp : faSortDown}
+                    icon={e.order === 'asc' ? faSortUp : e.order === 'desc' ? faSortDown : faSort}
                     className={"mr-1"}/>{e.value}</th>)
         } else {
             return <th className={e.className || ''} key={i}>{e.value}</th>

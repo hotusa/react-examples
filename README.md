@@ -321,6 +321,7 @@ const options = {
 
 ```html
 <IGMTypeahead
+    isValid="{isValid}"
     mounted={flag}
     defaultInputValue={defaultInput}   
     isLoading={loading}
@@ -336,7 +337,8 @@ const options = {
 ```
 
 | Props        | Options           | Default | Description |
-| ------------- |:-------------:| :-------------:| :-------------:|  
+| ------------- |:-------------:| :-------------:| :-------------:|
+| isValid | Boolean | null | show input error/ok validation |  
 | mounted | Boolean | none | Mounted/Unmounted component |
 | defaultInputValue | String | none | The initial value displayed in the text input |
 | isLoading | Boolean | none | Show/Hide loading icon |

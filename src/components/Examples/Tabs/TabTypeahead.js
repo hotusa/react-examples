@@ -4,6 +4,7 @@ import Typeahead from "../../Commons/Typeahead";
 export default function TabTypeahead() {
 
     const [clear, setClear] = useState(false)
+    const [isValid, setIsValid] = useState(null)
 
     const code =
 `
@@ -68,6 +69,11 @@ return (
 
     const onChange = (search) => {
         console.log(search)
+        //setIsValid(false)
+    }
+
+    const buttonValidation = (value) => {
+        setIsValid(value)
     }
 
     let config = {
@@ -78,12 +84,13 @@ return (
         filterBy: ['text'], // List searching
         placeholder: 'Buscar...',
         minLength: 3,
-        size: 'sm' // "large", "lg", "small", "sm"
+        size: '' // "large", "lg", "small", "sm"
     }
 
     return (
         <>
             <Typeahead
+                isValid={isValid}
                 mounted={true}
                 defaultInputValue={"opcion 1"}
                 isLoading={false}
@@ -104,7 +111,10 @@ return (
             />
 
             <br/>
-            <button className="btn btn-sm btn-primary" onClick={() => { setClear(true) }}>Clear</button>
+            <button className="btn btn-sm btn-secondary mr-1" onClick={() => { setClear(true) }}>Clear</button>
+            <button className="btn btn-sm btn-success mr-1" onClick={() => { buttonValidation(true) }}>Valid</button>
+            <button className="btn btn-sm btn-danger mr-1" onClick={() => { buttonValidation(false) }}>No valid</button>
+            <button className="btn btn-sm btn-dark mr-1" onClick={() => { buttonValidation(null) }}>Delete validation</button>
             <br/><br/>
             <figure>
                 <pre>

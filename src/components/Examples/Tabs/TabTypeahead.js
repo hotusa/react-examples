@@ -90,6 +90,7 @@ return (
     return (
         <>
             <Typeahead
+                onBlur={(e)=> console.log('activa', e)}
                 isValid={isValid}
                 mounted={true}
                 defaultInputValue={"opcion 1"}

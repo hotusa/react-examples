@@ -3,7 +3,7 @@ import {AsyncTypeahead, Highlighter} from 'react-bootstrap-typeahead';
 import 'react-bootstrap-typeahead/css/Typeahead.css';
 
 
-export default function Typeahead({mounted, defaultInputValue, isLoading, config, options, onSearch, onChange, onKeyDown, clear, isValid}) {
+export default function Typeahead({mounted, defaultInputValue, isLoading, config, options, onSearch, onChange, onKeyDown, clear, isValid, onBlur}) {
 
     const [dataConfig] = useState({
         id: config && config.id ? config.id : 'id',
@@ -28,6 +28,7 @@ export default function Typeahead({mounted, defaultInputValue, isLoading, config
     if (mounted === undefined || mounted) {
         return (
             <AsyncTypeahead
+                onBlur={onBlur}
                 isInvalid={isValid !== null ? !isValid : null}
                 isValid={isValid || null}
                 ref={myref}

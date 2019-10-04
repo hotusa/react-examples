@@ -331,6 +331,7 @@ const options = {
     onChange={onChange}
     onKeyDown={onKeyDown}
     clear={clear} 
+    onBlur={onBlur}
     />
     
 <button onClick={(e)=>{ setClear(clear+1)}}>Clear</button>
@@ -348,6 +349,7 @@ const options = {
 | onChange | Callback method | none |  Invoked when the set of selections changes |
 | onKeyDown | Callback method | none |  	Invoked when a key is pressed. Receives an event |
 | clear | Boolean | false |  Clear input text |
+| onBlur | Callback method | none |  Invoked when the input is blurred. Receives an event.|
 
 
 While the component relies primarily on Bootstrap for styles, some additional CSS is necessary for everything to behave correctly. You must include the provided CSS file in your project:

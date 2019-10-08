@@ -435,13 +435,16 @@ export default function Table({className, header, visible, body, pagination, ord
                     </BlockUi>
                 </div>
 
-                <Modal show={showModalColumns} options={{title: 'Visibilidad columnas', onOk: onOkModalColumn}}>
+                <Modal show={showModalColumns} options={{title: 'Visibilidad columnas', onOk: onOkModalColumn, size: 'lg'}}>
 
+
+                    <div className="row">
                     {dataHeader.map((item, i) => {
 
                         let found = checkColumnVisible.find(col => col === item.key)
 
                         return (
+                            <div className="col-sm-2">
                             <div key={i} className="form-check form-check-inline">
                                 <input
                                     className="form-check-input"
@@ -451,12 +454,13 @@ export default function Table({className, header, visible, body, pagination, ord
                                     name={item.key}
                                     checked={found || false}
                                     onChange={(e) => onChangeCheckVisibleCol(e)}/>
-                                <label className="form-check-label" htmlFor={`inlineCheckbox${i}`}>{item.value}</label>
+                                <label className="form-check-label text-capitalize" htmlFor={`inlineCheckbox${i}`}>{item.value.toLowerCase()}</label>
+                            </div>
                             </div>
                         )
 
                     })}
-
+                    </div>
                 </Modal>
 
             </div>

@@ -145,7 +145,10 @@ return (
             {key: 'col1', value: 'COL 1' + Math.floor(Math.random() * 10), className: 'text-center'},
             {key: 'col2', value: 'COL 2' + Math.floor(Math.random() * 10), className: 'text-center'},
             {key: 'col3', value: 'COL 3' + Math.floor(Math.random() * 10), order: 'asc'},
-            {key: 'col4', value: 'COL 4' + Math.floor(Math.random() * 10), className: 'text-center'}
+            {key: 'col4', value: 'COL 4' + Math.floor(Math.random() * 10), className: 'text-center'},
+            {key: 'col5', value: 'COL 5' + Math.floor(Math.random() * 10), className: 'text-center'},
+            {key: 'col6', value: 'COL 6' + Math.floor(Math.random() * 10), className: 'text-center'},
+            {key: 'col7', value: 'COL 7' + Math.floor(Math.random() * 10), className: 'text-center'}
         ])
 
     }
@@ -157,49 +160,73 @@ return (
                     col1: Math.floor(Math.random() * 10),
                     col2: Math.floor(Math.random() * 10),
                     col3: Math.floor(Math.random() * 10),
-                    col4: Math.floor(Math.random() * 10)
+                    col4: Math.floor(Math.random() * 10),
+                    col5: Math.floor(Math.random() * 10),
+                    col6: Math.floor(Math.random() * 10),
+                    col7: Math.floor(Math.random() * 10)
                 },
                 {
                     col1: Math.floor(Math.random() * 10),
                     col2: Math.floor(Math.random() * 10),
                     col3: Math.floor(Math.random() * 10),
-                    col4: Math.floor(Math.random() * 10)
+                    col4: Math.floor(Math.random() * 10),
+                    col5: Math.floor(Math.random() * 10),
+                    col6: Math.floor(Math.random() * 10),
+                    col7: Math.floor(Math.random() * 10)
                 },
                 {
                     col1: Math.floor(Math.random() * 10),
                     col2: Math.floor(Math.random() * 10),
                     col3: Math.floor(Math.random() * 10),
-                    col4: Math.floor(Math.random() * 10)
+                    col4: Math.floor(Math.random() * 10),
+                    col5: Math.floor(Math.random() * 10),
+                    col6: Math.floor(Math.random() * 10),
+                    col7: Math.floor(Math.random() * 10)
                 },
                 {
                     col1: Math.floor(Math.random() * 10),
                     col2: Math.floor(Math.random() * 10),
                     col3: Math.floor(Math.random() * 10),
-                    col4: Math.floor(Math.random() * 10)
+                    col4: Math.floor(Math.random() * 10),
+                    col5: Math.floor(Math.random() * 10),
+                    col6: Math.floor(Math.random() * 10),
+                    col7: Math.floor(Math.random() * 10)
                 },
                 {
                     col1: Math.floor(Math.random() * 10),
                     col2: Math.floor(Math.random() * 10),
                     col3: Math.floor(Math.random() * 10),
-                    col4: Math.floor(Math.random() * 10)
+                    col4: Math.floor(Math.random() * 10),
+                    col5: Math.floor(Math.random() * 10),
+                    col6: Math.floor(Math.random() * 10),
+                    col7: Math.floor(Math.random() * 10)
                 },
                 {
                     col1: Math.floor(Math.random() * 10),
                     col2: Math.floor(Math.random() * 10),
                     col3: Math.floor(Math.random() * 10),
-                    col4: Math.floor(Math.random() * 10)
+                    col4: Math.floor(Math.random() * 10),
+                    col5: Math.floor(Math.random() * 10),
+                    col6: Math.floor(Math.random() * 10),
+                    col7: Math.floor(Math.random() * 10)
                 },
                 {
                     col1: Math.floor(Math.random() * 10),
                     col2: Math.floor(Math.random() * 10),
                     col3: Math.floor(Math.random() * 10),
-                    col4: Math.floor(Math.random() * 10)
+                    col4: Math.floor(Math.random() * 10),
+                    col5: Math.floor(Math.random() * 10),
+                    col6: Math.floor(Math.random() * 10),
+                    col7: Math.floor(Math.random() * 10)
                 },
                 {
                     col1: Math.floor(Math.random() * 10),
                     col2: Math.floor(Math.random() * 10),
                     col3: Math.floor(Math.random() * 10),
-                    col4: Math.floor(Math.random() * 10)
+                    col4: Math.floor(Math.random() * 10),
+                    col5: Math.floor(Math.random() * 10),
+                    col6: Math.floor(Math.random() * 10),
+                    col7: Math.floor(Math.random() * 10)
                 },
             ]
         )
@@ -231,7 +258,7 @@ return (
                         visible={
                             {
                                 show: true,
-                                cols: ['col1', 'col2', 'col3', 'col4'],
+                                cols: ['col1', 'col2', 'col3', 'col4','col5','col6','col7'],
                                 onVisible: (data)=> {
                                     /* array visible keys columns */
                                     console.log('onVisible', data)

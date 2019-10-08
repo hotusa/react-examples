@@ -444,8 +444,8 @@ export default function Table({className, header, visible, body, pagination, ord
                         let found = checkColumnVisible.find(col => col === item.key)
 
                         return (
-                            <div className="col-sm-2">
-                            <div key={i} className="form-check form-check-inline">
+                            <div key={i} className="col-sm-2">
+                            <div className="form-check form-check-inline">
                                 <input
                                     className="form-check-input"
                                     type="checkbox"

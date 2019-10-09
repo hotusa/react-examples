@@ -10,11 +10,16 @@ function AlertConfirm({
                           confirmButtonText,
                           cancelButtonText,
                           preConfirm,
-                          position
+                          position,
+                          confirmButtonColor,
+                          cancelButtonColor,
+                          allowOutsideClick
                       }) {
 
 
     Swal.fire({
+        confirmButtonColor: confirmButtonColor || '#3085d6',
+        cancelButtonColor: cancelButtonColor || '#aaa',
         position: position || 'center',
         customClass: customClass,
         title: title,
@@ -26,7 +31,7 @@ function AlertConfirm({
         showCloseButton: true,
         showLoaderOnConfirm: true,
         preConfirm: preConfirm ? preConfirm : undefined,
-        allowOutsideClick: () => !Swal.isLoading()
+        allowOutsideClick: allowOutsideClick || false
     }).then((result) => {
         if (result.value) {
             if (onConfirm) onConfirm()

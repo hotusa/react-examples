@@ -85,12 +85,15 @@ onLogin = (datos) => {
 ```javascript
 onClickConfirm = () => {
     IGMAlertConfirm({
+        confirmButtonColor: '#3085d6',
+        cancelButtonColor: '#aaa',
         position: 'center',
         title: 'title',
         text: 'text',
         type: 'success',
         confirmButtonText:'Ok',
         cancelButtonText: 'Cancel',
+        allowOutsideClick: false,
         preConfirm: ()=> {
             /*Function to execute before confirm, may be async (Promise-returning) or sync*/
             return fetch(`[URL]`)
@@ -117,6 +120,8 @@ onClickConfirm = () => {
 
 | Props        | Options           | Default | Description |
 | ------------- |:-------------:| :-------------:| :-------------:| 
+| confirmButtonColor | String | '#3085d6' | Use this to change the background color of the "Confirm"-button. The default color is #3085d6 |
+| cancelButtonColor | String | '#aaa' | Use this to change the background color of the "Cancel"-button. The default color is #aaa |
 | position | String | center | Modal window position, can be 'top', 'top-start', 'top-end', 'center', 'center-start', 'center-end', 'bottom', 'bottom-start', or 'bottom-end' |
 | title | String | none | Title for the Alert |
 | text | String | none | Text for the Alert |
@@ -125,6 +130,8 @@ onClickConfirm = () => {
 | onCancel | Function| none | Callback method for Cancel |
 | confirmButtonText | String | 'Ok' | Text button confirm |
 | cancelButtonText | String | 'Cancel' | Text button cancel |
+| allowOutsideClick | boolean | false | f set to false, the user can't dismiss the modal by clicking outside it.
+                                        You can also pass a custom function returning a boolean value, e.g. if you want to disable outside clicks for the loading state of a modal. |
 
 
 ## Pagination

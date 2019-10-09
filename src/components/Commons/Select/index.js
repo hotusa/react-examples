@@ -45,35 +45,28 @@ export default function _Select({options, config, value, onChange, isDisabled, i
     }
 
     return (
-        <div className="row">
-            <div className="col-sm-3">
-                <input type="text" className="form-control"/>
-            </div>
-            <div className="col-sm-4">
-                <Select
-                    className={dataConfig.className || 'react-igmweb-select'}
-                    classNamePrefix={dataConfig.classNamePrefix || 'xxx'}
-                    noOptionsMessage={() => dataConfig.noOptionsMessage}
-                    isSearchable={dataConfig.isSearchable}
-                    isMulti={config.isMulti}
-                    isLoading={dataConfig.isLoading}
-                    isDisabled={dataConfig.isDisabled}
-                    isClearable={dataConfig.isClearable}
-                    placeholder={dataConfig.placeholder}
-                    options={options}
-                    value={value}
-                    onChange={onChange}
-                    theme={
-                        {
-                            spacing: {
-                                baseUnit: getNumberSize(config.size)
-                            }
-                        }
+        <Select
+            className={dataConfig.className || 'react-igmweb-select'}
+            classNamePrefix={dataConfig.classNamePrefix || 'xxx'}
+            noOptionsMessage={() => dataConfig.noOptionsMessage}
+            isSearchable={dataConfig.isSearchable}
+            isMulti={config.isMulti}
+            isLoading={dataConfig.isLoading}
+            isDisabled={dataConfig.isDisabled}
+            isClearable={dataConfig.isClearable}
+            placeholder={dataConfig.placeholder}
+            options={options}
+            value={value}
+            onChange={onChange}
+            theme={
+                {
+                    spacing: {
+                        baseUnit: getNumberSize(config.size)
                     }
-                    styles={customStyles}
-                />
-            </div>
-        </div>
+                }
+            }
+            styles={customStyles}
+        />
 
     )
 }

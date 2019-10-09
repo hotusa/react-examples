@@ -6,9 +6,9 @@ export default function TabSelect() {
     const [value, setValue] = useState(null)
 
     const options = [
-        { value: 'chocolate', label: 'Chocolate' },
-        { value: 'strawberry', label: 'Strawberry' },
-        { value: 'vanilla', label: 'Vanilla' }
+        {value: 'chocolate', label: 'Chocolate'},
+        {value: 'strawberry', label: 'Strawberry'},
+        {value: 'vanilla', label: 'Vanilla'}
     ]
 
     let config = {
@@ -19,7 +19,7 @@ export default function TabSelect() {
         isSearchable: true,
         isMulti: true,
         noOptionsMessage: 'No hay datos',
-        size: ''
+        size: 'sm'
     }
 
     const onChange = (e) => {
@@ -27,14 +27,21 @@ export default function TabSelect() {
     }
 
 
-
     return (
-        <Select
-            isLoading={false}
-            isDisabled={false}
-            options={options}
-            config={config}
-            value={value}
-            onChange={onChange}/>
+        <div className="row">
+            <div className="col-3">
+                <input type="text" className="form-control form-control-sm"/>
+            </div>
+            <div className="col-3">
+                <Select
+                    isLoading={false}
+                    isDisabled={false}
+                    options={options}
+                    config={config}
+                    value={value}
+                    onChange={onChange}/>
+            </div>
+        </div>
+
     )
 }

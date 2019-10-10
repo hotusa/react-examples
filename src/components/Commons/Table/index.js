@@ -47,6 +47,7 @@ export default function Table({className, header, visible, body, pagination, ord
     /* config options */
     const getInitialOptions = () => {
 
+
         let _options = {
             table: {
                 align: options && options.table && options.table.align ? options.table.align : 'left',
@@ -58,6 +59,8 @@ export default function Table({className, header, visible, body, pagination, ord
                 hover: options && options.table && options.table.hover ? options.table.hover : false
             },
             thead: {
+                showHeaderResultados: options && options.thead && options.thead.showHeaderResultados !== undefined ? ((options && options.thead && options.thead.showHeaderResultados)) : true,
+                showHeaderCabecera: options && options.thead && options.thead.showHeaderCabecera !== undefined ? ((options && options.thead && options.thead.showHeaderCabecera)) : true,
                 textNone: options && options.thead && options.thead.textNone ? options.thead.textNone : 'No se ha encontrado registros',
                 textOnly: options && options.thead && options.thead.textOnly ? options.thead.textOnly : 'Se ha encontrado {X} registro',
                 textMore: options && options.thead && options.thead.textMore ? options.thead.textMore : 'Se ha encontrado {X} registros',
@@ -274,6 +277,7 @@ export default function Table({className, header, visible, body, pagination, ord
 
     let totalResultados = pagination ? pagination.total : body.length
 
+
     if (dataHeader.length > 0) {
         return (
             <div>
@@ -284,6 +288,8 @@ export default function Table({className, header, visible, body, pagination, ord
                              loader={<Loader active type={loading ? loading.type || 'ball-pulse' : 'ball-pulse'} color={loading ? loading.color || '#02a17c' : '#02a17c'}/>}
                              keepInView>
                         <table className={getClassTable()}>
+
+                            {dataOptions.thead.showHeaderResultados ?
                             <thead style={{backgroundColor: '#ffffff'}}>
                             <tr>
                                 <th className="py-2 px-3"
@@ -334,7 +340,9 @@ export default function Table({className, header, visible, body, pagination, ord
                                     </div>
                                 </th>
                             </tr>
-                            </thead>
+                            </thead> : null}
+
+                            {dataOptions.thead.showHeaderCabecera ?
                             <thead className={getClassThead()}>
                             <tr>
                                 {dataHeader.map((e, i) => {
@@ -353,7 +361,8 @@ export default function Table({className, header, visible, body, pagination, ord
                                 })}
                                 {IsIconActions(dataOptions.actions) ? <th width="1"/> : null}
                             </tr>
-                            </thead>
+                            </thead> : null}
+
                             <tbody style={{backgroundColor: '#ffffff'}}>
                             {body.map((b, i) => {
                                 return (

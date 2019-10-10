@@ -206,6 +206,8 @@ let options = {
         hover: false
     },
     thead: {
+        showHeaderResultados: true,
+        showHeaderCabecera:true,
         textNone: 'No se ha encontrado registros',
         textOnly: 'Se ha encontrado {X} registro',
         textMore: 'Se ha encontrado {X} registros',

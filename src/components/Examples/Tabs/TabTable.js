@@ -280,6 +280,13 @@ return (
                         }
                         options={
                             {
+                                thead: {
+
+                                    textNone: 'No se ha encontrado registrosssss',
+                                    textOnly: 'Se ha encontrado {X} registrosssss',
+                                    textMore: 'Se ha encontrado {X} registrosssss',
+                                    color: 'light'
+                                },
                                 actions: ['delete','get','create','export'],
                                 textActions: {
                                     get: 'Ver',

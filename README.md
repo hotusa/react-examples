@@ -70,12 +70,23 @@ onLogin = (datos) => {
         timer: 2000
     })
 }
+
+/*text HTML*/
+onLogin = (datos) => {
+    IGMNotification({
+        classContainer: 'myNotification',
+        html: '<h1>Text h1</h1>',
+        type: 'success',
+        timer: 2000
+    })
+}
 ```
 
 | Props        | Options           | Default | Description |
 | ------------- |:-------------:| :-------------:| :-------------:|
 | classContainer | String | none | Custom styles for the Modal |
 | text | String | none | Description for the Modal |
+| html | String HTML | none | Description HTML for the Modal |
 | type | String | none | The type of the Modal: warning, error, success, info, and question |
 | timer | Number | 3500 | Auto close timer of the Modal. Set in ms (milliseconds) | 
 

@@ -31,12 +31,24 @@ return (
             timer: 3500
         })
     }
+    const onClickNotificationHTML = () => {
+        Notification({
+            classContainer: 'container-toast',
+            html: '<h1>Text h1</h1>',
+            type: 'info',
+            timer: 3500
+        })
+    }
 
     return (
         <>
             <button
+                className="btn btn-primary mr-1"
+                type="button" onClick={onClickNotification}>Click me (text)
+            </button>
+            <button
                 className="btn btn-primary"
-                type="button" onClick={onClickNotification}>Click me
+                type="button" onClick={onClickNotificationHTML}>Click me (HTML)
             </button>
             <br/><br/>
             <figure>

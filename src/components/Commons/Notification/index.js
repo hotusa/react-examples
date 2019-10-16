@@ -1,7 +1,7 @@
 import Swal from 'sweetalert2'
 import './notification.css'
 
-function Notification({classContainer, type, text, timer}) {
+function Notification({classContainer, type, text, html, timer}) {
 
     let _timer  = timer || 3500
 
@@ -36,17 +36,31 @@ function Notification({classContainer, type, text, timer}) {
         container: classContainer
     }
 
-    Swal.fire({
-        type: type,
-        text: text,
-        toast: true,
-        position: 'top-end',
-        timer: _timer,
-        animation: false,
-        showConfirmButton: false,
-        background: _background,
-        customClass: _customClass
-    })
+    if (text) {
+        Swal.fire({
+            type: type,
+            text: text,
+            toast: true,
+            position: 'top-end',
+            timer: _timer,
+            animation: false,
+            showConfirmButton: false,
+            background: _background,
+            customClass: _customClass
+        })
+    } else if (html) {
+        Swal.fire({
+            type: type,
+            html: html,
+            toast: true,
+            position: 'top-end',
+            timer: _timer,
+            animation: false,
+            showConfirmButton: false,
+            background: _background,
+            customClass: _customClass
+        })
+    }
 
 }
 

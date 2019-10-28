@@ -9,7 +9,7 @@ import 'react-block-ui/style.css';
 import 'loaders.css/loaders.min.css';
 
 
-export default function Table({className, header, visible, body, pagination, order, options, loading}) {
+export default function Table({className, header, visible, body, pagination, order, options, loading, selectItemPag}) {
 
 
     const [dataHeader, setDataHeader] = useState([])
@@ -275,6 +275,31 @@ export default function Table({className, header, visible, body, pagination, ord
 
     }
 
+    /* select group pages */
+    const formatSelectItemPag = (data, _pagination) => {
+        if (data && data.options && data.callback) {
+
+            let itemPageDefault = 5
+            if (_pagination && _pagination.itemsPag) {
+                itemPageDefault = _pagination.itemsPag
+            }
+
+            return (
+                <select
+                    className="form-control form-control-sm col-2 mr-2"
+                    name="selectItemPage"
+                    onChange={(e)=>data.callback(e.target.value)} value={itemPageDefault}>
+                    { data.options.map( (item, idx) => {
+                        return (
+                            <option key={idx} value={item}>{item}</option>
+                        )
+                    } )}
+                </select>
+            )
+        }
+
+    }
+
     let totalResultados = pagination ? pagination.total : body.length
 
 
@@ -407,7 +432,8 @@ export default function Table({className, header, visible, body, pagination, ord
                                     <td className="px-2 py-2"
                                         colSpan={dataHeader.length + (IsIconActions(dataOptions.actions) ? 1 : 0)}>
                                         <div className="row m-0">
-                                            <div className="col-6 p-0 text-left leyendas">
+                                            <div className="col-6 p-0 text-left leyendas d-flex align-items-center">
+                                                {formatSelectItemPag(selectItemPag, pagination)}
                                                 {dataOptions.leyendas.map((leyenda, l) => {
                                                     return (
                                                         <span key={l} className="mr-3">
@@ -418,7 +444,7 @@ export default function Table({className, header, visible, body, pagination, ord
                                                                     width: '20px',
                                                                     height: '20px',
                                                                     backgroundColor: leyenda.color
-                                                                }}></span> : null
+                                                                }}/> : null
                                                         }
                                                             <span className="ml-1"
                                                                   style={{verticalAlign: 'text-bottom'}}>{leyenda.text}</span>

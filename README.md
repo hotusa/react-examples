@@ -172,7 +172,8 @@ onClickConfirm = () => {
     visible={visible}
     body={body}
     pagination={pagination}
-    options={options}
+    selectItemPag={selectItemPag}
+    options={options}    
     loading={loading}
     order={order}
 />
@@ -186,6 +187,7 @@ onClickConfirm = () => {
 | options | Object  | none | Options for the table |
 | visible | Object | none | Columns visible |
 | pagination | Object | none | Config pagination |
+| selectItemPag | Object | none | Config items by page |
 | loading | Object | none | Config loading |
 | order | Object | none | Config order |
 
@@ -277,6 +279,12 @@ let paginacion = {
     onPagination: (pag) => {/* pag selected */}
 }
 
+let selectItemPag = {
+    options: ['5', '15', '30'],
+    callback: (item) => {
+        /* item selected */        
+    }
+}
 
 let loading = {
     show: true,

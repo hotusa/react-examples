@@ -4,11 +4,6 @@ import Table from "../../Commons/Table";
 
 export default function TabTable() {
 
-    const [dataBody, setDataBody] = useState([])
-    const [dataHeader, setDataHeader] = useState([])
-    const [pag, setPag] = useState(1)
-    const [showLoading, setShowLoading] = useState(false)
-
     const code =
 `
 const [dataBody, setDataBody] = useState([])
@@ -94,6 +89,12 @@ return (
     />
 )
 `
+
+    const [dataBody, setDataBody] = useState([])
+    const [dataHeader, setDataHeader] = useState([])
+    const [pag, setPag] = useState(1)
+    const [showLoading, setShowLoading] = useState(false)
+    const [itemPage, setItemPage] = useState(5)
 
     useEffect(() => {
 
@@ -267,10 +268,18 @@ return (
                         }
                         pagination={
                             {
-                                total: 4,
-                                itemsPag: 5,
+                                total: dataBody.length,
+                                itemsPag: itemPage,
                                 pag: pag,
                                 onPagination: onPagination
+                            }
+                        }
+                        selectItemPag={
+                            {
+                                options: ['5', '15', '30'],
+                                callback: (item) => {
+                                    setItemPage(item)
+                                }
                             }
                         }
                         order={

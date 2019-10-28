@@ -287,7 +287,8 @@ export default function Table({className, header, visible, body, pagination, ord
 
             return (
                 <select
-                    className="form-control form-control-sm col-2 mr-2"
+                    style={{width:'auto'}}
+                    className="form-control form-control-sm mr-2"
                     name="selectItemPage"
                     onChange={(e)=>data.callback(e.target.value)} value={itemPageDefault}>
                     { data.options.map( (item, idx) => {

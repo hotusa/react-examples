@@ -17,6 +17,7 @@ export default function Table({className, header, visible, body, pagination, ord
     const [showModalColumns, setShowModalColumns] = useState(false)
     const [checkColumnVisible, setCheckColumnVisible] = useState([])
 
+    const DEFAULT_ITEMS_PAGE = 5
 
     useEffect(() => {
         if (header) {
@@ -279,7 +280,7 @@ export default function Table({className, header, visible, body, pagination, ord
     const formatSelectItemPag = (data, _pagination) => {
         if (data && data.options && data.callback) {
 
-            let itemPageDefault = 5
+            let itemPageDefault = DEFAULT_ITEMS_PAGE
             if (_pagination && _pagination.itemsPag) {
                 itemPageDefault = _pagination.itemsPag
             }
@@ -426,7 +427,7 @@ export default function Table({className, header, visible, body, pagination, ord
                                 )
                             })}
                             </tbody>
-                            {(dataOptions.leyendas && dataOptions.leyendas.length > 0) || (pagination && pagination.total > pagination.itemsPag) ?
+                            {(dataOptions.leyendas && dataOptions.leyendas.length > 0) || (pagination && pagination.total > DEFAULT_ITEMS_PAGE) ?
                                 <tfoot style={{backgroundColor: '#ffffff'}}>
                                 <tr>
                                     <td className="px-2 py-2"

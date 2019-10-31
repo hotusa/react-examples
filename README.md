@@ -324,6 +324,7 @@ Más info:
 | className | String | none | Custom styles |
 | show |  Boolean | false | Show/Hide modal|
 | options | Object | none |  Options for the modal |
+| disableConfirm | Boolean | none |  Disabled button confirm |
 
 Example:
 ```javascript
@@ -331,7 +332,7 @@ const options = {
     title:'Enter username',
     onOk: (action) => {/* 'OK' */},
     onCancel: (action) => {/* 'CANCEL' */},
-    onBackdrop: (action) => {/* 'OUT' */},
+    onBackdrop: true, // click out modal
     textOk: 'Ok',
     textCancel: 'Cancelar',
     size: '', // sm, lg (size modal)

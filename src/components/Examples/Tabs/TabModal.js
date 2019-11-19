@@ -1,6 +1,8 @@
 import React, {useState} from 'react'
 import Modal from "../../Commons/Modal";
 import Modal2 from "../../Commons/Modal2";
+import {faCheck} from "@fortawesome/free-solid-svg-icons";
+import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 
 
 export default function TabModal() {
@@ -18,19 +20,22 @@ const onCallback = (action) => {
     setShow(false)
 }
 const options = {
-    title:'Modal title',
+    title: 'Modal title',
     onOk: onCallback,
     onCancel: onCallback,
-    onBackdrop: onCallback,
-    textOk: 'Ok',
-    textCancel: 'Cerrar',
-    size: '', // sm, lg
-    btSize: 'sm',
+    onBackdrop: undefined,
+    textOk: 'Aceptar',
+    textCancel: 'Salir',
+    size: '', // sm (default), xl, lg
+    btSize: 'sm', // sm, md (default), lg
     iconButton: true,
-    iconOK: '', // add, update, ok
+    iconOK: faCheck, // 'add', 'update', 'ok' or Object Font Awesome (ex: faCheck)
+    colorOk: 'primary', // ('primary', 'secondary', 'success', 'danger', 'warning', 'info', 'light', 'dark', 'link')
+    colorCancel: 'secondary',
     footer: {
         textHtml: '* Required fields'
     }
+
 }
 return (
     <>
@@ -58,28 +63,30 @@ return (
     }
 
     const options = {
-        title: 'Modal title 2',
+        title: 'Modal title',
         onOk: onCallback,
         onCancel: onCallback,
-        onBackdrop: true,
+        onBackdrop: undefined,
         textOk: 'Aceptar',
         textCancel: 'Salir',
         size: '', // sm (default), xl, lg
         btSize: 'sm', // sm, md (default), lg
         iconButton: true,
-        iconOK: 'ok', // add, update, ok (default)
+        iconOK: faCheck, // 'add', 'update', 'ok' or Object Font Awesome (ex: faCheck)
+        colorOk: 'primary', // ('primary', 'secondary', 'success', 'danger', 'warning', 'info', 'light', 'dark', 'link')
+        colorCancel: 'secondary',
         footer: {
             textHtml: '* Required fields'
-        },
-        keyboard: true
+        }
+
     }
 
 
     return (
         <>
             <button className="btn btn-sm btn-primary" type="button" onClick={() => setShow(true)}>Show modal</button>
-            <button className="btn btn-sm btn-primary" type="button" onClick={() => setShow2a(true)}>Show modal 2a</button>
-            <button className="btn btn-sm btn-primary" type="button" onClick={() => setShow2b(true)}>Show modal 2b</button>
+            {/*<button className="btn btn-sm btn-primary" type="button" onClick={() => setShow2a(true)}>Show modal 2a</button>
+            <button className="btn btn-sm btn-primary" type="button" onClick={() => setShow2b(true)}>Show modal 2b</button>*/}
             <Modal
                 disableConfirm={false}
                 className="mi-modal"
@@ -93,7 +100,7 @@ return (
             </Modal>
 
 
-            <Modal2
+            {/*<Modal2
                 disableConfirm={false}
                 show={show2a}
                 options={options}>
@@ -111,7 +118,7 @@ return (
                     <label>Name2*</label>
                     <input type="text" className="form-control"/>
                 </form>
-            </Modal2>
+            </Modal2>*/}
 
 
             <br/><br/>

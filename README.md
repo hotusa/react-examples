@@ -332,13 +332,15 @@ const options = {
     title:'Enter username',
     onOk: (action) => {/* 'OK' */},
     onCancel: (action) => {/* 'CANCEL' */},
-    onBackdrop: true, // click out modal
+    onBackdrop: (action) => {/* 'OUT' */},
     textOk: 'Ok',
     textCancel: 'Cancelar',
     size: '', // sm, lg (size modal)
     btSize: 'sm', // sm, lg (size button OK, Cancel)
     iconButton: true,
-    iconOK: '', // add, update, ok
+    iconOK: faCheck, // 'add', 'update', 'ok' or Object Font Awesome (ex: faUsers) --> import {faCheck} from "@fortawesome/free-solid-svg-icons";
+    colorOk: 'primary', // ('primary', 'secondary', 'success', 'danger', 'warning', 'info', 'light', 'dark', 'link')
+    colorCancel: 'secondary',
     footer: {
         textHtml: '* Required fields'
     }

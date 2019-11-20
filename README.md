@@ -311,7 +311,8 @@ Más info:
     className="myModal"
     show={show}
     options={options} 
-    disableConfirm={false}>        
+    disableConfirm={false}
+    loading={false}>        
         <form>
             <label>Username</label>
             <input type="text" className="form-control"/>
@@ -325,6 +326,7 @@ Más info:
 | show |  Boolean | false | Show/Hide modal|
 | options | Object | none |  Options for the modal |
 | disableConfirm | Boolean | none |  Disabled button confirm |
+| loading | Boolean | false |  Loading content modal |
 
 Example:
 ```javascript

@@ -66,7 +66,7 @@ return (
         title: 'Modal title',
         onOk: onCallback,
         onCancel: onCallback,
-        onBackdrop: undefined,
+        onBackdrop: onCallback,
         textOk: 'Aceptar',
         textCancel: 'Salir',
         size: '', // sm (default), xl, lg
@@ -88,6 +88,7 @@ return (
             {/*<button className="btn btn-sm btn-primary" type="button" onClick={() => setShow2a(true)}>Show modal 2a</button>
             <button className="btn btn-sm btn-primary" type="button" onClick={() => setShow2b(true)}>Show modal 2b</button>*/}
             <Modal
+                loading={true}
                 disableConfirm={false}
                 className="mi-modal"
                 show={show}

@@ -72,7 +72,8 @@ return (
         size: '', // sm (default), xl, lg
         btSize: 'sm', // sm, md (default), lg
         iconButton: true,
-        iconOK: faCheck, // 'add', 'update', 'ok' or Object Font Awesome (ex: faCheck)
+        iconOK: 'add',// 'add', 'update', 'ok' or Object Font Awesome (ex: faCheck),
+        iconCancel: '', // 'Cancel' or Object Font Awesome (ex: faCheck),
         colorOk: 'primary', // ('primary', 'secondary', 'success', 'danger', 'warning', 'info', 'light', 'dark', 'link')
         colorCancel: 'secondary',
         footer: {
@@ -88,7 +89,7 @@ return (
             {/*<button className="btn btn-sm btn-primary" type="button" onClick={() => setShow2a(true)}>Show modal 2a</button>
             <button className="btn btn-sm btn-primary" type="button" onClick={() => setShow2b(true)}>Show modal 2b</button>*/}
             <Modal
-                loading={true}
+                loading={false}
                 disableConfirm={false}
                 className="mi-modal"
                 show={show}

@@ -341,6 +341,7 @@ const options = {
     btSize: 'sm', // sm, lg (size button OK, Cancel)
     iconButton: true,
     iconOK: faCheck, // 'add', 'update', 'ok' or Object Font Awesome (ex: faUsers) --> import {faCheck} from "@fortawesome/free-solid-svg-icons";
+    iconCancel: faTimes,
     colorOk: 'primary', // ('primary', 'secondary', 'success', 'danger', 'warning', 'info', 'light', 'dark', 'link')
     colorCancel: 'secondary',
     footer: {

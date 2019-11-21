@@ -39,7 +39,7 @@ export default function _Modal({children, className, show, options, disableConfi
                             onClick={() => options.onOk('OK')}>
                         {options && options.iconButton ?
                             <FontAwesomeIcon className={"mr-1"}
-                                             icon={options.iconOK === 'ok' ? faCheck : (options.iconOK === 'add' ? faPlus : (options.iconOK === 'update' ? faSave : options.iconOK))}/> : null} {options && options.textOk ? options.textOk : 'Ok'}
+                                             icon={options.iconOK === 'ok' ? faCheck : (options.iconOK === 'add' ? faPlus : (options.iconOK === 'update' ? faSave : (options.iconOK === '' || options.iconOK === undefined ? faCheck : options.iconOK)))}/> : null} {options && options.textOk ? options.textOk : 'Ok'}
                     </button> : null}
 
                 {options && options.onCancel ?
@@ -49,7 +49,7 @@ export default function _Modal({children, className, show, options, disableConfi
                             onClick={() => options.onCancel('CANCEL')}>
                         {options && options.iconButton ?
                             <FontAwesomeIcon className={"mr-1"}
-                                             icon={faTimes}/> : null} {options && options.textCancel ? options.textCancel : 'Cancel'}
+                                             icon={options.iconCancel === 'Cancel' ? faTimes : (options.iconCancel === '' || options.iconCancel === undefined ? faTimes : options.iconCancel)}/> : null} {options && options.textCancel ? options.textCancel : 'Cancel'}
                     </button> : null}
 
             </div> : null}

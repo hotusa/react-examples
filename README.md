@@ -252,7 +252,7 @@ let options = {
         if (item.col1 === 5) return '#F45B67'
         return ''
     },
-    onFormatCell: (item, key) => {
+    onFormatCell: (item, key, idxRow, idxCol) => {
         /* Por si queremos formatear el valor de una celda */
         if (key === 'col1' && item[key] === 'S') return 'Sí'
         return item[key]

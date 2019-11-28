@@ -76,7 +76,7 @@ return (
                     if (item.col1 === 5) return '#F45B67'
                     return ''
                 },
-                onFormatCell: (item, key) => {
+                onFormatCell: (item, key, idxRow, idxCol) => {
                     /* Por si queremos formatear el valor de una celda (ej: 'S' -> 'Si' */
                     if (key === 'col1') return '*' + item[key]
                     return item[key]

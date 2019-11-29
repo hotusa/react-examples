@@ -11,6 +11,7 @@ import TabForms from "./Tabs/TabForms";
 import {Link} from "react-router-dom";
 import {faExternalLinkAlt} from "@fortawesome/free-solid-svg-icons";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
+import TabCalendar from "./Tabs/TabCalendar";
 
 export default function Examples () {
 
@@ -51,6 +52,9 @@ export default function Examples () {
                 <li className="nav-item">
                     <a className="nav-link" data-toggle="tab" href="#forms" role="tab">Forms</a>
                 </li>
+                <li className="nav-item">
+                    <a className="nav-link" data-toggle="tab" href="#calendar" role="tab">Calendar</a>
+                </li>
             </ul>
             <div className="tab-content" id="myTabContent">
                 <div className="tab-pane fade show active" id="login" role="tabpanel">
@@ -88,6 +92,10 @@ export default function Examples () {
                 <div className="tab-pane fade" id="forms" role="tabpanel">
                     <br/>
                     <TabForms/>
+                </div>
+                <div className="tab-pane fade" id="calendar" role="tabpanel">
+                    <br/>
+                    <TabCalendar/>
                 </div>
             </div>
 

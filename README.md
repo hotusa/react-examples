@@ -8,6 +8,7 @@ Global component packages for React & Bootstrap4:
 - Table
 - Modal
 - Typeahead 
+- Calendar
 
 Global utilities for React:
 - DownloadCSV
@@ -37,7 +38,8 @@ import {
     IGMTable,
     IGMModal,
     IGMTypeahead,
-    IGMUtilidades
+    IGMUtilidades,
+    IGMCalendar
 } from 'react-igmweb';
 ```
 
@@ -423,6 +425,32 @@ const onKeyDown = (e) => {
     console.log(e.key)
 }
 ```
+
+## Calendar
+```html
+<Calendar
+    startDate={startDate}
+    callback={(date) => { setStartDate(date) }}
+/>
+```
+
+ Props        | Type           | Default | Description |
+| ------------- |:-------------:| :-------------:| :-------------:|
+| startDate | Date | null | Date calendar |  
+| callback | Function | null | Callback set date |  
+| className | String | null | custom styles |  
+| isInvalid | Boolean | false | show error date invalid |  
+| size | String | null | Size calendar ('sm', 'lg') |  
+| dateFormat | String | dd/MM/yyyy | Format date |  
+| locale | String | es | Locale date |  
+| minDate | Date | null | Minimum date |  
+| maxDate | Date | null | Maximum date |  
+| disabled | Boolean | false | Calendar disabled |  
+| readOnly | Boolean | false | Calendar readOnly |  
+| showMonthDropdown | Boolean | true | Show month select |  
+| showYearDropdown | Boolean | false | Show year select |  
+| showPopperArrow | Boolean | false | Show arrow popper |  
+
 
 ## Utilidades
 

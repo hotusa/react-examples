@@ -1,0 +1,9 @@
+.custom-calendar .icon {
+    border-top-left-radius: 0;
+    border-bottom-left-radius: 0;
+}
+.custom-calendar button.btn-ligth {
+    background-color: #e9ecef !important;
+    border: 1px solid #ced4da !important;
+    color: #495057 !important;
+}

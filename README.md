@@ -428,7 +428,7 @@ const onKeyDown = (e) => {
 
 ## Calendar
 ```html
-<Calendar
+<IGMCalendar
     startDate={startDate}
     callback={(date) => { setStartDate(date) }}
 />
@@ -441,8 +441,8 @@ const onKeyDown = (e) => {
 | className | String | null | custom styles |  
 | isInvalid | Boolean | false | show error date invalid |  
 | size | String | null | Size calendar ('sm', 'lg') |  
-| dateFormat | String | dd/MM/yyyy | Format date |  
-| locale | String | es | Locale date |  
+| dateFormat | String | 'dd/MM/yyyy' | Format date |  
+| locale | String | 'es' | Locale date |  
 | minDate | Date | null | Minimum date |  
 | maxDate | Date | null | Maximum date |  
 | disabled | Boolean | false | Calendar disabled |  
@@ -450,6 +450,7 @@ const onKeyDown = (e) => {
 | showMonthDropdown | Boolean | true | Show month select |  
 | showYearDropdown | Boolean | false | Show year select |  
 | showPopperArrow | Boolean | false | Show arrow popper |  
+| popperPlacement | String | 'bottom-end' | Position calendar ('bottom-end','top-end', 'top-start', 'bottom-start') |  
 
 
 ## Utilidades

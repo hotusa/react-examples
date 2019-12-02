@@ -10,7 +10,8 @@ import './calendar.css'
 export default function _Calendar({className, startDate, callback,
                                       isInvalid = false, size = undefined, dateFormat = 'dd/MM/yyyy', locale = 'es',
                                       minDate = undefined, maxDate = undefined, disabled = false, readOnly = false,
-                                      showMonthDropdown = true, showYearDropdown = false, showPopperArrow = false}) {
+                                      showMonthDropdown = true, showYearDropdown = false, showPopperArrow = false,
+                                      popperPlacement='bottom-end'}) {
 
     registerLocale('es', es)
     setDefaultLocale('es')
@@ -115,7 +116,7 @@ export default function _Calendar({className, startDate, callback,
                     locale={locale}
                     showMonthDropdown={showMonthDropdown}
                     showYearDropdown={showYearDropdown}
-                    popperPlacement="bottom-end"
+                    popperPlacement={popperPlacement}
                     onChange={onChangeDatePicker}
                     customInput={<button
                         className={`btn btn-${isInvalid ? 'danger' : 'ligth'} ${size ? 'btn-' + size : ''} icon`}

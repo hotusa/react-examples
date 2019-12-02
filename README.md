@@ -451,6 +451,7 @@ const onKeyDown = (e) => {
 | showYearDropdown | Boolean | false | Show year select |  
 | showPopperArrow | Boolean | false | Show arrow popper |  
 | popperPlacement | String | 'bottom-end' | Position calendar ('bottom-end','top-end', 'top-start', 'bottom-start') |  
+| tabIndex | Number | 1 | Position z-Index calendar |  
 
 
 ## Utilidades

@@ -10,8 +10,8 @@ import './calendar.css'
 export default function _Calendar({className, startDate, callback,
                                       isInvalid = false, size = undefined, dateFormat = 'dd/MM/yyyy', locale = 'es',
                                       minDate = undefined, maxDate = undefined, disabled = false, readOnly = false,
-                                      showMonthDropdown = true, showYearDropdown = false, showPopperArrow = false,
-                                      popperPlacement='bottom-end'}) {
+                                      showMonthDropdown = true, showYearDropdown = false, showPopperArrow = true,
+                                      popperPlacement='bottom-end', tabIndex=1}) {
 
     registerLocale('es', es)
     setDefaultLocale('es')
@@ -107,6 +107,7 @@ export default function _Calendar({className, startDate, callback,
             </InputMask>
             <div className="input-group-append">
                 <DatePicker
+                    tabIndex={tabIndex}
                     disabled={disabled}
                     maxDate={maxDate}
                     minDate={minDate}

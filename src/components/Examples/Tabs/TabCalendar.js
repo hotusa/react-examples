@@ -22,6 +22,7 @@ export default function TabCalendar(){
 
 
                     <Calendar
+                        size={'sm'}
                         startDate={startDate}
                         callback={(date) => {
                             console.log(date)

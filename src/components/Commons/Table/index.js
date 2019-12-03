@@ -199,8 +199,8 @@ export default function Table({className, header, visible, body, pagination, ord
     }
 
     /* set format cell value */
-    const getFormatCell = (item, key, idxRow, idxCol) => {
-        if (dataOptions.onFormatCell) return dataOptions.onFormatCell(item, key, idxRow, idxCol)
+    const getFormatCell = (item, key, idxRow, idxCol, currentPage) => {
+        if (dataOptions.onFormatCell) return dataOptions.onFormatCell(item, key, idxRow, idxCol, currentPage)
         return item[key]
     }
 
@@ -402,10 +402,10 @@ export default function Table({className, header, visible, body, pagination, ord
                                                                                                                className={getClassTd(h.key)}
                                                                                                                style={{verticalAlign: 'middle'}}><span
                                                             style={{cursor: 'pointer'}} className={`text-primary`}
-                                                            onClick={() => dataOptions.callbacks.onGet(b, i)}>{getFormatCell(b, h.key, i, j)}</span>
+                                                            onClick={() => dataOptions.callbacks.onGet(b, i)}>{getFormatCell(b, h.key, i, j, pagination ? pagination.pag : 1)}</span>
                                                         </td>
                                                         else return <td key={j} className={getClassTd(h.key)}
-                                                                        style={{verticalAlign: 'middle'}}>{getFormatCell(b, h.key, i, j)}</td>
+                                                                        style={{verticalAlign: 'middle'}}>{getFormatCell(b, h.key, i, j, pagination ? pagination.pag : 1)}</td>
                                                     } else return null
                                                 })
                                             } else {
@@ -413,10 +413,10 @@ export default function Table({className, header, visible, body, pagination, ord
                                                                                                        className={getClassTd(h.key)}
                                                                                                        style={{verticalAlign: 'middle'}}><span
                                                     style={{cursor: 'pointer'}} className={`text-primary`}
-                                                    onClick={() => dataOptions.callbacks.onGet(b, i)}>{getFormatCell(b, h.key, i, j)}</span>
+                                                    onClick={() => dataOptions.callbacks.onGet(b, i)}>{getFormatCell(b, h.key, i, j, pagination ? pagination.pag : 1)}</span>
                                                 </td>
                                                 else return <td key={j} className={getClassTd(h.key)}
-                                                                style={{verticalAlign: 'middle'}}>{getFormatCell(b, h.key, i, j)}</td>
+                                                                style={{verticalAlign: 'middle'}}>{getFormatCell(b, h.key, i, j, pagination ? pagination.pag : 1)}</td>
                                             }
 
 

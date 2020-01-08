@@ -13,7 +13,10 @@ function AlertConfirm({
                           position,
                           confirmButtonColor,
                           cancelButtonColor,
-                          allowOutsideClick
+                          allowOutsideClick,
+                          showCancelBtn = true,
+                          showCloseBtn = true
+
                       }) {
 
 
@@ -27,8 +30,8 @@ function AlertConfirm({
         type: type,
         confirmButtonText: confirmButtonText ? confirmButtonText : 'Ok',
         cancelButtonText: cancelButtonText ? cancelButtonText : 'Cancel',
-        showCancelButton: true,
-        showCloseButton: true,
+        showCancelButton: showCancelBtn,
+        showCloseButton: showCloseBtn,
         showLoaderOnConfirm: true,
         preConfirm: preConfirm ? preConfirm : undefined,
         allowOutsideClick: allowOutsideClick || false

@@ -147,6 +147,8 @@ onClickConfirm = () => {
 | onCancel | Function| none | Callback method for Cancel |
 | confirmButtonText | String | 'Ok' | Text button confirm |
 | cancelButtonText | String | 'Cancel' | Text button cancel |
+| showCancelBtn | boolean | true | Set to false to remove cancel button |
+| showCloseBtn | boolean | true | Set to false to remove close button |
 | allowOutsideClick | boolean | false | f set to false, the user can't dismiss the modal by clicking outside it.
                                         You can also pass a custom function returning a boolean value, e.g. if you want to disable outside clicks for the loading state of a modal. |
 

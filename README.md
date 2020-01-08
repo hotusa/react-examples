@@ -9,6 +9,7 @@ Global component packages for React & Bootstrap4:
 - Modal
 - Typeahead 
 - Calendar
+- OnBeforeUnLoad
 
 Global utilities for React:
 - DownloadCSV
@@ -39,7 +40,8 @@ import {
     IGMModal,
     IGMTypeahead,
     IGMUtilidades,
-    IGMCalendar
+    IGMCalendar,
+    IGMOnBeforeUnload
 } from 'react-igmweb';
 ```
 
@@ -472,6 +474,21 @@ const onKeyDown = (e) => {
 | tabIndex | Number | 1 | Position z-Index calendar |  
 
 ![alt text](https://github.com/hotusa/react-examples/blob/master/src/images/calendar.png?raw=true)
+
+
+## OnBeforeUnLoad
+
+```
+const initialize = {personal: {nombre: '', apellidos: ''}, cargo: ''}
+const [dataOld, setDataOld] = useState(initialize)
+const [dataNew, setDataNew] = useState(initialize)
+
+<OnBeforeUnLoad dataOld={dataOld} dataNew={dataNew} skipFields={['cargo', 'personal.nombre']}>
+    {children}
+</OnBeforeUnLoad>
+```
+
+![alt text](https://github.com/hotusa/react-examples/blob/master/src/images/onbeforeunload.png?raw=true)
 
 
 ## Utilidades

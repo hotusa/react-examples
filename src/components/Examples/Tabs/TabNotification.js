@@ -26,9 +26,9 @@ return (
     const onClickNotification = () => {
         Notification({
             classContainer: 'container-toast',
-            text: 'Introduzca su e-mail',
-            type: 'info',
-            timer: 3500
+            text: 'Insertado correctamente!',
+            type: 'success',
+            timer: 5500
         })
     }
     const onClickNotificationHTML = () => {

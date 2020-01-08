@@ -1,7 +1,7 @@
 import React, {useState} from 'react'
 import Modal from "../../Commons/Modal";
 import Modal2 from "../../Commons/Modal2";
-import {faCheck} from "@fortawesome/free-solid-svg-icons";
+import {faCheck, faTimes} from "@fortawesome/free-solid-svg-icons";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 
 
@@ -63,17 +63,17 @@ return (
     }
 
     const options = {
-        title: 'Modal title',
+        title:'Enter username',
         onOk: onCallback,
         onCancel: onCallback,
         onBackdrop: onCallback,
-        textOk: 'Aceptar',
-        textCancel: 'Salir',
-        size: '', // sm (default), xl, lg
-        btSize: 'sm', // sm, md (default), lg
+        textOk: 'Ok',
+        textCancel: 'Cancelar',
+        size: '', // sm, lg (size modal)
+        btSize: 'sm', // sm, lg (size button OK, Cancel)
         iconButton: true,
-        iconOK: 'add',// 'add', 'update', 'ok' or Object Font Awesome (ex: faCheck),
-        iconCancel: '', // 'Cancel' or Object Font Awesome (ex: faCheck),
+        iconOK: faCheck, // 'add', 'update', 'ok' or Object Font Awesome (ex: faUsers) --> import {faCheck} from "@fortawesome/free-solid-svg-icons";
+        iconCancel: faTimes,
         colorOk: 'primary', // ('primary', 'secondary', 'success', 'danger', 'warning', 'info', 'light', 'dark', 'link')
         colorCancel: 'secondary',
         footer: {

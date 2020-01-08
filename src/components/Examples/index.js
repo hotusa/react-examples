@@ -9,11 +9,12 @@ import TabTypeahead from "./Tabs/TabTypeahead";
 import TabSelect from "./Tabs/TabSelect";
 import TabForms from "./Tabs/TabForms";
 import {Link} from "react-router-dom";
-import {faExternalLinkAlt} from "@fortawesome/free-solid-svg-icons";
-import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import TabCalendar from "./Tabs/TabCalendar";
+import TabOnBeforeUnload from "./Tabs/TabOnBeforeUnLoad";
 
 export default function Examples () {
+
+
 
     return (
         <div className="container my-4">
@@ -54,6 +55,9 @@ export default function Examples () {
                 </li>
                 <li className="nav-item">
                     <a className="nav-link" data-toggle="tab" href="#calendar" role="tab">Calendar</a>
+                </li>
+                <li className="nav-item">
+                    <a className="nav-link" data-toggle="tab" href="#beforeUnload" role="tab">OnBeforeUnload</a>
                 </li>
             </ul>
             <div className="tab-content" id="myTabContent">
@@ -96,6 +100,10 @@ export default function Examples () {
                 <div className="tab-pane fade" id="calendar" role="tabpanel">
                     <br/>
                     <TabCalendar/>
+                </div>
+                <div className="tab-pane fade" id="beforeUnload" role="tabpanel">
+                    <br/>
+                    <TabOnBeforeUnload/>
                 </div>
             </div>
 

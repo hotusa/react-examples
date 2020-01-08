@@ -37,13 +37,11 @@ return (
     const onClickConfirm = () => {
         AlertConfirm({
             backdrop: true,
-            confirmButtonColor: '#3085d6',
-            cancelButtonColor: '#aaa',
             position: 'center',
             title: '¿Estás seguro?',
             text: 'El registro seleccionado no se podrá volver a recuperar',
             type: 'success',
-            confirmButtonText:'Si, eliminar',
+            confirmButtonText:'Si',
             cancelButtonText: 'No',
             onConfirm: () => {
                 console.log('confirm')

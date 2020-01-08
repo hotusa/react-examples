@@ -291,9 +291,9 @@ return (
                             {
                                 thead: {
 
-                                    textNone: 'No se ha encontrado registrosssss',
-                                    textOnly: 'Se ha encontrado {X} registrosssss',
-                                    textMore: 'Se ha encontrado {X} registrosssss',
+                                    textNone: 'No se ha encontrado registros',
+                                    textOnly: 'Se ha encontrado {X} registro',
+                                    textMore: 'Se ha encontrado {X} registros',
                                     color: 'light'
                                 },
                                 actions: ['delete','get','create','export'],

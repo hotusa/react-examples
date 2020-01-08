@@ -61,6 +61,8 @@ import {
 | onLogin | Function | none | Callback method |
 
 
+![alt text](https://github.com/hotusa/react-examples/blob/master/src/images/login.png?raw=true)
+
 ## Notification
 
 ```javascript
@@ -92,6 +94,8 @@ onLogin = (datos) => {
 | type | String | none | The type of the Modal: warning, error, success, info, and question |
 | timer | Number | 3500 | Auto close timer of the Modal. Set in ms (milliseconds) | 
 
+
+![alt text](https://github.com/hotusa/react-examples/blob/master/src/images/notifications.png?raw=true)
 
 ## Alert confirm
 
@@ -147,6 +151,9 @@ onClickConfirm = () => {
                                         You can also pass a custom function returning a boolean value, e.g. if you want to disable outside clicks for the loading state of a modal. |
 
 
+![alt text](https://github.com/hotusa/react-examples/blob/master/src/images/alertconfirm.png?raw=true)
+
+
 ## Pagination
 
 ```html
@@ -164,6 +171,8 @@ onClickConfirm = () => {
 | pag | Number | none | Actual page |
 | onPagination | Function | none | Callback method for return selected page |
 
+
+![alt text](https://github.com/hotusa/react-examples/blob/master/src/images/pagination.png?raw=true)
 
 ## Table
 
@@ -306,6 +315,8 @@ Más info:
 - https://github.com/ConnorAtherton/loaders.css
 
 
+![alt text](https://github.com/hotusa/react-examples/blob/master/src/images/table.png?raw=true)
+
 ## Modal
 
 ```html
@@ -352,6 +363,8 @@ const options = {
 }
 ```
 
+![alt text](https://github.com/hotusa/react-examples/blob/master/src/images/modal.png?raw=true)
+
 
 ## Typeahead
 
@@ -370,7 +383,6 @@ const options = {
     onBlur={onBlur}
     />
     
-<button onClick={(e)=>{ setClear(clear+1)}}>Clear</button>
 ```
 
 | Props        | Options           | Default | Description |
@@ -426,6 +438,10 @@ const onKeyDown = (e) => {
 }
 ```
 
+![alt text](https://github.com/hotusa/react-examples/blob/master/src/images/typeahead.png?raw=true)
+
+
+
 ## Calendar
 ```html
 <IGMCalendar
@@ -452,6 +468,8 @@ const onKeyDown = (e) => {
 | showPopperArrow | Boolean | false | Show arrow popper |  
 | popperPlacement | String | 'bottom-end' | Position calendar ('bottom-end','top-end', 'top-start', 'bottom-start') |  
 | tabIndex | Number | 1 | Position z-Index calendar |  
+
+![alt text](https://github.com/hotusa/react-examples/blob/master/src/images/calendar.png?raw=true)
 
 
 ## Utilidades

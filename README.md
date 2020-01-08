@@ -488,6 +488,14 @@ const [dataNew, setDataNew] = useState(initialize)
 </OnBeforeUnLoad>
 ```
 
+| Parameters    | Options           | Default | Description |
+| ------------- |:-------------:| :-------------:| :-------------:|  
+| dataOld | Object | Object | Object data old |
+| dataNew | Object | Object | Object data new |
+| skipFields | Array | Array | Array skip fields |
+| message | String | `Hay cambios sin guardar. ¿Seguro que quiere salir de esta página? | Custom info message before unload |
+
+
 ![alt text](https://github.com/hotusa/react-examples/blob/master/src/images/onbeforeunload.png?raw=true)
 
 

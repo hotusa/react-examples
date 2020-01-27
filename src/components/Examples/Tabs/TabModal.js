@@ -23,7 +23,8 @@ const options = {
     title: 'Modal title',
     onOk: onCallback,
     onCancel: onCallback,
-    onBackdrop: undefined,
+    onBackdrop: onCallback,
+    onOther: onCallback,
     textOk: 'Aceptar',
     textCancel: 'Salir',
     size: '', // sm (default), xl, lg
@@ -32,6 +33,9 @@ const options = {
     iconOK: faCheck, // 'add', 'update', 'ok' or Object Font Awesome (ex: faCheck)
     colorOk: 'primary', // ('primary', 'secondary', 'success', 'danger', 'warning', 'info', 'light', 'dark', 'link')
     colorCancel: 'secondary',
+    textOther:'back',
+    colorOther:'info',
+    iconOther: faAngleLeft,
     footer: {
         textHtml: '* Required fields'
     }

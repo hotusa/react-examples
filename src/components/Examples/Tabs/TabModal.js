@@ -1,7 +1,7 @@
 import React, {useState} from 'react'
 import Modal from "../../Commons/Modal";
 import Modal2 from "../../Commons/Modal2";
-import {faCheck, faTimes} from "@fortawesome/free-solid-svg-icons";
+import {faCheck, faTimes, faAngleLeft} from "@fortawesome/free-solid-svg-icons";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 
 
@@ -67,6 +67,7 @@ return (
         onOk: onCallback,
         onCancel: onCallback,
         onBackdrop: onCallback,
+        onOther: onCallback,
         textOk: 'Ok',
         textCancel: 'Cancelar',
         size: '', // sm, lg (size modal)
@@ -76,6 +77,9 @@ return (
         iconCancel: faTimes,
         colorOk: 'primary', // ('primary', 'secondary', 'success', 'danger', 'warning', 'info', 'light', 'dark', 'link')
         colorCancel: 'secondary',
+        textOther:'back',
+        colorOther:'info',
+        iconOther: faAngleLeft,
         footer: {
             textHtml: '* Required fields'
         }

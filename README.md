@@ -9,7 +9,6 @@ Global component packages for React & Bootstrap4:
 - Modal
 - Typeahead 
 - Calendar
-- OnBeforeUnLoad
 
 Global utilities for React:
 - DownloadCSV
@@ -352,6 +351,7 @@ const options = {
     onOk: (action) => {/* 'OK' */},
     onCancel: (action) => {/* 'CANCEL' */},
     onBackdrop: (action) => {/* 'OUT' */},
+    onOther: (action) => {/* 'OTHER' */},
     textOk: 'Ok',
     textCancel: 'Cancelar',
     size: '', // sm, lg (size modal)
@@ -361,6 +361,9 @@ const options = {
     iconCancel: faTimes,
     colorOk: 'primary', // ('primary', 'secondary', 'success', 'danger', 'warning', 'info', 'light', 'dark', 'link')
     colorCancel: 'secondary',
+    textOther:'back',
+    colorOther:'info',
+    iconOther: faAngleLeft,
     footer: {
         textHtml: '* Required fields'
     }
@@ -475,28 +478,6 @@ const onKeyDown = (e) => {
 
 ![alt text](https://github.com/hotusa/react-examples/blob/master/src/images/calendar.png?raw=true)
 
-
-## OnBeforeUnLoad
-
-```
-const initialize = {personal: {nombre: '', apellidos: ''}, cargo: ''}
-const [dataOld, setDataOld] = useState(initialize)
-const [dataNew, setDataNew] = useState(initialize)
-
-<OnBeforeUnLoad dataOld={dataOld} dataNew={dataNew} skipFields={['cargo', 'personal.nombre']}>
-    {children}
-</OnBeforeUnLoad>
-```
-
-| Parameters    | Options           | Default | Description |
-| ------------- |:-------------:| :-------------:| :-------------:|  
-| dataOld | Object | Object | Object data old |
-| dataNew | Object | Object | Object data new |
-| skipFields | Array | Array | Array skip fields |
-| message | String | `Hay cambios sin guardar. ¿Seguro que quiere salir de esta página? | Custom info message before unload |
-
-
-![alt text](https://github.com/hotusa/react-examples/blob/master/src/images/onbeforeunload.png?raw=true)
 
 
 ## Utilidades

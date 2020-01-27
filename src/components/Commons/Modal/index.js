@@ -52,6 +52,15 @@ export default function _Modal({children, className, show, options, disableConfi
                                              icon={options.iconCancel === 'Cancel' ? faTimes : (options.iconCancel === '' || options.iconCancel === undefined ? faTimes : options.iconCancel)}/> : null} {options && options.textCancel ? options.textCancel : 'Cancel'}
                     </button> : null}
 
+                {options && options.onOther ?
+                    <button type="button" disabled={loading}
+                            className={`float-right mr-1 btn btn-${options && options.colorOther ? options.colorOther : 'info'} ${options && options.btSize ? 'btn-' + options.btSize : ''}`}
+                            onClick={() => options.onOther('Other')}>
+                        {options && options.iconButton ?
+                            <FontAwesomeIcon className={"mr-1"}
+                                             icon={options.iconOther === 'ok' ? faCheck : (options.iconOther === 'add' ? faPlus : (options.iconOther === 'update' ? faSave : (options.iconOther === '' || options.iconOther === undefined ? faCheck : options.iconOther)))}/> : null} {options && options.textOther ? options.textOther : 'Ok'}
+                    </button> : null}
+
             </div> : null}
 
         </Modal>

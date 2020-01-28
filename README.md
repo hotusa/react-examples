@@ -352,6 +352,7 @@ const options = {
     onCancel: (action) => {/* 'CANCEL' */},
     onBackdrop: (action) => {/* 'OUT' */},
     onOther: (action) => {/* 'OTHER' */},
+    onClose: (action) => {/* 'CLOSE' */},
     textOk: 'Ok',
     textCancel: 'Cancelar',
     size: '', // sm, lg (size modal)

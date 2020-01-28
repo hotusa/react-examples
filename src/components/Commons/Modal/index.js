@@ -17,9 +17,9 @@ export default function _Modal({children, className, show, options, disableConfi
 
             {options && options.title ? <div className="modal-header">
                 <h5 className="modal-title">{options && options.title}</h5>
-                {options.onCancel && !loading ?
+                {options.onClose && !loading ?
                     <button type="button" className="close" data-dismiss="modal" aria-label="Close"
-                            onClick={() => options.onCancel('CANCEL')}>
+                            onClick={() => options.onClose('CLOSE')}>
                         <span aria-hidden="true">&times;</span>
                     </button> : null
                 }

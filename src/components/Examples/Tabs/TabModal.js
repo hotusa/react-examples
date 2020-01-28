@@ -25,6 +25,7 @@ const options = {
     onCancel: onCallback,
     onBackdrop: onCallback,
     onOther: onCallback,
+    onClose: onCallback,
     textOk: 'Aceptar',
     textCancel: 'Salir',
     size: '', // sm (default), xl, lg
@@ -72,6 +73,7 @@ return (
         onCancel: onCallback,
         onBackdrop: onCallback,
         onOther: onCallback,
+        onClose: onCallback,
         textOk: 'Ok',
         textCancel: 'Cancelar',
         size: '', // sm, lg (size modal)

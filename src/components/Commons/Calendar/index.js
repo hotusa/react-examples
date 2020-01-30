@@ -37,6 +37,10 @@ export default function _Calendar({className, startDate, callback,
         if (startDate) {
             setText(getStringDate(startDate, "/"))
             setEjercicio(startDate.getFullYear())
+        } else {
+            if (text.indexOf('_') === -1) {
+                setText('')
+            }
         }
 
     }, [startDate])

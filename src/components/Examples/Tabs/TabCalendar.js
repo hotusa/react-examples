@@ -3,16 +3,13 @@ import Calendar from '../../Commons/Calendar'
 
 export default function TabCalendar(){
 
-    const [startDate, setStartDate] = useState(new Date('2020-05-23'));
+    const [startDate, setStartDate] = useState(undefined);
 
 
     useEffect(()=>{
-
-        let date = new Date()
+        /*let date = new Date()
         date.setDate( date.getDate() + 5 )
-
-        setStartDate(date)
-
+        setStartDate(date)*/
     },[])
 
     return (
@@ -20,7 +17,9 @@ export default function TabCalendar(){
             <div className="row">
                 <div className="col-3 form-group">
 
-
+                    <button onClick={()=>{
+                        setStartDate(undefined)
+                    }}>Clear</button>
                     <Calendar
                         size={'sm'}
                         startDate={startDate}

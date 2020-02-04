@@ -11,6 +11,7 @@ import TabForms from "./Tabs/TabForms";
 import {Link} from "react-router-dom";
 import TabCalendar from "./Tabs/TabCalendar";
 import TabOnBeforeUnload from "./Tabs/TabOnBeforeUnLoad";
+import TabLoader from "./Tabs/TabLoader";
 
 export default function Examples () {
 
@@ -59,6 +60,9 @@ export default function Examples () {
                 <li className="nav-item">
                     <a className="nav-link" data-toggle="tab" href="#beforeUnload" role="tab">OnBeforeUnload</a>
                 </li>
+                <li className="nav-item">
+                    <a className="nav-link" data-toggle="tab" href="#loader" role="tab">Loader</a>
+                </li>
             </ul>
             <div className="tab-content" id="myTabContent">
                 <div className="tab-pane fade show active" id="login" role="tabpanel">
@@ -104,6 +108,10 @@ export default function Examples () {
                 <div className="tab-pane fade" id="beforeUnload" role="tabpanel">
                     <br/>
                     <TabOnBeforeUnload/>
+                </div>
+                <div className="tab-pane fade" id="loader" role="tabpanel">
+                    <br/>
+                    <TabLoader/>
                 </div>
             </div>
 

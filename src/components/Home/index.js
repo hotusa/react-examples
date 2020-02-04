@@ -46,7 +46,8 @@ import {
     IGMPagination,
     IGMTable,
     IGMModal,
-    IGMUtilidades
+    IGMUtilidades,
+    IGMLoader
 } from 'react-igmweb'
 `}
                 </code>

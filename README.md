@@ -9,6 +9,7 @@ Global component packages for React & Bootstrap4:
 - Modal
 - Typeahead 
 - Calendar
+- Loader
 
 Global utilities for React:
 - DownloadCSV
@@ -40,7 +41,8 @@ import {
     IGMTypeahead,
     IGMUtilidades,
     IGMCalendar,
-    IGMOnBeforeUnload
+    IGMOnBeforeUnload,
+    IGMLoader
 } from 'react-igmweb';
 ```
 
@@ -540,3 +542,15 @@ let dataCSV = [
 IGMUtilidades.downloadCSV('example', dataCSV, 'Objects')
 
 ```
+
+## Loader
+```html
+<IGMLoader
+    isLoading={isLoading}
+/>
+``` 
+| Props    | Type           | Default | Description |
+| ------------- |:-------------:| :-------------:| :-------------:| 
+| isLoading | Boolean | null | Show loading | 
+
+![alt text](https://github.com/hotusa/react-examples/blob/master/src/images/loader.png?raw=true)

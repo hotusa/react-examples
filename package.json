@@ -1,6 +1,6 @@
 {
   "name": "igmweb",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "private": true,
   "dependencies": {
     "@fortawesome/fontawesome-svg-core": "^1.2.17",
@@ -20,9 +20,11 @@
     "react-dom": "^16.8.6",
     "react-input-mask": "^2.0.4",
     "react-loaders": "^3.0.1",
+    "react-loading-overlay": "^1.0.1",
     "react-router-dom": "^5.0.1",
     "react-scripts": "2.1.8",
     "react-select": "^2.4.3",
+    "react-spinners": "^0.8.0",
     "sweetalert2": "^8.8.2"
   },
   "scripts": {

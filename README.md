@@ -481,6 +481,17 @@ const onKeyDown = (e) => {
 
 ![alt text](https://github.com/hotusa/react-examples/blob/master/src/images/calendar.png?raw=true)
 
+## Loader
+```html
+<IGMLoader
+    isLoading={isLoading}
+/>
+``` 
+| Props    | Type           | Default | Description |
+| ------------- |:-------------:| :-------------:| :-------------:| 
+| isLoading | Boolean | null | Show loading | 
+
+![alt text](https://github.com/hotusa/react-examples/blob/master/src/images/loader.png?raw=true)
 
 
 ## Utilidades
@@ -543,14 +554,3 @@ IGMUtilidades.downloadCSV('example', dataCSV, 'Objects')
 
 ```
 
-## Loader
-```html
-<IGMLoader
-    isLoading={isLoading}
-/>
-``` 
-| Props    | Type           | Default | Description |
-| ------------- |:-------------:| :-------------:| :-------------:| 
-| isLoading | Boolean | null | Show loading | 
-
-![alt text](https://github.com/hotusa/react-examples/blob/master/src/images/loader.png?raw=true)

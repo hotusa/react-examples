@@ -99,7 +99,7 @@ return (
             {/*<button className="btn btn-sm btn-primary" type="button" onClick={() => setShow2a(true)}>Show modal 2a</button>
             <button className="btn btn-sm btn-primary" type="button" onClick={() => setShow2b(true)}>Show modal 2b</button>*/}
             <Modal
-                loading={false}
+                loading={true}
                 disableConfirm={false}
                 className="mi-modal"
                 show={show}

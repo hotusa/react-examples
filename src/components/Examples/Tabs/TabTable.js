@@ -76,6 +76,12 @@ return (
                     if (item.col1 === 5) return '#F45B67'
                     return ''
                 },
+                onFormatCellHead: (item, idxCol) => {                   
+                    if (item.key === 'col1') {
+                        return <button>*</button>
+                    }
+                    return item.value
+                },
                 onFormatCell: (item, key, idxRow, idxCol, currentPage) => {
                     /* Por si queremos formatear el valor de una celda (ej: 'S' -> 'Si' */
                     if (key === 'col1') return '*' + item[key]
@@ -323,6 +329,13 @@ return (
                                     /* Por si necesitamos colorear una row */
                                     if (item.col1 === 5) return '#F45B67'
                                     return ''
+                                },
+                                onFormatCellHead: (item, idxCol) => {
+                                    console.log('onFormatCellHead', item, idxCol)
+                                    if (item.key === 'col1') {
+                                        return <button>*</button>
+                                    }
+                                    return item.value
                                 },
                                 onFormatCell: (item, key, idxRow, idxCol, currentPage) => {
                                     console.log('onFormatCell', item, key, idxRow, idxCol, currentPage)

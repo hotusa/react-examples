@@ -31,29 +31,6 @@ export default function Home() {
             </pre>
             </figure>
 
-
-            <h2>Use</h2>
-            <hr/>
-            <figure>
-            <pre>
-                <code>
-{
-`
-import {
-    IGMLogin,
-    IGMNotification,
-    IGMAlertConfirm,
-    IGMPagination,
-    IGMTable,
-    IGMModal,
-    IGMUtilidades,
-    IGMLoader
-} from 'react-igmweb'
-`}
-                </code>
-            </pre>
-            </figure>
-
         </div>
     )
 }

@@ -3,7 +3,7 @@ import './notification.css'
 
 function Notification({classContainer, type, text, html, timer}) {
 
-    let _timer  = timer || 3500
+    let _timer = timer || 3500
 
     let _background = null
 
@@ -36,30 +36,37 @@ function Notification({classContainer, type, text, html, timer}) {
         container: classContainer
     }
 
+    let optionsText = {
+        type: type,
+        text: text,
+        toast: true,
+        position: 'top-end',
+        animation: false,
+        showConfirmButton: false,
+        background: _background,
+        customClass: _customClass
+    }
+
+    let optionsHtml = {
+        type: type,
+        html: html,
+        toast: true,
+        position: 'top-end',
+        animation: false,
+        showConfirmButton: false,
+        background: _background,
+        customClass: _customClass
+    }
+
+    if(document.visibilityState === 'visible') {
+        optionsText.timer = _timer
+        optionsHtml.timer = _timer
+    }
+
     if (text) {
-        Swal.fire({
-            type: type,
-            text: text,
-            toast: true,
-            position: 'top-end',
-            timer: _timer,
-            animation: false,
-            showConfirmButton: false,
-            background: _background,
-            customClass: _customClass
-        })
+        Swal.fire(optionsText)
     } else if (html) {
-        Swal.fire({
-            type: type,
-            html: html,
-            toast: true,
-            position: 'top-end',
-            timer: _timer,
-            animation: false,
-            showConfirmButton: false,
-            background: _background,
-            customClass: _customClass
-        })
+        Swal.fire(optionsHtml)
     }
 
 }

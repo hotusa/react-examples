@@ -17,7 +17,7 @@ export default function _Modal({children, className, show, options, disableConfi
 
             {options && options.title ? <div className="modal-header">
                 <h5 className="modal-title">{options && options.title}</h5>
-                {options.onClose && !loading ?
+                {options.onClose ?
                     <button type="button" className="close" data-dismiss="modal" aria-label="Close"
                             onClick={() => options.onClose('CLOSE')}>
                         <span aria-hidden="true">&times;</span>
@@ -44,7 +44,6 @@ export default function _Modal({children, className, show, options, disableConfi
 
                 {options && options.onCancel ?
                     <button type="button"
-                            disabled={loading}
                             className={`float-right ml-1 btn btn-${options && options.colorCancel ? options.colorCancel : 'secondary'} ${options && options.btSize ? 'btn-' + options.btSize : ''}`}
                             onClick={() => options.onCancel('CANCEL')}>
                         {options && options.iconButton ?

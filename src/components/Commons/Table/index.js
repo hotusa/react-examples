@@ -81,6 +81,7 @@ export default function Table({className, header, visible, body, pagination, ord
             leyendas: options && options.leyendas ? options.leyendas : [],
             onColorRow: options && options.onColorRow ? options.onColorRow : undefined,
             onFormatCell: options && options.onFormatCell ? options.onFormatCell : undefined,
+            onFormatCellHead: options && options.onFormatCellHead ? options.onFormatCellHead : undefined,
             onFormatCellAction: options && options.onFormatCellAction ? options.onFormatCellAction : undefined
         }
 
@@ -268,12 +269,21 @@ export default function Table({className, header, visible, body, pagination, ord
                         onClick={() => setOrder(e)} style={{cursor: 'pointer'}}>
                 <FontAwesomeIcon
                     icon={e.order === 'asc' ? faSortUp : e.order === 'desc' ? faSortDown : faSort}
-                    className={"mr-1"}/>{e.value}</th>)
+                    className={"mr-1"}/>{getFormatCellHead(e,i)}</th>)
         } else {
-            return <th className={e.className || ''} key={i}>{e.value}</th>
+            return <th className={e.className || ''} key={i}>{getFormatCellHead(e,i)}</th>
         }
 
     }
+
+
+    /* set format cell value from thead */
+    const getFormatCellHead = (item, idxCol) => {
+        if (dataOptions.onFormatCellHead) return dataOptions.onFormatCellHead(item, idxCol)
+        return item.value
+    }
+
+
 
     /* select group pages */
     const formatSelectItemPag = (data, _pagination) => {

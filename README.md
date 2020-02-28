@@ -273,6 +273,13 @@ let options = {
         if (key === 'col1' && item[key] === 'S') return 'Sí'
         return item[key]
     },
+    onFormatCellHead: (item, idxCol) => {   
+        /* Por si queremos formatear el valor de una celda del thead */   
+        if (item.key === 'col1') {
+            return <button>*</button>
+        }
+        return item.value
+    },
     onFormatCellAction: (item, index, action) => {
         /* Mostrar actions segun datos del row */
         return true

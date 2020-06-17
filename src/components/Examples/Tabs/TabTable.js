@@ -345,6 +345,10 @@ return (
                                 },
                                 onFormatCellAction: (item, index, action) => {
                                     return true
+                                },
+                                onClassCell: (key, item, idxRow, idxCol) => {
+                                    /* Por si queremos incluir classes de estilos a una celda (<td>)*/
+                                    return ''
                                 }
                             }
                         }

@@ -283,6 +283,10 @@ let options = {
     onFormatCellAction: (item, index, action) => {
         /* Mostrar actions segun datos del row */
         return true
+    },
+    onClassCell: (key, item, idxRow, idxCol) => {
+        /* Por si queremos incluir classes de estilos a una celda (<td>)*/
+        return ''
     }
 }
 

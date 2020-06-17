@@ -73,7 +73,6 @@ return (
         onCancel: onCallback,
         onBackdrop: onCallback,
         onOther: onCallback,
-        onClose: onCallback,
         textOk: 'Ok',
         textCancel: 'Cancelar',
         size: '', // sm, lg (size modal)

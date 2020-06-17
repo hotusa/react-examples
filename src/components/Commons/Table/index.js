@@ -80,6 +80,7 @@ export default function Table({className, header, visible, body, pagination, ord
             },
             leyendas: options && options.leyendas ? options.leyendas : [],
             onColorRow: options && options.onColorRow ? options.onColorRow : undefined,
+            onClassCell: options && options.onClassCell ? options.onClassCell : undefined,
             onFormatCell: options && options.onFormatCell ? options.onFormatCell : undefined,
             onFormatCellHead: options && options.onFormatCellHead ? options.onFormatCellHead : undefined,
             onFormatCellAction: options && options.onFormatCellAction ? options.onFormatCellAction : undefined
@@ -167,17 +168,21 @@ export default function Table({className, header, visible, body, pagination, ord
     }
 
     /* custom class td */
-    const getClassTd = (key) => {
-
+    const getClassTd = (key, item, idxRow, idxCol) => {
+        let classname = '';
         let col = dataHeader.find((item) => {
             return item.key === key
         })
 
         if (col && col.className) {
-            return col.className
+            classname += ' ' + col.className
         }
 
-        return ''
+        if (dataOptions.onClassCell) {
+            classname += ' ' + dataOptions.onClassCell(key, item, idxRow, idxCol)
+        }
+
+        return classname
     }
 
     /* custom class thead */
@@ -409,23 +414,23 @@ export default function Table({className, header, visible, body, pagination, ord
                                                 return checkColumnVisible.map(col => {
                                                     if (col === h.key) {
                                                         if (j === 0 && dataOptions.callbacks.onGet) return <td key={j}
-                                                                                                               className={getClassTd(h.key)}
+                                                                                                               className={getClassTd(h.key, b, i, j)}
                                                                                                                style={{verticalAlign: 'middle'}}><span
                                                             style={{cursor: 'pointer'}} className={`text-primary`}
                                                             onClick={() => dataOptions.callbacks.onGet(b, i)}>{getFormatCell(b, h.key, i, j, pagination ? pagination.pag : 1)}</span>
                                                         </td>
-                                                        else return <td key={j} className={getClassTd(h.key)}
+                                                        else return <td key={j} className={getClassTd(h.key, b, i, j)}
                                                                         style={{verticalAlign: 'middle'}}>{getFormatCell(b, h.key, i, j, pagination ? pagination.pag : 1)}</td>
                                                     } else return null
                                                 })
                                             } else {
                                                 if (j === 0 && dataOptions.callbacks.onGet) return <td key={j}
-                                                                                                       className={getClassTd(h.key)}
+                                                                                                       className={getClassTd(h.key, b, i, j)}
                                                                                                        style={{verticalAlign: 'middle'}}><span
                                                     style={{cursor: 'pointer'}} className={`text-primary`}
                                                     onClick={() => dataOptions.callbacks.onGet(b, i)}>{getFormatCell(b, h.key, i, j, pagination ? pagination.pag : 1)}</span>
                                                 </td>
-                                                else return <td key={j} className={getClassTd(h.key)}
+                                                else return <td key={j} className={getClassTd(h.key, b, i, j)}
                                                                 style={{verticalAlign: 'middle'}}>{getFormatCell(b, h.key, i, j, pagination ? pagination.pag : 1)}</td>
                                             }
 

@@ -11,7 +11,7 @@ export default function _Calendar({className, startDate, callback,
                                       isInvalid = false, size = undefined, dateFormat = 'dd/MM/yyyy', locale = 'es',
                                       minDate = undefined, maxDate = undefined, disabled = false, readOnly = false,
                                       showMonthDropdown = true, showYearDropdown = false, showPopperArrow = true,
-                                      popperPlacement='bottom-end', tabIndex=1}) {
+                                      popperPlacement='bottom-end', tabIndex=1, maskChar='_'}) {
 
     registerLocale('es', es)
     setDefaultLocale('es')
@@ -38,7 +38,7 @@ export default function _Calendar({className, startDate, callback,
             setText(getStringDate(startDate, "/"))
             setEjercicio(startDate.getFullYear())
         } else {
-            if (text.indexOf('_') === -1) {
+            if (text.indexOf(maskChar) === -1) {
                 setText('')
             }
         }
@@ -55,7 +55,7 @@ export default function _Calendar({className, startDate, callback,
     const onChangeDatePicker = (date) => {
         setText(date.getDate() + '/' + (date.getMonth() + 1) + '/' + date.getFullYear())
         date.setHours(12,0,0)
-        callback(date)
+        callback(date, false)
     }
 
     const beforeMaskedValueChange = (newState, oldState, userInput) => {
@@ -72,19 +72,29 @@ export default function _Calendar({className, startDate, callback,
             value = value.slice(0, -1);
         }
 
-        //console.log(newState, oldState, userInput)
 
-        if (newState.value.indexOf('_') === -1 && userInput) {
+        if (newState.value.indexOf(maskChar) === -1 && userInput) {
 
             let pos = value.split('/')
             let date = new Date()
             date.setFullYear(dateFormat.indexOf('yyyy') === -1 ? ejercicio : parseInt(pos[2]), parseInt(pos[1]) - 1, parseInt(pos[0]))
             date.setHours(12,0,0)
-            callback(date)
+            callback(date, false)
 
         } else {
-            if (newState.value.indexOf('_') > -1 && newState.value === oldState.value) {
-                callback(undefined)
+            if (newState.value.indexOf(maskChar) > -1 && newState.value === oldState.value) {
+
+                // Controlar si el input está vacío
+                let count_separator = occurrences(dateFormat, '/');
+                let count_maskChar = occurrences(value, maskChar);
+
+                if (value.length === count_maskChar + count_separator) {
+                    callback(undefined, true);
+                } else {
+                    callback(undefined, false);
+                }
+
+
             }
         }
 
@@ -94,12 +104,34 @@ export default function _Calendar({className, startDate, callback,
         };
     }
 
+
+    const occurrences = (string, subString, allowOverlapping) => {
+
+        string += "";
+        subString += "";
+        if (subString.length <= 0) return (string.length + 1);
+
+        let n = 0,
+          pos = 0,
+          step = allowOverlapping ? 1 : subString.length;
+
+        while (true) {
+            pos = string.indexOf(subString, pos);
+            if (pos >= 0) {
+                ++n;
+                pos += step;
+            } else break;
+        }
+        return n;
+    }
+
+
     return (
         <div
             className={`custom-calendar ${className ? className : ''} input-group ${size ? 'input-group-' + size : ''}`}>
             <InputMask
                 mask={mask}
-                maskChar={"_"}
+                maskChar={maskChar}
                 value={text}
                 onChange={(e) => setText(e.target.value)}
                 beforeMaskedValueChange={beforeMaskedValueChange}

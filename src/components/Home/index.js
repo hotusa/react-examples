@@ -14,7 +14,7 @@ export default function Home() {
                 <a className="btn btn-secondary btn-lg" href="https://www.npmjs.com/package/react-igmweb"
                    target="_blank" rel="noopener noreferrer" role="button">Learn more</a>
                 <Link to={"/examples"} className="btn btn-primary btn-lg ml-2" href="#" role="button">View demos</Link>
-                <span className="ml-2">(Download github demo project <a href="https://github.com/hotusa/react-examples" className="alert-link" target="_blank">react-examples <FontAwesomeIcon icon={faExternalLinkAlt}/></a>)</span>
+                <p className="mt-2 mb-0">(Download github demo project <a href="https://github.com/hotusa/react-examples" className="alert-link" target="_blank">react-examples <FontAwesomeIcon icon={faExternalLinkAlt}/></a>)</p>
             </div>
 
             <h2>Installation</h2>

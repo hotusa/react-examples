@@ -500,12 +500,17 @@ export default function Table({className, header, visible, body, pagination, ord
                                 <input
                                     className="form-check-input"
                                     type="checkbox"
-                                    id={`inlineCheckbox${i}`}
+                                    /*id={`inlineCheckbox${i}`}*/
                                     value={item.key}
                                     name={item.key}
                                     checked={found || false}
                                     onChange={(e) => onChangeCheckVisibleCol(e)}/>
-                                <label className="form-check-label text-capitalize" htmlFor={`inlineCheckbox${i}`}>{item.value.toLowerCase()}</label>
+                                <label
+                                  className="form-check-label text-capitalize"
+                                  /*htmlFor={`inlineCheckbox${i}`}*/
+                                >
+                                    {item.value.toLowerCase()}
+                                </label>
                             </div>
                             </div>
                         )

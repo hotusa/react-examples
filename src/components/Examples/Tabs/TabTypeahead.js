@@ -83,7 +83,7 @@ return (
         labelKey: 'text',
         filterBy: ['text'], // List searching
         placeholder: 'Buscar...',
-        minLength: 3,
+        minLength: 0,
         size: '' // "large", "lg", "small", "sm"
     }
 

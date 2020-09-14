@@ -12,7 +12,7 @@ export default function Typeahead({mounted, defaultInputValue, isLoading, config
         labelKey: config && config.labelKey ? config.labelKey : 'text',
         filterBy: config && config.filterBy ? config.filterBy : ['text'],
         placeholder: config && config.placeholder ? config.placeholder : "Buscar...",
-        minLength: config && config.minLength ? config.minLength : 3,
+        minLength: config && config.minLength !== undefined ? config.minLength : 3,
         size: config && config.size ? config.size : undefined, // "large", "lg", "small", "sm"
     })
 
@@ -24,6 +24,7 @@ export default function Typeahead({mounted, defaultInputValue, isLoading, config
         }
     },[clear])
 
+    console.log('dataConfig',dataConfig)
 
     if (mounted === undefined || mounted) {
         return (

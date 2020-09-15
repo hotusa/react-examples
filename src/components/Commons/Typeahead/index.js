@@ -3,7 +3,7 @@ import {AsyncTypeahead, Highlighter} from 'react-bootstrap-typeahead';
 import 'react-bootstrap-typeahead/css/Typeahead.css';
 
 
-export default function Typeahead({mounted, defaultInputValue, isLoading, config, options, onSearch, onChange, onKeyDown, clear, isValid, onBlur}) {
+export default function Typeahead({mounted, defaultInputValue, isLoading, config, options, onSearch, onChange, onKeyDown, clear, isValid, onBlur, onInputChange}) {
 
     const [dataConfig] = useState({
         id: config && config.id ? config.id : 'id',
@@ -48,6 +48,7 @@ export default function Typeahead({mounted, defaultInputValue, isLoading, config
                 onChange={onChange}
                 onKeyDown={onKeyDown}
                 isLoading={isLoading || false}
+                onInputChange={onInputChange}
                 renderMenuItemChildren={(option, props, idx) => (
                     <Highlighter search={props.text}>
                         {option.text}

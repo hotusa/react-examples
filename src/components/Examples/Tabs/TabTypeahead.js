@@ -108,6 +108,9 @@ return (
                     console.log(e.key)
                     console.log(e.target.value)
                 }}
+                onInputChange={(text) => {
+                  console.log('onInputChange', text)
+                }}
                 clear={clear}
             />
 

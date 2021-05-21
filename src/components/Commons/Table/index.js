@@ -1,6 +1,16 @@
 import React, {useState, useEffect} from 'react'
 import {FontAwesomeIcon} from '@fortawesome/react-fontawesome'
-import {faCog, faSortDown, faSortUp, faSort, faTable, faColumns, faPlus, faTrashAlt} from '@fortawesome/free-solid-svg-icons'
+import {
+    faCog,
+    faSortDown,
+    faSortUp,
+    faSort,
+    faTable,
+    faColumns,
+    faPlus,
+    faTrashAlt,
+    faSpinner
+} from '@fortawesome/free-solid-svg-icons'
 import Pagination from "../Pagination";
 import Modal from "../Modal"
 import BlockUi from 'react-block-ui';
@@ -67,7 +77,7 @@ export default function Table({className, header, visible, body, pagination, ord
                 textMore: options && options.thead && options.thead.textMore ? options.thead.textMore : 'Se ha encontrado {X} registros',
                 color: options && options.thead && options.thead.color ? options.thead.color : 'light'
             },
-            actions: options && options.actions ? options.actions : [], //'get', 'update', 'delete', 'historial', 'export'
+            actions: options && options.actions ? options.actions : [], //'get', 'update', 'delete', 'historial', 'export', 'create'
             textActions: options && options.textActions ? options.textActions : {},
             callbacks: {
                 onGet: options && options.callbacks && options.callbacks.onGet ? options.callbacks.onGet : undefined,
@@ -331,78 +341,79 @@ export default function Table({className, header, visible, body, pagination, ord
                         <table className={getClassTable()}>
 
                             {dataOptions.thead.showHeaderResultados ?
-                            <thead style={{backgroundColor: '#ffffff'}}>
-                            <tr>
-                                <th className="py-2 px-3"
-                                    colSpan={dataHeader.length + (IsIconActions(dataOptions.actions) ? 1 : 0)}>
-                                    <div className="d-flex align-items-center justify-content-between">
-                                        {totalResultados === 0 ?
-                                            <span>{dataOptions.thead.textNone}</span> : null
-                                        }
-                                        {totalResultados === 1 ?
-                                            <span>{dataOptions.thead.textOnly.replace('{X}', totalResultados)}</span> : null
-                                        }
-                                        {totalResultados > 1 ?
-                                            <span>{dataOptions.thead.textMore.replace('{X}', totalResultados)}</span> : null
-                                        }
-                                        <div>
-                                            {
-                                                /* visibilidad columnas */
-                                                visible && visible.show ?
-                                                    <button
-                                                        className="btn btn-sm btn-primary ml-1"
-                                                        onClick={() => setShowModalColumns(true)}>
-                                                        <FontAwesomeIcon icon={faColumns}/>
-                                                    </button> : null
+                                <thead style={{backgroundColor: '#ffffff'}}>
+                                <tr>
+                                    <th className="py-2 px-3"
+                                        colSpan={dataHeader.length + (IsIconActions(dataOptions.actions) ? 1 : 0)}>
+                                        <div className="d-flex align-items-center justify-content-between">
+                                            {totalResultados === 0 ?
+                                                <span>{dataOptions.thead.textNone}</span> : null
                                             }
-                                            {
-                                                /* exportar */
-                                                dataOptions.actions.indexOf('export') > -1 && totalResultados > 0 ?
-                                                    <button
-                                                        disabled={!dataOptions.callbacks.onExport}
-                                                        onClick={() => dataOptions.callbacks.onExport()}
-                                                        className="btn btn-sm btn-primary ml-1">
-                                                        <FontAwesomeIcon icon={faTable}
-                                                                         className={"mr-1"}/> {dataOptions.textActions.export || 'Exportar'}
-                                                    </button> : null
+                                            {totalResultados === 1 ?
+                                                <span>{dataOptions.thead.textOnly.replace('{X}', totalResultados)}</span> : null
                                             }
-                                            {
-                                                /* crear */
-                                                dataOptions.actions.indexOf('create') > -1 ?
-                                                    <button
-                                                        disabled={!dataOptions.callbacks.onCreate}
-                                                        onClick={() => dataOptions.callbacks.onCreate()}
-                                                        className="btn btn-sm btn-primary ml-1">
-                                                        <FontAwesomeIcon icon={faPlus}
-                                                                         className={"mr-1"}/>{dataOptions.textActions.create || 'Crear'}
-                                                    </button> : null
+                                            {totalResultados > 1 ?
+                                                <span>{dataOptions.thead.textMore.replace('{X}', totalResultados)}</span> : null
                                             }
+                                            <div>
+                                                {
+                                                    /* visibilidad columnas */
+                                                    visible && visible.show ?
+                                                        <button
+                                                            className="btn btn-sm btn-primary ml-1"
+                                                            onClick={() => setShowModalColumns(true)}>
+                                                            <FontAwesomeIcon icon={faColumns}/>
+                                                        </button> : null
+                                                }
+                                                {
+                                                    /* exportar */
+                                                    dataOptions.actions.indexOf('export') > -1 && totalResultados > 0 ?
+                                                        <button
+                                                            disabled={!dataOptions.callbacks.onExport || (loading && loading.export || false)}
+                                                            onClick={() => dataOptions.callbacks.onExport()}
+                                                            className="btn btn-sm btn-primary ml-1">
+                                                            <FontAwesomeIcon icon={(loading && loading.export || false) ? faSpinner : faTable}
+                                                                             spin={(loading && loading.export || false)}
+                                                                             className={"mr-1"}/> {dataOptions.textActions.export || 'Exportar'}
+                                                        </button> : null
+                                                }
+                                                {
+                                                    /* crear */
+                                                    dataOptions.actions.indexOf('create') > -1 ?
+                                                        <button
+                                                            disabled={!dataOptions.callbacks.onCreate}
+                                                            onClick={() => dataOptions.callbacks.onCreate()}
+                                                            className="btn btn-sm btn-primary ml-1">
+                                                            <FontAwesomeIcon icon={faPlus}
+                                                                             className={"mr-1"}/>{dataOptions.textActions.create || 'Crear'}
+                                                        </button> : null
+                                                }
+                                            </div>
                                         </div>
-                                    </div>
-                                </th>
-                            </tr>
-                            </thead> : null}
+                                    </th>
+                                </tr>
+                                </thead> : null}
 
                             {dataOptions.thead.showHeaderCabecera ?
-                            <thead className={getClassThead()}>
-                            <tr>
-                                {dataHeader.map((e, i) => {
-                                    if (checkColumnVisible.length > 0) {
+                                <thead className={getClassThead()}>
+                                <tr>
+                                    {dataHeader.map((e, i) => {
+                                        if (checkColumnVisible.length > 0) {
 
-                                        return checkColumnVisible.map(col => {
-                                            if (col === e.key) {
-                                                return getHeadColumn(e, i)
-                                            } else return null
-                                        })
-                                    } else {
-                                        return getHeadColumn(e, i)
-                                    }
+                                            return checkColumnVisible.map(col => {
+                                                if (col === e.key) {
+                                                    return getHeadColumn(e, i)
+                                                } else return null
+                                            })
+                                        } else {
+                                            return getHeadColumn(e, i)
+                                        }
 
 
-                                })}
-                                {IsIconActions(dataOptions.actions) ? <th width="1"/> : null}
-                            </tr>
-                            </thead> : null}
+                                    })}
+                                    {IsIconActions(dataOptions.actions) ? <th width="1"/> : null}
+                                </tr>
+                                </thead> : null}
 
                             <tbody style={{backgroundColor: '#ffffff'}}>
                             {body.map((b, i) => {
@@ -490,32 +501,32 @@ export default function Table({className, header, visible, body, pagination, ord
 
 
                     <div className="row">
-                    {dataHeader.map((item, i) => {
+                        {dataHeader.map((item, i) => {
 
-                        let found = checkColumnVisible.find(col => col === item.key)
+                            let found = checkColumnVisible.find(col => col === item.key)
 
-                        return (
-                            <div key={i} className="col-sm-2">
-                            <div className="form-check form-check-inline">
-                                <input
-                                    className="form-check-input"
-                                    type="checkbox"
-                                    /*id={`inlineCheckbox${i}`}*/
-                                    value={item.key}
-                                    name={item.key}
-                                    checked={found || false}
-                                    onChange={(e) => onChangeCheckVisibleCol(e)}/>
-                                <label
-                                  className="form-check-label text-capitalize"
-                                  /*htmlFor={`inlineCheckbox${i}`}*/
-                                >
-                                    {item.value.toLowerCase()}
-                                </label>
-                            </div>
-                            </div>
-                        )
+                            return (
+                                <div key={i} className="col-sm-2">
+                                    <div className="form-check form-check-inline">
+                                        <input
+                                            className="form-check-input"
+                                            type="checkbox"
+                                            /*id={`inlineCheckbox${i}`}*/
+                                            value={item.key}
+                                            name={item.key}
+                                            checked={found || false}
+                                            onChange={(e) => onChangeCheckVisibleCol(e)}/>
+                                        <label
+                                            className="form-check-label text-capitalize"
+                                            /*htmlFor={`inlineCheckbox${i}`}*/
+                                        >
+                                            {item.value.toLowerCase()}
+                                        </label>
+                                    </div>
+                                </div>
+                            )
 
-                    })}
+                        })}
                     </div>
                 </Modal>
 

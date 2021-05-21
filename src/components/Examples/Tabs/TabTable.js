@@ -349,6 +349,13 @@ return (
                                 onClassCell: (key, item, idxRow, idxCol) => {
                                     /* Por si queremos incluir classes de estilos a una celda (<td>)*/
                                     return ''
+                                },
+                                otherComponentsThead: () => {
+                                    return (
+                                        <>
+                                            <button type="button" className="btn btn-sm btn-dark ml-1">Otro</button>
+                                        </>
+                                    )
                                 }
                             }
                         }

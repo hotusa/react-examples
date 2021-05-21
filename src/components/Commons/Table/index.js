@@ -14,7 +14,7 @@ import {
 import Pagination from "../Pagination";
 import Modal from "../Modal"
 import BlockUi from 'react-block-ui';
-import { Loader } from 'react-loaders';
+import {Loader} from 'react-loaders';
 import 'react-block-ui/style.css';
 import 'loaders.css/loaders.min.css';
 
@@ -77,7 +77,7 @@ export default function Table({className, header, visible, body, pagination, ord
                 textMore: options && options.thead && options.thead.textMore ? options.thead.textMore : 'Se ha encontrado {X} registros',
                 color: options && options.thead && options.thead.color ? options.thead.color : 'light'
             },
-            actions: options && options.actions ? options.actions : [], //'get', 'update', 'delete', 'historial', 'export', 'create'
+            actions: options && options.actions ? options.actions : [], //'get', 'update', 'delete', 'historial', 'export'
             textActions: options && options.textActions ? options.textActions : {},
             callbacks: {
                 onGet: options && options.callbacks && options.callbacks.onGet ? options.callbacks.onGet : undefined,
@@ -93,7 +93,8 @@ export default function Table({className, header, visible, body, pagination, ord
             onClassCell: options && options.onClassCell ? options.onClassCell : undefined,
             onFormatCell: options && options.onFormatCell ? options.onFormatCell : undefined,
             onFormatCellHead: options && options.onFormatCellHead ? options.onFormatCellHead : undefined,
-            onFormatCellAction: options && options.onFormatCellAction ? options.onFormatCellAction : undefined
+            onFormatCellAction: options && options.onFormatCellAction ? options.onFormatCellAction : undefined,
+            otherComponentsThead: options && options.otherComponentsThead ? options.otherComponentsThead : undefined
         }
 
         setDataOptions(_options)
@@ -105,7 +106,8 @@ export default function Table({className, header, visible, body, pagination, ord
 
         if (dataOptions.actions.length === 1 && dataOptions.actions.indexOf('delete') > -1) {
             return (
-                <button type="button" className={`btn btn-secondary btn-sm ${dataOptions.callbacks.onDelete ? '' : 'disabled'}`}
+                <button type="button"
+                        className={`btn btn-secondary btn-sm ${dataOptions.callbacks.onDelete ? '' : 'disabled'}`}
                         onClick={() => dataOptions.callbacks.onDelete(item, index)}><FontAwesomeIcon icon={faTrashAlt}/>
                 </button>
             )
@@ -284,9 +286,9 @@ export default function Table({className, header, visible, body, pagination, ord
                         onClick={() => setOrder(e)} style={{cursor: 'pointer'}}>
                 <FontAwesomeIcon
                     icon={e.order === 'asc' ? faSortUp : e.order === 'desc' ? faSortDown : faSort}
-                    className={"mr-1"}/>{getFormatCellHead(e,i)}</th>)
+                    className={"mr-1"}/>{getFormatCellHead(e, i)}</th>)
         } else {
-            return <th className={e.className || ''} key={i}>{getFormatCellHead(e,i)}</th>
+            return <th className={e.className || ''} key={i}>{getFormatCellHead(e, i)}</th>
         }
 
     }
@@ -297,7 +299,6 @@ export default function Table({className, header, visible, body, pagination, ord
         if (dataOptions.onFormatCellHead) return dataOptions.onFormatCellHead(item, idxCol)
         return item.value
     }
-
 
 
     /* select group pages */
@@ -311,15 +312,15 @@ export default function Table({className, header, visible, body, pagination, ord
 
             return (
                 <select
-                    style={{width:'auto'}}
+                    style={{width: 'auto'}}
                     className="form-control form-control-sm mr-2"
                     name="selectItemPage"
-                    onChange={(e)=>data.callback(e.target.value)} value={itemPageDefault}>
-                    { data.options.map( (item, idx) => {
+                    onChange={(e) => data.callback(e.target.value)} value={itemPageDefault}>
+                    {data.options.map((item, idx) => {
                         return (
                             <option key={idx} value={item}>{item}</option>
                         )
-                    } )}
+                    })}
                 </select>
             )
         }
@@ -336,7 +337,8 @@ export default function Table({className, header, visible, body, pagination, ord
                     <BlockUi tag="div"
                              blocking={loading ? loading.show || false : false}
                              renderChildren={loading ? loading.renderChildren || false : false}
-                             loader={<Loader active type={loading ? loading.type || 'ball-pulse' : 'ball-pulse'} color={loading ? loading.color || '#02a17c' : '#02a17c'}/>}
+                             loader={<Loader active type={loading ? loading.type || 'ball-pulse' : 'ball-pulse'}
+                                             color={loading ? loading.color || '#02a17c' : '#02a17c'}/>}
                              keepInView>
                         <table className={getClassTable()}>
 
@@ -372,9 +374,10 @@ export default function Table({className, header, visible, body, pagination, ord
                                                             disabled={!dataOptions.callbacks.onExport || (loading && loading.export || false)}
                                                             onClick={() => dataOptions.callbacks.onExport()}
                                                             className="btn btn-sm btn-primary ml-1">
-                                                            <FontAwesomeIcon icon={(loading && loading.export || false) ? faSpinner : faTable}
-                                                                             spin={(loading && loading.export || false)}
-                                                                             className={"mr-1"}/> {dataOptions.textActions.export || 'Exportar'}
+                                                            <FontAwesomeIcon
+                                                                icon={(loading && loading.export || false) ? faSpinner : faTable}
+                                                                spin={(loading && loading.export || false)}
+                                                                className={"mr-1"}/> {dataOptions.textActions.export || 'Exportar'}
                                                         </button> : null
                                                 }
                                                 {
@@ -387,6 +390,10 @@ export default function Table({className, header, visible, body, pagination, ord
                                                             <FontAwesomeIcon icon={faPlus}
                                                                              className={"mr-1"}/>{dataOptions.textActions.create || 'Crear'}
                                                         </button> : null
+                                                }
+                                                {
+                                                    /* Otros componentes */
+                                                    dataOptions.otherComponentsThead ? dataOptions.otherComponentsThead() : null
                                                 }
                                             </div>
                                         </div>
@@ -497,7 +504,8 @@ export default function Table({className, header, visible, body, pagination, ord
                     </BlockUi>
                 </div>
 
-                <Modal show={showModalColumns} options={{title: 'Visibilidad columnas', onOk: onOkModalColumn, size: 'lg'}}>
+                <Modal show={showModalColumns}
+                       options={{title: 'Visibilidad columnas', onOk: onOkModalColumn, size: 'lg'}}>
 
 
                     <div className="row">
